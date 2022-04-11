@@ -22,7 +22,7 @@ export default function Canvas() {
       y?: number;
     };
 
-    const gravity = 0.7;
+    const gravity = 0.3;
 
     class Sprite {
       position: SpriteType;
@@ -43,10 +43,11 @@ export default function Canvas() {
         this.draw();
         if (!this.position.y || !this.speed.y) return;
 
-        this.speed.y += gravity;
         this.position.y += this.speed.y;
         if (this.position.y + this.height + this.speed.y >= canvas.height) {
           this.position.y = canvas.height - 150;
+        } else {
+          this.speed.y += gravity;
         }
 
         if (!this.position.x || !this.speed.x) return;
@@ -61,7 +62,7 @@ export default function Canvas() {
       },
       speed: {
         x: 0,
-        y: 5,
+        y: 10,
       },
     });
 
@@ -72,15 +73,21 @@ export default function Canvas() {
       },
       speed: {
         x: 0,
-        y: 5,
+        y: 10,
       },
     });
 
     const key = {
-      d: {
+      pd: {
         press: false,
       },
-      a: {
+      pa: {
+        press: false,
+      },
+      ed: {
+        press: false,
+      },
+      ea: {
         press: false,
       },
     };
@@ -93,24 +100,45 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      if (key.d.press) {
+      if (key.pd.press) {
         player.speed.x = 3;
-      } else if (key.a.press) {
+      } else if (key.pa.press) {
         player.speed.x = -3;
-      }else {
+      } else {
         player.speed.x = 0;
+      }
+
+      if (key.ed.press) {
+        enemy.speed.x = 3;
+      } else if (key.ea.press) {
+        enemy.speed.x = -3;
+      } else {
+        enemy.speed.x = 0;
       }
     }
 
     animate();
 
     window.addEventListener("keydown", (e) => {
+      console.log(e.key);
       switch (e.key) {
         case "d":
-          key.d.press = true;
+          key.pd.press = true;
           break;
         case "a":
-          key.a.press = true;
+          key.pa.press = true;
+          break;
+        case "w":
+          player.speed.y = -10;
+          break;
+        case "ArrowRight":
+          key.ed.press = true;
+          break;
+        case "ArrowLeft":
+          key.ea.press = true;
+          break;
+        case "ArrowUp":
+          enemy.speed.y = -10;
           break;
       }
     });
@@ -118,10 +146,16 @@ export default function Canvas() {
     window.addEventListener("keyup", (e) => {
       switch (e.key) {
         case "d":
-          key.d.press = false;
+          key.pd.press = false;
           break;
         case "a":
-          key.a.press = false;
+          key.pa.press = false;
+          break;
+        case "ArrowRight":
+          key.ed.press = false;
+          break;
+        case "ArrowLeft":
+          key.ea.press = false;
           break;
       }
     });
