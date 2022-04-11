@@ -97,6 +97,8 @@ export default function Canvas() {
         player.speed.x = 3;
       } else if (key.a.press) {
         player.speed.x = -3;
+      }else {
+        player.speed.x = 0;
       }
     }
 
