@@ -76,6 +76,15 @@ export default function Canvas() {
       },
     });
 
+    const key = {
+      d: {
+        press: false,
+      },
+      a: {
+        press: false,
+      },
+    };
+
     function animate() {
       window.requestAnimationFrame(animate);
 
@@ -83,6 +92,12 @@ export default function Canvas() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       player.update();
       enemy.update();
+
+      if (key.d.press) {
+        player.speed.x = 3;
+      } else if (key.a.press) {
+        player.speed.x = -3;
+      }
     }
 
     animate();
@@ -90,10 +105,10 @@ export default function Canvas() {
     window.addEventListener("keydown", (e) => {
       switch (e.key) {
         case "d":
-          player.speed.x = 3;
+          key.d.press = true;
           break;
         case "a":
-          player.speed.x = -3;
+          key.a.press = true;
           break;
       }
     });
@@ -101,10 +116,10 @@ export default function Canvas() {
     window.addEventListener("keyup", (e) => {
       switch (e.key) {
         case "d":
-          player.speed.x = 0;
+          key.d.press = false;
           break;
         case "a":
-          player.speed.x = 0;
+          key.a.press = false;
           break;
       }
     });
