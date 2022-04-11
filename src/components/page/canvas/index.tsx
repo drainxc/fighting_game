@@ -25,8 +25,12 @@ export default function Canvas() {
     class Sprite {
       position: PositionType;
       constructor(position: any) {
-        console.log(position);
         this.position = position;
+      }
+
+      draw() {
+        ctx.fillStyle = "blue";
+        ctx.fillRect(this.position.x, this.position.y, 50, 150);
       }
     }
 
@@ -34,7 +38,8 @@ export default function Canvas() {
       x: 0,
       y: 0,
     });
-    console.log(player);
+
+    player.draw();
 
     setCtx(ctxRef.current);
   }, []);
