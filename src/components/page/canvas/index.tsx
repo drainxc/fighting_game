@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { pressSense } from "../../../lib/function/pressSense";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -78,18 +79,10 @@ export default function Canvas() {
     });
 
     const key = {
-      pd: {
-        press: false,
-      },
-      pa: {
-        press: false,
-      },
-      ed: {
-        press: false,
-      },
-      ea: {
-        press: false,
-      },
+      pd: false,
+      pa: false,
+      ed: false,
+      ea: false,
     };
 
     function animate() {
@@ -100,21 +93,8 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      if (key.pd.press) {
-        player.speed.x = 3;
-      } else if (key.pa.press) {
-        player.speed.x = -3;
-      } else {
-        player.speed.x = 0;
-      }
-
-      if (key.ed.press) {
-        enemy.speed.x = 3;
-      } else if (key.ea.press) {
-        enemy.speed.x = -3;
-      } else {
-        enemy.speed.x = 0;
-      }
+      pressSense(player, key.pd, key.pa);
+      pressSense(enemy, key.ed, key.ea);
     }
 
     animate();
@@ -123,19 +103,19 @@ export default function Canvas() {
       console.log(e.key);
       switch (e.key) {
         case "d":
-          key.pd.press = true;
+          key.pd = true;
           break;
         case "a":
-          key.pa.press = true;
+          key.pa = true;
           break;
         case "w":
           player.speed.y = -10;
           break;
         case "ArrowRight":
-          key.ed.press = true;
+          key.ed = true;
           break;
         case "ArrowLeft":
-          key.ea.press = true;
+          key.ea = true;
           break;
         case "ArrowUp":
           enemy.speed.y = -10;
@@ -146,16 +126,16 @@ export default function Canvas() {
     window.addEventListener("keyup", (e) => {
       switch (e.key) {
         case "d":
-          key.pd.press = false;
+          key.pd = false;
           break;
         case "a":
-          key.pa.press = false;
+          key.pa = false;
           break;
         case "ArrowRight":
-          key.ed.press = false;
+          key.ed = false;
           break;
         case "ArrowLeft":
-          key.ea.press = false;
+          key.ea = false;
           break;
       }
     });
