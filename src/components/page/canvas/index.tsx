@@ -48,6 +48,9 @@ export default function Canvas() {
         if (this.position.y + this.height + this.speed.y >= canvas.height) {
           this.position.y = canvas.height - 150;
         }
+
+        if (!this.position.x || !this.speed.x) return;
+        this.position.x += this.speed.x;
       }
     }
 
@@ -83,6 +86,28 @@ export default function Canvas() {
     }
 
     animate();
+
+    window.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "d":
+          player.speed.x = 3;
+          break;
+        case "a":
+          player.speed.x = -3;
+          break;
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      switch (e.key) {
+        case "d":
+          player.speed.x = 0;
+          break;
+        case "a":
+          player.speed.x = 0;
+          break;
+      }
+    });
 
     setCtx(ctxRef.current);
   }, []);
