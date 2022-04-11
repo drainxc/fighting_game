@@ -17,29 +17,72 @@ export default function Canvas() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctxRef.current = ctx;
 
-    type PositionType = {
+    type SpriteType = {
       x?: number;
       y?: number;
     };
 
+    const gravity = 0.7;
+
     class Sprite {
-      position: PositionType;
-      constructor(position: any) {
+      position: SpriteType;
+      speed: SpriteType;
+      height: number;
+      constructor({ position, speed }: any) {
         this.position = position;
+        this.speed = speed;
+        this.height = 150;
       }
 
       draw() {
         ctx.fillStyle = "blue";
-        ctx.fillRect(this.position.x, this.position.y, 50, 150);
+        ctx.fillRect(this.position.x, this.position.y, 50, this.height);
+      }
+
+      update() {
+        this.draw();
+        if (!this.position.y || !this.speed.y) return;
+
+        this.speed.y += gravity;
+        this.position.y += this.speed.y;
+        if (this.position.y + this.height + this.speed.y >= canvas.height) {
+          this.position.y = canvas.height - 150;
+        }
       }
     }
 
     const player = new Sprite({
-      x: 0,
-      y: 0,
+      position: {
+        x: 1,
+        y: 1,
+      },
+      speed: {
+        x: 0,
+        y: 5,
+      },
     });
 
-    player.draw();
+    const enemy = new Sprite({
+      position: {
+        x: 400,
+        y: 100,
+      },
+      speed: {
+        x: 0,
+        y: 5,
+      },
+    });
+
+    function animate() {
+      window.requestAnimationFrame(animate);
+
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      player.update();
+      enemy.update();
+    }
+
+    animate();
 
     setCtx(ctxRef.current);
   }, []);
