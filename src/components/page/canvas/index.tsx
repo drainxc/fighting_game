@@ -2,11 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { collision } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
+import backgroundimg from "../../../asset/img/background.png";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const [ctx, setCtx] = useState<any>();
+  const enemyHealthRef = useRef<HTMLDivElement>(null);
+  const playerHealthRef = useRef<HTMLDivElement>(null);
+  const [timer, setTimer] = useState(90);
 
   useEffect(() => {
     const canvas: any = canvasRef.current;
@@ -20,16 +24,52 @@ export default function Canvas() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctxRef.current = ctx;
 
-    type SpriteType = {
+    class Sprite {
+      position: any;
+      width: number;
+      height: number;
+      image: any;
+      constructor({ position, imageSrc }: any) {
+        this.position = position;
+        this.width = 50;
+        this.height = 150;
+        this.image = new Image();
+        this.image.src = imageSrc;
+      }
+
+      draw() {
+        ctx.drawImage(
+          this.image,
+          this.position.x,
+          this.position.y,
+          canvas.width,
+          canvas.height
+        );
+      }
+
+      update() {
+        this.draw();
+      }
+    }
+
+    const background = new Sprite({
+      position: {
+        x: 0,
+        y: 0,
+      },
+      imageSrc: backgroundimg,
+    });
+
+    type FighterType = {
       x?: number;
       y?: number;
     };
 
     const gravity = 1.1;
 
-    class Sprite {
-      position: SpriteType;
-      speed: SpriteType;
+    class Fighter {
+      position: FighterType;
+      speed: FighterType;
       width: number;
       height: number;
       color: string;
@@ -38,8 +78,8 @@ export default function Canvas() {
       constructor({ position, speed, color, offset }: any) {
         this.position = position;
         this.speed = speed;
-        this.height = 150;
-        this.width = 50;
+        this.height = 200;
+        this.width = 65;
         this.color = color;
         this.range = {
           position: {
@@ -73,8 +113,11 @@ export default function Canvas() {
         if (!this.position.y || !this.speed.y) return;
 
         this.position.y += this.speed.y;
-        if (this.position.y + this.height + this.speed.y >= canvas.height) {
-          this.position.y = canvas.height - 150;
+        if (
+          this.position.y + this.height + this.speed.y >=
+          canvas.height - 67
+        ) {
+          this.position.y = canvas.height - 267;
         } else {
           this.speed.y += gravity;
         }
@@ -94,7 +137,7 @@ export default function Canvas() {
       }
     }
 
-    const player = new Sprite({
+    const player = new Fighter({
       position: {
         x: 1,
         y: 1,
@@ -110,7 +153,7 @@ export default function Canvas() {
       color: "blue",
     });
 
-    const enemy = new Sprite({
+    const enemy = new Fighter({
       position: {
         x: 400,
         y: 100,
@@ -136,8 +179,7 @@ export default function Canvas() {
     function animate() {
       window.requestAnimationFrame(animate);
 
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      background.update();
       player.update();
       enemy.update();
 
@@ -146,11 +188,11 @@ export default function Canvas() {
 
       if (!enemy.position.x || !enemy.position.y) return;
 
-      if (collision(player, enemy)) {
-        console.log("hit");
+      if (collision(player, enemy) && enemyHealthRef.current !== null) {
+        enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 1%)`;
       } // 히트 판정
-      if (collision(enemy, player)) {
-        console.log("hit");
+      if (collision(enemy, player) && playerHealthRef.current !== null) {
+        playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1%)`;
       } // 히트 판정
     }
 
@@ -165,7 +207,7 @@ export default function Canvas() {
           key.pa = true;
           break;
         case "w":
-          player.speed.y = -20;
+          player.speed.y = -22;
           break;
         case "u":
           player.attack();
@@ -178,7 +220,7 @@ export default function Canvas() {
           key.ea = true;
           break;
         case "ArrowUp":
-          enemy.speed.y = -20;
+          enemy.speed.y = -22;
           break;
         case "7":
           enemy.attack();
@@ -206,9 +248,53 @@ export default function Canvas() {
     setCtx(ctxRef.current);
   }, []);
 
+  useEffect(() => {
+    let stopWatch = setInterval(() => {
+      if (timer > 0) {
+        setTimer(timer - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(stopWatch);
+  }, [timer]);
+
   return (
-    <S.MainDiv>
-      <canvas ref={canvasRef}></canvas>
-    </S.MainDiv>
+    <>
+      <S.MainDiv>
+        <S.HealthBar>
+          <S.PlayerBar>
+            <div style={{ backgroundColor: "yellow", height: "50px" }}></div>
+            <div
+              ref={playerHealthRef}
+              style={{
+                position: "absolute",
+                background: "red",
+                width: "100%",
+                top: 0,
+                bottom: 0,
+                right: 0,
+              }}
+            ></div>
+          </S.PlayerBar>
+          <S.Timer>{timer}</S.Timer>
+          <S.EnemyBar>
+            <div style={{ backgroundColor: "yellow", height: "50px" }}></div>
+            <div
+              ref={enemyHealthRef}
+              style={{
+                position: "absolute",
+                background: "red",
+                width: "100%",
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+              }}
+            ></div>
+          </S.EnemyBar>
+        </S.HealthBar>
+        <canvas ref={canvasRef}></canvas>
+      </S.MainDiv>
+    </>
   );
 }
