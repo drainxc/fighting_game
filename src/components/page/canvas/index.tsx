@@ -3,6 +3,7 @@ import { collision } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import backgroundimg from "../../../asset/img/background.png";
+import shopImg from "../../../asset/img/shop_anim.png";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -29,26 +30,51 @@ export default function Canvas() {
       width: number;
       height: number;
       image: any;
-      constructor({ position, imageSrc }: any) {
+      frame: number;
+      scale: number;
+      framecurrent: number;
+      delay: number;
+      count: number;
+      constructor({ position, imageSrc, frame, scale = 1 }: any) {
         this.position = position;
         this.width = 50;
         this.height = 150;
         this.image = new Image();
         this.image.src = imageSrc;
+        this.frame = frame;
+        this.scale = scale;
+        this.framecurrent = 0;
+        this.count = 1;
+        this.delay = 10;
       }
 
       draw() {
         ctx.drawImage(
           this.image,
+          this.framecurrent * (this.image.width / this.frame),
+          0,
+          this.image.width / this.frame,
+          this.image.height,
           this.position.x,
           this.position.y,
-          canvas.width,
-          canvas.height
+          (this.image.width / this.frame) * this.scale,
+          this.image.height * this.scale
         );
       }
 
       update() {
         this.draw();
+        console.log(this.count);
+        if (this.count % this.delay === 0) {
+          if (this.framecurrent < this.frame - 1) {
+            this.framecurrent += 1;
+          } else {
+            this.framecurrent = 0;
+          }
+          this.count++;
+        } else {
+          this.count++;
+        }
       }
     }
 
@@ -58,6 +84,16 @@ export default function Canvas() {
         y: 0,
       },
       imageSrc: backgroundimg,
+      frame: 1,
+    });
+
+    const shop = new Sprite({
+      position: {
+        x: 1280,
+        y: 294,
+      },
+      imageSrc: shopImg,
+      frame: 6,
     });
 
     type FighterType = {
@@ -180,6 +216,7 @@ export default function Canvas() {
       window.requestAnimationFrame(animate);
 
       background.update();
+      shop.update();
       player.update();
       enemy.update();
 
