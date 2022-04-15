@@ -4,8 +4,10 @@ import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import backgroundimg from "../../../asset/img/DeadForest_BG.png";
 // import shopImg from "../../../asset/img/shop_anim.png";
-import warrior from "../../../asset/img/warriorSprite/Idle.png";
-import wizard from "../../../asset/img/wizardSprite/Idle.png";
+import warriorIdle from "../../../asset/img/warriorSprite/Idle.png";
+import warriorRun from "../../../asset/img/warriorSprite/Run.png";
+import wizardIdle from "../../../asset/img/wizardSprite/Idle.png";
+import wizardRun from "../../../asset/img/wizardSprite/Run.png";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -30,48 +32,18 @@ export default function Canvas() {
     class Sprite {
       position;
       image;
-      frame: number;
-      scale: number;
-      framecurrent: number;
-      delay: number;
-      count: number;
-      constructor({ position, imageSrc, frame, scale = 1 }: any) {
+      constructor({ position, imageSrc }: any) {
         this.position = position;
         this.image = new Image();
         this.image.src = imageSrc;
-        this.frame = frame;
-        this.scale = scale;
-        this.framecurrent = 0;
-        this.count = 1;
-        this.delay = 7;
       }
 
       draw() {
-        ctx.drawImage(
-          this.image,
-          this.framecurrent * (this.image.width / this.frame),
-          0,
-          this.image.width / this.frame,
-          this.image.height,
-          this.position.x,
-          this.position.y,
-          (this.image.width / this.frame) * this.scale,
-          this.image.height * this.scale
-        );
+        ctx.drawImage(this.image, this.position.x, this.position.y);
       }
 
       update() {
         this.draw();
-        if (this.count % this.delay === 0) {
-          if (this.framecurrent < this.frame - 1) {
-            this.framecurrent += 1;
-          } else {
-            this.framecurrent = 0;
-          }
-          this.count++;
-        } else {
-          this.count++;
-        }
       }
     }
 
@@ -81,7 +53,6 @@ export default function Canvas() {
         y: 0,
       },
       imageSrc: backgroundimg,
-      frame: 1,
     });
 
     // const shop = new Sprite({
@@ -93,7 +64,7 @@ export default function Canvas() {
     //   frame: 6,
     // });
 
-    type FighterType = {
+    type positionType = {
       x?: number;
       y?: number;
     };
@@ -101,8 +72,9 @@ export default function Canvas() {
     const gravity = 1.1;
 
     class Fighter {
-      position: FighterType;
-      speed: FighterType;
+      name: string;
+      position: positionType;
+      speed: positionType;
       width: number;
       height: number;
       range;
@@ -114,13 +86,15 @@ export default function Canvas() {
       count: number;
       delay: number;
       constructor({
+        name,
         position,
         speed,
         imageSrc,
         offset,
-        frame,
+        idleFrame,
         scale = 2,
       }: any) {
+        this.name = name;
         this.position = position;
         this.speed = speed;
         this.height = 250;
@@ -137,15 +111,18 @@ export default function Canvas() {
           height: 50,
         };
         this.attacking = false;
-        this.frame = frame;
+        this.frame = idleFrame;
         this.scale = scale;
         this.framecurrent = 0;
         this.count = 1;
-        this.delay = 7;
+        this.delay = 6;
       }
 
       draw() {
         if (!this.position.x || !this.position.y) return;
+        // ctx.translate(640, 0);
+        // ctx.scale(-1, 1);
+
         ctx.drawImage(
           this.image,
           this.framecurrent * (this.image.width / this.frame),
@@ -181,10 +158,8 @@ export default function Canvas() {
           } else {
             this.framecurrent = 0;
           }
-          this.count++;
-        } else {
-          this.count++;
         }
+        this.count++;
 
         if (!this.position.y || !this.speed.y) return;
 
@@ -214,6 +189,7 @@ export default function Canvas() {
     }
 
     const player = new Fighter({
+      name: "warrior",
       position: {
         x: 300,
         y: 100,
@@ -226,11 +202,12 @@ export default function Canvas() {
         x: 0,
         y: 0,
       },
-      imageSrc: warrior,
-      frame: 10,
+      imageSrc: warriorIdle,
+      idleFrame: 10,
     });
 
     const enemy = new Fighter({
+      name: "wizard",
       position: {
         x: 1520,
         y: 100,
@@ -243,8 +220,8 @@ export default function Canvas() {
         x: -50,
         y: 0,
       },
-      imageSrc: wizard,
-      frame: 8,
+      imageSrc: wizardIdle,
+      idleFrame: 8,
     });
 
     const key = {
@@ -252,6 +229,8 @@ export default function Canvas() {
       pa: false,
       ed: false,
       ea: false,
+      pmove: false,
+      emove: false,
     };
 
     function animate() {
@@ -264,6 +243,21 @@ export default function Canvas() {
 
       pressSense(player, key.pd, key.pa);
       pressSense(enemy, key.ed, key.ea);
+      if (key.pmove) {
+        player.image.src = warriorRun;
+        player.frame = 8;
+      } else {
+        player.image.src = warriorIdle;
+        player.frame = 10;
+      }
+
+      if (key.emove) {
+        enemy.image.src = wizardRun;
+        enemy.frame = 8;
+      } else {
+        enemy.image.src = wizardIdle;
+        enemy.frame = 8;
+      }
 
       if (!enemy.position.x || !enemy.position.y) return;
 
@@ -281,9 +275,11 @@ export default function Canvas() {
       switch (e.key) {
         case "d":
           key.pd = true;
+          key.pmove = true;
           break;
         case "a":
           key.pa = true;
+          key.pmove = true;
           break;
         case "w":
           player.speed.y = -22;
@@ -294,9 +290,11 @@ export default function Canvas() {
 
         case "ArrowRight":
           key.ed = true;
+          key.emove = true;
           break;
         case "ArrowLeft":
           key.ea = true;
+          key.emove = true;
           break;
         case "ArrowUp":
           enemy.speed.y = -22;
@@ -311,15 +309,19 @@ export default function Canvas() {
       switch (e.key) {
         case "d":
           key.pd = false;
+          key.pmove = false;
           break;
         case "a":
           key.pa = false;
+          key.pmove = false;
           break;
         case "ArrowRight":
           key.ed = false;
+          key.emove = false;
           break;
         case "ArrowLeft":
           key.ea = false;
+          key.emove = false;
           break;
       }
     });
