@@ -2,8 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { collision } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
-import backgroundimg from "../../../asset/img/background.png";
-import shopImg from "../../../asset/img/shop_anim.png";
+import backgroundimg from "../../../asset/img/DeadForest_BG.png";
+// import shopImg from "../../../asset/img/shop_anim.png";
+import warrior from "../../../asset/img/warriorSprite/Idle.png";
+import wizard from "../../../asset/img/wizardSprite/Idle.png";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -26,10 +28,8 @@ export default function Canvas() {
     ctxRef.current = ctx;
 
     class Sprite {
-      position: any;
-      width: number;
-      height: number;
-      image: any;
+      position;
+      image;
       frame: number;
       scale: number;
       framecurrent: number;
@@ -37,15 +37,13 @@ export default function Canvas() {
       count: number;
       constructor({ position, imageSrc, frame, scale = 1 }: any) {
         this.position = position;
-        this.width = 50;
-        this.height = 150;
         this.image = new Image();
         this.image.src = imageSrc;
         this.frame = frame;
         this.scale = scale;
         this.framecurrent = 0;
         this.count = 1;
-        this.delay = 10;
+        this.delay = 7;
       }
 
       draw() {
@@ -64,7 +62,6 @@ export default function Canvas() {
 
       update() {
         this.draw();
-        console.log(this.count);
         if (this.count % this.delay === 0) {
           if (this.framecurrent < this.frame - 1) {
             this.framecurrent += 1;
@@ -87,14 +84,14 @@ export default function Canvas() {
       frame: 1,
     });
 
-    const shop = new Sprite({
-      position: {
-        x: 1280,
-        y: 294,
-      },
-      imageSrc: shopImg,
-      frame: 6,
-    });
+    // const shop = new Sprite({
+    //   position: {
+    //     x: 1280,
+    //     y: 294,
+    //   },
+    //   imageSrc: shopImg,
+    //   frame: 6,
+    // });
 
     type FighterType = {
       x?: number;
@@ -108,15 +105,28 @@ export default function Canvas() {
       speed: FighterType;
       width: number;
       height: number;
-      color: string;
-      range: any;
+      range;
+      image;
       attacking: boolean;
-      constructor({ position, speed, color, offset }: any) {
+      frame: number;
+      scale: number;
+      framecurrent: number;
+      count: number;
+      delay: number;
+      constructor({
+        position,
+        speed,
+        imageSrc,
+        offset,
+        frame,
+        scale = 2,
+      }: any) {
         this.position = position;
         this.speed = speed;
-        this.height = 200;
-        this.width = 65;
-        this.color = color;
+        this.height = 250;
+        this.width = 80;
+        this.image = new Image();
+        this.image.src = imageSrc;
         this.range = {
           position: {
             x: this.position.x,
@@ -127,11 +137,29 @@ export default function Canvas() {
           height: 50,
         };
         this.attacking = false;
+        this.frame = frame;
+        this.scale = scale;
+        this.framecurrent = 0;
+        this.count = 1;
+        this.delay = 7;
       }
 
       draw() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        if (!this.position.x || !this.position.y) return;
+        ctx.drawImage(
+          this.image,
+          this.framecurrent * (this.image.width / this.frame),
+          0,
+          this.image.width / this.frame,
+          this.image.height,
+          this.position.x - 450,
+          this.position.y - 350,
+          (this.image.width / this.frame) * this.scale,
+          this.image.height * this.scale
+        );
+
+        ctx.fillStyle = "red";
+        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
         if (this.attacking) {
           ctx.fillStyle = "white";
@@ -146,14 +174,26 @@ export default function Canvas() {
 
       update() {
         this.draw();
+
+        if (this.count % this.delay === 0) {
+          if (this.framecurrent < this.frame - 1) {
+            this.framecurrent += 1;
+          } else {
+            this.framecurrent = 0;
+          }
+          this.count++;
+        } else {
+          this.count++;
+        }
+
         if (!this.position.y || !this.speed.y) return;
 
         this.position.y += this.speed.y;
         if (
           this.position.y + this.height + this.speed.y >=
-          canvas.height - 67
+          canvas.height - 75
         ) {
-          this.position.y = canvas.height - 267;
+          this.position.y = canvas.height - (75 + 250);
         } else {
           this.speed.y += gravity;
         }
@@ -175,8 +215,8 @@ export default function Canvas() {
 
     const player = new Fighter({
       position: {
-        x: 1,
-        y: 1,
+        x: 300,
+        y: 100,
       },
       speed: {
         x: 0,
@@ -186,12 +226,13 @@ export default function Canvas() {
         x: 0,
         y: 0,
       },
-      color: "blue",
+      imageSrc: warrior,
+      frame: 10,
     });
 
     const enemy = new Fighter({
       position: {
-        x: 400,
+        x: 1520,
         y: 100,
       },
       speed: {
@@ -202,7 +243,8 @@ export default function Canvas() {
         x: -50,
         y: 0,
       },
-      color: "red",
+      imageSrc: wizard,
+      frame: 8,
     });
 
     const key = {
@@ -216,7 +258,7 @@ export default function Canvas() {
       window.requestAnimationFrame(animate);
 
       background.update();
-      shop.update();
+      // shop.update();
       player.update();
       enemy.update();
 
