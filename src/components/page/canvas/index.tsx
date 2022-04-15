@@ -10,6 +10,8 @@ import warriorJump from "../../../asset/img/warriorSprite/Jump.png";
 import warriorFall from "../../../asset/img/warriorSprite/Fall.png";
 import wizardIdle from "../../../asset/img/wizardSprite/Idle.png";
 import wizardRun from "../../../asset/img/wizardSprite/Run.png";
+import wizardJump from "../../../asset/img/wizardSprite/Jump.png";
+import wizardFall from "../../../asset/img/wizardSprite/Fall.png";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -235,6 +237,8 @@ export default function Canvas() {
       efall: false,
       pmove: false,
       emove: false,
+      pfloat: false,
+      efloat: false,
     };
 
     function animate() {
@@ -260,7 +264,12 @@ export default function Canvas() {
         player.frame = 10;
       }
 
-      if (key.emove) {
+      if (key.ejump) {
+        enemy.image.src = wizardJump;
+        enemy.frame = 2;
+      } else if (key.efall) {
+        enemy.image.src = wizardFall;
+      } else if (key.emove) {
         enemy.image.src = wizardRun;
         enemy.frame = 8;
       } else {
@@ -272,7 +281,7 @@ export default function Canvas() {
 
       if (collision(player, enemy) && enemyHealthRef.current !== null) {
         enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 1%)`;
-      } // 히트 판정
+      }
       if (collision(enemy, player) && playerHealthRef.current !== null) {
         playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1%)`;
       } // 히트 판정
@@ -291,15 +300,19 @@ export default function Canvas() {
           key.pmove = true;
           break;
         case "w":
-          player.speed.y = -25;
-          key.pjump = true;
-          setTimeout(() => {
-            key.pfall = true;
-            key.pjump = false;
+          if (!key.pfloat) {
+            player.speed.y = -25;
+            key.pjump = true;
+            key.pfloat = true;
             setTimeout(() => {
-              key.pfall = false;
+              key.pfall = true;
+              key.pjump = false;
+              setTimeout(() => {
+                key.pfall = false;
+                key.pfloat = false;
+              }, 400);
             }, 400);
-          }, 400);
+          }
           break;
         case "u":
           player.attack();
@@ -314,15 +327,19 @@ export default function Canvas() {
           key.emove = true;
           break;
         case "ArrowUp":
-          enemy.speed.y = -25;
-          key.ejump = true;
-          setTimeout(() => {
-            key.efall = true;
-            key.ejump = false;
+          if (!key.efloat) {
+            enemy.speed.y = -25;
+            key.ejump = true;
+            key.efloat = true;
             setTimeout(() => {
-              key.efall = false;
+              key.efall = true;
+              key.ejump = false;
+              setTimeout(() => {
+                key.efall = false;
+                key.efloat = false;
+              }, 400);
             }, 400);
-          }, 400);
+          }
           break;
         case "7":
           enemy.attack();
