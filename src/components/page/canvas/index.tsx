@@ -6,6 +6,8 @@ import backgroundimg from "../../../asset/img/DeadForest_BG.png";
 // import shopImg from "../../../asset/img/shop_anim.png";
 import warriorIdle from "../../../asset/img/warriorSprite/Idle.png";
 import warriorRun from "../../../asset/img/warriorSprite/Run.png";
+import warriorJump from "../../../asset/img/warriorSprite/Jump.png";
+import warriorFall from "../../../asset/img/warriorSprite/Fall.png";
 import wizardIdle from "../../../asset/img/wizardSprite/Idle.png";
 import wizardRun from "../../../asset/img/wizardSprite/Run.png";
 
@@ -120,8 +122,6 @@ export default function Canvas() {
 
       draw() {
         if (!this.position.x || !this.position.y) return;
-        // ctx.translate(640, 0);
-        // ctx.scale(-1, 1);
 
         ctx.drawImage(
           this.image,
@@ -225,10 +225,14 @@ export default function Canvas() {
     });
 
     const key = {
-      pd: false,
-      pa: false,
-      ed: false,
-      ea: false,
+      pr: false,
+      pl: false,
+      er: false,
+      el: false,
+      pjump: false,
+      ejump: false,
+      pfall: false,
+      efall: false,
       pmove: false,
       emove: false,
     };
@@ -241,9 +245,14 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      pressSense(player, key.pd, key.pa);
-      pressSense(enemy, key.ed, key.ea);
-      if (key.pmove) {
+      pressSense(player, key.pr, key.pl);
+      pressSense(enemy, key.er, key.el);
+      if (key.pjump) {
+        player.image.src = warriorJump;
+        player.frame = 3;
+      } else if (key.pfall) {
+        player.image.src = warriorFall;
+      } else if (key.pmove) {
         player.image.src = warriorRun;
         player.frame = 8;
       } else {
@@ -274,30 +283,46 @@ export default function Canvas() {
     window.addEventListener("keydown", (e) => {
       switch (e.key) {
         case "d":
-          key.pd = true;
+          key.pr = true;
           key.pmove = true;
           break;
         case "a":
-          key.pa = true;
+          key.pl = true;
           key.pmove = true;
           break;
         case "w":
-          player.speed.y = -22;
+          player.speed.y = -25;
+          key.pjump = true;
+          setTimeout(() => {
+            key.pfall = true;
+            key.pjump = false;
+            setTimeout(() => {
+              key.pfall = false;
+            }, 400);
+          }, 400);
           break;
         case "u":
           player.attack();
           break;
 
         case "ArrowRight":
-          key.ed = true;
+          key.er = true;
           key.emove = true;
           break;
         case "ArrowLeft":
-          key.ea = true;
+          key.el = true;
           key.emove = true;
           break;
         case "ArrowUp":
-          enemy.speed.y = -22;
+          enemy.speed.y = -25;
+          key.ejump = true;
+          setTimeout(() => {
+            key.efall = true;
+            key.ejump = false;
+            setTimeout(() => {
+              key.efall = false;
+            }, 400);
+          }, 400);
           break;
         case "7":
           enemy.attack();
@@ -308,19 +333,19 @@ export default function Canvas() {
     window.addEventListener("keyup", (e) => {
       switch (e.key) {
         case "d":
-          key.pd = false;
+          key.pr = false;
           key.pmove = false;
           break;
         case "a":
-          key.pa = false;
+          key.pl = false;
           key.pmove = false;
           break;
         case "ArrowRight":
-          key.ed = false;
+          key.er = false;
           key.emove = false;
           break;
         case "ArrowLeft":
-          key.ea = false;
+          key.el = false;
           key.emove = false;
           break;
       }
