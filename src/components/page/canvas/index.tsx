@@ -8,6 +8,7 @@ import warriorIdle from "../../../asset/img/warriorSprite/Idle.png";
 import warriorRun from "../../../asset/img/warriorSprite/Run.png";
 import warriorJump from "../../../asset/img/warriorSprite/Jump.png";
 import warriorFall from "../../../asset/img/warriorSprite/Fall.png";
+import warriorAttack1 from "../../../asset/img/warriorSprite/Attack1.png";
 import wizardIdle from "../../../asset/img/wizardSprite/Idle.png";
 import wizardRun from "../../../asset/img/wizardSprite/Run.png";
 import wizardJump from "../../../asset/img/wizardSprite/Jump.png";
@@ -175,6 +176,21 @@ export default function Canvas() {
           this.speed.y += gravity;
         }
 
+        if (!player.position.x || !enemy.position.x) return;
+        if (
+          !(enemy.position.x > player.position.x + this.width) ||
+          !(player.position.x < enemy.position.x - this.width)
+        ) {
+          enemy.position.x += 9;
+          player.position.x -= 9;
+        }
+        if (player.position.x < 10) {
+          player.position.x = 10;
+        }
+        if (enemy.position.x > canvas.width - 100) {
+          enemy.position.x = canvas.width - 100;
+        }
+
         if (!this.position.x || !this.speed.x) return;
         this.position.x += this.speed.x;
 
@@ -249,19 +265,20 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      pressSense(player, key.pr, key.pl);
-      pressSense(enemy, key.er, key.el);
+      pressSense(player, key.pr, key.pl, 7, -5);
+      pressSense(enemy, key.er, key.el, 5, -7);
+
       if (key.pjump) {
-        player.image.src = warriorJump;
         player.frame = 3;
+        player.image.src = warriorJump;
       } else if (key.pfall) {
         player.image.src = warriorFall;
       } else if (key.pmove) {
-        player.image.src = warriorRun;
         player.frame = 8;
+        player.image.src = warriorRun;
       } else {
-        player.image.src = warriorIdle;
         player.frame = 10;
+        player.image.src = warriorIdle;
       }
 
       if (key.ejump) {
@@ -298,6 +315,7 @@ export default function Canvas() {
         case "a":
           key.pl = true;
           key.pmove = true;
+          player.delay = 15;
           break;
         case "w":
           if (!key.pfloat) {
@@ -321,6 +339,7 @@ export default function Canvas() {
         case "ArrowRight":
           key.er = true;
           key.emove = true;
+          enemy.delay = 15;
           break;
         case "ArrowLeft":
           key.el = true;
@@ -356,10 +375,12 @@ export default function Canvas() {
         case "a":
           key.pl = false;
           key.pmove = false;
+          player.delay = 6;
           break;
         case "ArrowRight":
           key.er = false;
           key.emove = false;
+          enemy.delay = 6;
           break;
         case "ArrowLeft":
           key.el = false;
