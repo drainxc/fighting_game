@@ -1,5 +1,5 @@
-export function keydown(k: string, key: any, player: any, keycap: any) {
-  switch (k) {
+export function keyDown(e: string, key: any, player: any, keycap: any) {
+  switch (e) {
     case keycap.d:
       key.r = true;
       key.move = true;
@@ -32,6 +32,20 @@ export function keydown(k: string, key: any, player: any, keycap: any) {
           key.attack = false;
         }, 500);
       }
+      break;
+  }
+}
+
+export function keyUp(e: string, key: any, player: any, keycap: any) {
+  switch (e) {
+    case keycap.d:
+      key.r = false;
+      key.move = false;
+      break;
+    case keycap.a:
+      key.l = false;
+      key.move = false;
+      player.delay = 6;
       break;
   }
 }
