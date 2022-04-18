@@ -4,17 +4,20 @@ import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import backgroundimg from "../../../asset/img/DeadForest_BG.png";
 // import shopImg from "../../../asset/img/shop_anim.png";
-import warriorIdle from "../../../asset/img/warriorSprite/Idle.png";
-import warriorRun from "../../../asset/img/warriorSprite/Run.png";
-import warriorJump from "../../../asset/img/warriorSprite/Jump.png";
-import warriorFall from "../../../asset/img/warriorSprite/Fall.png";
-import warriorAttack1 from "../../../asset/img/warriorSprite/Attack1.png";
-import wizardIdle from "../../../asset/img/wizardSprite/Idle.png";
-import wizardRun from "../../../asset/img/wizardSprite/Run.png";
-import wizardJump from "../../../asset/img/wizardSprite/Jump.png";
-import wizardFall from "../../../asset/img/wizardSprite/Fall.png";
-import wizardAttack1 from "../../../asset/img/wizardSprite/Attack1.png";
 import { keyDown, keyUp } from "../../../lib/function/key";
+import { warriorImg } from "../../../lib/export/data";
+import { wizardImg } from "../../../lib/export/data";
+
+const {
+  warriorIdle,
+  warriorRun,
+  warriorJump,
+  warriorFall,
+  warriorAttack1,
+}: any = warriorImg;
+
+const { wizardIdle, wizardRun, wizardJump, wizardFall, wizardAttack1 }: any =
+  wizardImg;
 
 export default function Canvas() {
   const canvasRef = useRef(null);
