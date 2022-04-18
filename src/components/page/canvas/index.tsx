@@ -14,6 +14,7 @@ import wizardRun from "../../../asset/img/wizardSprite/Run.png";
 import wizardJump from "../../../asset/img/wizardSprite/Jump.png";
 import wizardFall from "../../../asset/img/wizardSprite/Fall.png";
 import wizardAttack1 from "../../../asset/img/wizardSprite/Attack1.png";
+import { keydown } from "../../../lib/function/keydown";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -243,21 +244,24 @@ export default function Canvas() {
       height: 250,
     });
 
-    const key = {
-      pr: false,
-      pl: false,
-      er: false,
-      el: false,
-      pjump: false,
-      ejump: false,
-      pfall: false,
-      efall: false,
-      pmove: false,
-      emove: false,
-      pfloat: false,
-      efloat: false,
-      pattack: false,
-      eattack: false,
+    const ekey = {
+      r: false,
+      l: false,
+      jump: false,
+      fall: false,
+      move: false,
+      float: false,
+      attack: false,
+    };
+
+    const pkey = {
+      r: false,
+      l: false,
+      jump: false,
+      fall: false,
+      move: false,
+      float: false,
+      attack: false,
     };
 
     function animate() {
@@ -268,20 +272,20 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      pressSense(player, key.pr, key.pl, 8, -5);
-      pressSense(enemy, key.er, key.el, 5, -8);
+      pressSense(player, pkey.r, pkey.l, 8, -5);
+      pressSense(enemy, ekey.r, ekey.l, 5, -8);
 
-      if (key.pattack) {
+      if (pkey.attack) {
         player.delay = 5;
         player.frame = 7;
         player.speed.x = 0;
         player.image.src = warriorAttack1;
-      } else if (key.pjump) {
+      } else if (pkey.jump) {
         player.frame = 3;
         player.image.src = warriorJump;
-      } else if (key.pfall) {
+      } else if (pkey.fall) {
         player.image.src = warriorFall;
-      } else if (key.pmove) {
+      } else if (pkey.move) {
         player.frame = 8;
         player.image.src = warriorRun;
       } else {
@@ -289,17 +293,17 @@ export default function Canvas() {
         player.image.src = warriorIdle;
       }
 
-      if (key.eattack) {
+      if (ekey.attack) {
         enemy.delay = 5;
         enemy.frame = 8;
         enemy.speed.x = 0;
         enemy.image.src = wizardAttack1;
-      } else if (key.ejump) {
+      } else if (ekey.jump) {
         enemy.frame = 2;
         enemy.image.src = wizardJump;
-      } else if (key.efall) {
+      } else if (ekey.fall) {
         enemy.image.src = wizardFall;
-      } else if (key.emove) {
+      } else if (ekey.move) {
         enemy.frame = 8;
         enemy.image.src = wizardRun;
       } else {
@@ -310,13 +314,13 @@ export default function Canvas() {
       if (!enemy.position.x || !enemy.position.y) return;
 
       if (
-        collision(player, enemy, key.pattack) &&
+        collision(player, enemy, pkey.attack) &&
         enemyHealthRef.current !== null
       ) {
         enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 2%)`;
       }
       if (
-        collision(enemy, player, key.eattack) &&
+        collision(enemy, player, ekey.attack) &&
         playerHealthRef.current !== null
       ) {
         playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1.5%)`;
@@ -326,96 +330,41 @@ export default function Canvas() {
     animate();
 
     window.addEventListener("keydown", (e) => {
-      switch (e.key) {
-        case "d":
-          key.pr = true;
-          key.pmove = true;
-          break;
-        case "a":
-          key.pl = true;
-          key.pmove = true;
-          player.delay = 15;
-          break;
-        case "w":
-          if (!key.pfloat) {
-            player.speed.y = -25;
-            key.pjump = true;
-            key.pfloat = true;
-            setTimeout(() => {
-              key.pfall = true;
-              key.pjump = false;
-              setTimeout(() => {
-                key.pfall = false;
-                key.pfloat = false;
-              }, 400);
-            }, 400);
-          }
-          break;
-        case "u":
-          player.framecurrent = 0;
-          if (!key.pattack) {
-            key.pattack = true;
-            setTimeout(() => {
-              key.pattack = false;
-            }, 500);
-          }
-          break;
-
-        case "ArrowRight":
-          key.er = true;
-          key.emove = true;
-          enemy.delay = 15;
-          break;
-        case "ArrowLeft":
-          key.el = true;
-          key.emove = true;
-          break;
-        case "ArrowUp":
-          if (!key.efloat) {
-            enemy.speed.y = -25;
-            key.ejump = true;
-            key.efloat = true;
-            setTimeout(() => {
-              key.efall = true;
-              key.ejump = false;
-              setTimeout(() => {
-                key.efall = false;
-                key.efloat = false;
-              }, 400);
-            }, 400);
-          }
-          break;
-        case "7":
-          enemy.framecurrent = 0;
-          if (!key.eattack) {
-            key.eattack = true;
-            setTimeout(() => {
-              key.eattack = false;
-            }, 500);
-          }
-          break;
-      }
+      const pkeycap = {
+        w: "w",
+        a: "a",
+        d: "d",
+        attack: "u",
+      };
+      const ekeycap = {
+        w: "ArrowUp",
+        a: "ArrowLeft",
+        d: "ArrowRight",
+        attack: "7",
+      };
+      keydown(e.key, pkey, player, pkeycap);
+      keydown(e.key, ekey, enemy, ekeycap);
     });
 
     window.addEventListener("keyup", (e) => {
       switch (e.key) {
         case "d":
-          key.pr = false;
-          key.pmove = false;
+          pkey.r = false;
+          pkey.move = false;
           break;
         case "a":
-          key.pl = false;
-          key.pmove = false;
+          pkey.l = false;
+          pkey.move = false;
           player.delay = 6;
           break;
         case "ArrowRight":
-          key.er = false;
-          key.emove = false;
+          ekey.r = false;
+          ekey.move = false;
           enemy.delay = 6;
           break;
         case "ArrowLeft":
-          key.el = false;
-          key.emove = false;
+          ekey.l = false;
+          ekey.move = false;
           break;
       }
     });
