@@ -14,7 +14,7 @@ import wizardRun from "../../../asset/img/wizardSprite/Run.png";
 import wizardJump from "../../../asset/img/wizardSprite/Jump.png";
 import wizardFall from "../../../asset/img/wizardSprite/Fall.png";
 import wizardAttack1 from "../../../asset/img/wizardSprite/Attack1.png";
-import { keydown } from "../../../lib/function/keydown";
+import { keyDown, keyUp } from "../../../lib/function/key";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -329,44 +329,27 @@ export default function Canvas() {
 
     animate();
 
+    const pkeycap = {
+      w: "w",
+      a: "a",
+      d: "d",
+      attack: "u",
+    };
+    const ekeycap = {
+      w: "ArrowUp",
+      a: "ArrowLeft",
+      d: "ArrowRight",
+      attack: "7",
+    };
+
     window.addEventListener("keydown", (e) => {
-      const pkeycap = {
-        w: "w",
-        a: "a",
-        d: "d",
-        attack: "u",
-      };
-      const ekeycap = {
-        w: "ArrowUp",
-        a: "ArrowLeft",
-        d: "ArrowRight",
-        attack: "7",
-      };
-      keydown(e.key, pkey, player, pkeycap);
-      keydown(e.key, ekey, enemy, ekeycap);
+      keyDown(e.key, pkey, player, pkeycap);
+      keyDown(e.key, ekey, enemy, ekeycap);
     });
 
     window.addEventListener("keyup", (e) => {
-      switch (e.key) {
-        case "d":
-          pkey.r = false;
-          pkey.move = false;
-          break;
-        case "a":
-          pkey.l = false;
-          pkey.move = false;
-          player.delay = 6;
-          break;
-        case "ArrowRight":
-          ekey.r = false;
-          ekey.move = false;
-          enemy.delay = 6;
-          break;
-        case "ArrowLeft":
-          ekey.l = false;
-          ekey.move = false;
-          break;
-      }
+      keyUp(e.key, pkey, player, pkeycap);
+      keyUp(e.key, ekey, enemy, ekeycap);
     });
 
     setCtx(ctxRef.current);
