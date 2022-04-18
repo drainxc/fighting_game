@@ -314,13 +314,13 @@ export default function Canvas() {
       if (!enemy.position.x || !enemy.position.y) return;
 
       if (
-        collision(player, enemy, pkey.attack) &&
+        collision(player, enemy, pkey.attack, 4) &&
         enemyHealthRef.current !== null
       ) {
         enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 2%)`;
       }
       if (
-        collision(enemy, player, ekey.attack) &&
+        collision(enemy, player, ekey.attack, 3) &&
         playerHealthRef.current !== null
       ) {
         playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1.5%)`;
