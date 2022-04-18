@@ -24,3 +24,23 @@ export const wizardImg = {
   wizardFall: wizardFall,
   wizardAttack1: wizardAttack1,
 };
+
+export const ekey = {
+  r: false,
+  l: false,
+  jump: false,
+  fall: false,
+  move: false,
+  float: false,
+  attack: false,
+};
+
+export const pkey = {
+  r: false,
+  l: false,
+  jump: false,
+  fall: false,
+  move: false,
+  float: false,
+  attack: false,
+};
