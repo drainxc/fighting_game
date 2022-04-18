@@ -3,26 +3,20 @@ import { collision } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import backgroundimg from "../../../asset/img/DeadForest_BG.png";
-// import shopImg from "../../../asset/img/shop_anim.png";
 import { keyDown, keyUp } from "../../../lib/function/key";
 import { warriorImg } from "../../../lib/export/data";
 import { wizardImg } from "../../../lib/export/data";
+import { ekey } from "../../../lib/export/data";
+import { pkey } from "../../../lib/export/data";
 
-const {
-  warriorIdle,
-  warriorRun,
-  warriorJump,
-  warriorFall,
-  warriorAttack1,
-}: any = warriorImg;
+const { warriorIdle, warriorRun, warriorJump, warriorFall, warriorAttack1 } =
+  warriorImg;
 
-const { wizardIdle, wizardRun, wizardJump, wizardFall, wizardAttack1 }: any =
+const { wizardIdle, wizardRun, wizardJump, wizardFall, wizardAttack1 } =
   wizardImg;
 
 export default function Canvas() {
   const canvasRef = useRef(null);
-  const ctxRef = useRef(null);
-  const [ctx, setCtx] = useState<any>();
   const enemyHealthRef = useRef<HTMLDivElement>(null);
   const playerHealthRef = useRef<HTMLDivElement>(null);
   const [timer, setTimer] = useState(90);
@@ -37,7 +31,6 @@ export default function Canvas() {
     canvas.height = window.innerHeight;
 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctxRef.current = ctx;
 
     class Sprite {
       position;
@@ -65,15 +58,6 @@ export default function Canvas() {
       imageSrc: backgroundimg,
     });
 
-    // const shop = new Sprite({
-    //   position: {
-    //     x: 1280,
-    //     y: 294,
-    //   },
-    //   imageSrc: shopImg,
-    //   frame: 6,
-    // });
-
     type positionType = {
       x?: number;
       y?: number;
@@ -91,7 +75,6 @@ export default function Canvas() {
       image;
       attacking: boolean;
       frame: number;
-      scale: number;
       framecurrent: number;
       count: number;
       delay: number;
@@ -102,7 +85,6 @@ export default function Canvas() {
         imageSrc,
         offset,
         idleFrame,
-        scale = 2,
         width,
         height,
       }: any) {
@@ -124,7 +106,6 @@ export default function Canvas() {
         };
         this.attacking = false;
         this.frame = idleFrame;
-        this.scale = scale;
         this.framecurrent = 0;
         this.count = 1;
         this.delay = 6;
@@ -140,8 +121,8 @@ export default function Canvas() {
           this.image.height,
           this.position.x - 450,
           this.position.y - 325,
-          (this.image.width / this.frame) * this.scale,
-          this.image.height * this.scale
+          (this.image.width / this.frame) * 2,
+          this.image.height * 2
         );
 
         ctx.fillStyle = "red";
@@ -161,6 +142,8 @@ export default function Canvas() {
       update() {
         this.draw();
 
+        const { width, height } = canvas;
+
         if (this.count % this.delay === 0) {
           if (this.framecurrent < this.frame - 1) {
             this.framecurrent += 1;
@@ -177,7 +160,7 @@ export default function Canvas() {
           this.position.y + this.height + this.speed.y >=
           canvas.height - 75
         ) {
-          this.position.y = canvas.height - (75 + 250);
+          this.position.y = height - (75 + 250);
         } else {
           this.speed.y += gravity;
         }
@@ -190,11 +173,12 @@ export default function Canvas() {
           enemy.position.x += 9;
           player.position.x -= 9;
         }
+
         if (!this.position.x) return;
         if (this.position.x < 10) {
           this.position.x = 10;
-        } else if (this.position.x > canvas.width - 100) {
-          this.position.x = canvas.width - 100;
+        } else if (this.position.x > width - 100) {
+          this.position.x = width - 100;
         }
 
         if (!this.position.x || !this.speed.x) return;
@@ -203,8 +187,6 @@ export default function Canvas() {
         this.range.position.x = this.position.x + this.range.offset.x;
         this.range.position.y = this.position.y;
       }
-
-      attack() {}
     }
 
     const player = new Fighter({
@@ -246,26 +228,6 @@ export default function Canvas() {
       width: 390,
       height: 250,
     });
-
-    const ekey = {
-      r: false,
-      l: false,
-      jump: false,
-      fall: false,
-      move: false,
-      float: false,
-      attack: false,
-    };
-
-    const pkey = {
-      r: false,
-      l: false,
-      jump: false,
-      fall: false,
-      move: false,
-      float: false,
-      attack: false,
-    };
 
     function animate() {
       window.requestAnimationFrame(animate);
@@ -354,8 +316,6 @@ export default function Canvas() {
       keyUp(e.key, pkey, player, pkeycap);
       keyUp(e.key, ekey, enemy, ekeycap);
     });
-
-    setCtx(ctxRef.current);
   }, []);
 
   useEffect(() => {
