@@ -13,6 +13,7 @@ import wizardIdle from "../../../asset/img/wizardSprite/Idle.png";
 import wizardRun from "../../../asset/img/wizardSprite/Run.png";
 import wizardJump from "../../../asset/img/wizardSprite/Jump.png";
 import wizardFall from "../../../asset/img/wizardSprite/Fall.png";
+import wizardAttack1 from "../../../asset/img/wizardSprite/Attack1.png";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -98,6 +99,8 @@ export default function Canvas() {
         offset,
         idleFrame,
         scale = 2,
+        width,
+        height,
       }: any) {
         this.name = name;
         this.position = position;
@@ -112,8 +115,8 @@ export default function Canvas() {
             y: this.position.y,
           },
           offset,
-          width: 320,
-          height: 250,
+          width: width,
+          height: height,
         };
         this.attacking = false;
         this.frame = idleFrame;
@@ -140,13 +143,13 @@ export default function Canvas() {
         ctx.fillStyle = "red";
         // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-        // if (key.pattack) {
+        // if (key.eattack) {
         //   ctx.fillStyle = "white";
         //   ctx.fillRect(
-        //     player.range.position.x,
-        //     player.range.position.y,
-        //     player.range.width,
-        //     player.range.height
+        //     enemy.range.position.x,
+        //     enemy.range.position.y,
+        //     enemy.range.width,
+        //     enemy.range.height
         //   );
         // }
       }
@@ -216,6 +219,8 @@ export default function Canvas() {
       },
       imageSrc: warriorIdle,
       idleFrame: 10,
+      width: 320,
+      height: 250,
     });
 
     const enemy = new Fighter({
@@ -229,11 +234,13 @@ export default function Canvas() {
         y: 10,
       },
       offset: {
-        x: -50,
+        x: -390,
         y: 0,
       },
       imageSrc: wizardIdle,
       idleFrame: 8,
+      width: 390,
+      height: 250,
     });
 
     const key = {
@@ -261,11 +268,11 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      pressSense(player, key.pr, key.pl, 7, -5);
-      pressSense(enemy, key.er, key.el, 5, -7);
+      pressSense(player, key.pr, key.pl, 8, -5);
+      pressSense(enemy, key.er, key.el, 5, -8);
 
       if (key.pattack) {
-        player.delay = 10;
+        player.delay = 5;
         player.frame = 7;
         player.speed.x = 0;
         player.image.src = warriorAttack1;
@@ -282,7 +289,12 @@ export default function Canvas() {
         player.image.src = warriorIdle;
       }
 
-      if (key.ejump) {
+      if (key.eattack) {
+        enemy.delay = 5;
+        enemy.frame = 8;
+        enemy.speed.x = 0;
+        enemy.image.src = wizardAttack1;
+      } else if (key.ejump) {
         enemy.frame = 2;
         enemy.image.src = wizardJump;
       } else if (key.efall) {
@@ -301,10 +313,13 @@ export default function Canvas() {
         collision(player, enemy, key.pattack) &&
         enemyHealthRef.current !== null
       ) {
-        enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 0.2%)`;
+        enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 2%)`;
       }
-      if (collision(enemy, player, false) && playerHealthRef.current !== null) {
-        playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 0.2%)`;
+      if (
+        collision(enemy, player, key.eattack) &&
+        playerHealthRef.current !== null
+      ) {
+        playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1.5%)`;
       } // 히트 판정
     }
 
@@ -342,7 +357,7 @@ export default function Canvas() {
             key.pattack = true;
             setTimeout(() => {
               key.pattack = false;
-            }, 1000);
+            }, 500);
           }
           break;
 
@@ -371,7 +386,13 @@ export default function Canvas() {
           }
           break;
         case "7":
-          enemy.attack();
+          enemy.framecurrent = 0;
+          if (!key.eattack) {
+            key.eattack = true;
+            setTimeout(() => {
+              key.eattack = false;
+            }, 500);
+          }
           break;
       }
     });
