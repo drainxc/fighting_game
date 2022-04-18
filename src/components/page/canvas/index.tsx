@@ -112,8 +112,8 @@ export default function Canvas() {
             y: this.position.y,
           },
           offset,
-          width: 100,
-          height: 50,
+          width: 320,
+          height: 250,
         };
         this.attacking = false;
         this.frame = idleFrame;
@@ -125,7 +125,6 @@ export default function Canvas() {
 
       draw() {
         if (!this.position.x || !this.position.y) return;
-
         ctx.drawImage(
           this.image,
           this.framecurrent * (this.image.width / this.frame),
@@ -133,7 +132,7 @@ export default function Canvas() {
           this.image.width / this.frame,
           this.image.height,
           this.position.x - 450,
-          this.position.y - 350,
+          this.position.y - 325,
           (this.image.width / this.frame) * this.scale,
           this.image.height * this.scale
         );
@@ -141,15 +140,15 @@ export default function Canvas() {
         ctx.fillStyle = "red";
         // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-        if (this.attacking) {
-          ctx.fillStyle = "white";
-          ctx.fillRect(
-            this.range.position.x,
-            this.range.position.y,
-            this.range.width,
-            this.range.height
-          );
-        }
+        // if (key.pattack) {
+        //   ctx.fillStyle = "white";
+        //   ctx.fillRect(
+        //     player.range.position.x,
+        //     player.range.position.y,
+        //     player.range.width,
+        //     player.range.height
+        //   );
+        // }
       }
 
       update() {
@@ -184,11 +183,11 @@ export default function Canvas() {
           enemy.position.x += 9;
           player.position.x -= 9;
         }
-        if (player.position.x < 10) {
-          player.position.x = 10;
-        }
-        if (enemy.position.x > canvas.width - 100) {
-          enemy.position.x = canvas.width - 100;
+        if (!this.position.x) return;
+        if (this.position.x < 10) {
+          this.position.x = 10;
+        } else if (this.position.x > canvas.width - 100) {
+          this.position.x = canvas.width - 100;
         }
 
         if (!this.position.x || !this.speed.x) return;
@@ -198,12 +197,7 @@ export default function Canvas() {
         this.range.position.y = this.position.y;
       }
 
-      attack() {
-        this.attacking = true;
-        setTimeout(() => {
-          this.attacking = false;
-        }, 100);
-      }
+      attack() {}
     }
 
     const player = new Fighter({
@@ -255,6 +249,8 @@ export default function Canvas() {
       emove: false,
       pfloat: false,
       efloat: false,
+      pattack: false,
+      eattack: false,
     };
 
     function animate() {
@@ -268,7 +264,12 @@ export default function Canvas() {
       pressSense(player, key.pr, key.pl, 7, -5);
       pressSense(enemy, key.er, key.el, 5, -7);
 
-      if (key.pjump) {
+      if (key.pattack) {
+        player.delay = 10;
+        player.frame = 7;
+        player.speed.x = 0;
+        player.image.src = warriorAttack1;
+      } else if (key.pjump) {
         player.frame = 3;
         player.image.src = warriorJump;
       } else if (key.pfall) {
@@ -282,25 +283,28 @@ export default function Canvas() {
       }
 
       if (key.ejump) {
-        enemy.image.src = wizardJump;
         enemy.frame = 2;
+        enemy.image.src = wizardJump;
       } else if (key.efall) {
         enemy.image.src = wizardFall;
       } else if (key.emove) {
+        enemy.frame = 8;
         enemy.image.src = wizardRun;
-        enemy.frame = 8;
       } else {
-        enemy.image.src = wizardIdle;
         enemy.frame = 8;
+        enemy.image.src = wizardIdle;
       }
 
       if (!enemy.position.x || !enemy.position.y) return;
 
-      if (collision(player, enemy) && enemyHealthRef.current !== null) {
-        enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 1%)`;
+      if (
+        collision(player, enemy, key.pattack) &&
+        enemyHealthRef.current !== null
+      ) {
+        enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 0.2%)`;
       }
-      if (collision(enemy, player) && playerHealthRef.current !== null) {
-        playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1%)`;
+      if (collision(enemy, player, false) && playerHealthRef.current !== null) {
+        playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 0.2%)`;
       } // 히트 판정
     }
 
@@ -333,7 +337,13 @@ export default function Canvas() {
           }
           break;
         case "u":
-          player.attack();
+          player.framecurrent = 0;
+          if (!key.pattack) {
+            key.pattack = true;
+            setTimeout(() => {
+              key.pattack = false;
+            }, 1000);
+          }
           break;
 
         case "ArrowRight":
