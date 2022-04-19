@@ -273,7 +273,7 @@ export default function Canvas() {
               }}
             ></div>
           </S.PlayerBar>
-
+          <Timer />
           <S.EnemyBar>
             <div style={{ backgroundColor: "yellow", height: "50px" }}></div>
             <div
