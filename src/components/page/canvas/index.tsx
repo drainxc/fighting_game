@@ -16,12 +16,12 @@ import { ekey } from "../../../lib/export/data";
 import { pkey } from "../../../lib/export/data";
 import { animation } from "../../../lib/function/animation";
 import { Sprite } from "../../common/sprite";
+import Timer from "../../common/timer";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
   const enemyHealthRef = useRef<HTMLDivElement>(null);
   const playerHealthRef = useRef<HTMLDivElement>(null);
-  const [timer, setTimer] = useState(90);
 
   useEffect(() => {
     const canvas: any = canvasRef.current;
@@ -255,16 +255,6 @@ export default function Canvas() {
     });
   }, []);
 
-  useEffect(() => {
-    let stopWatch = setInterval(() => {
-      if (timer > 0) {
-        setTimer(timer - 1);
-      }
-    }, 1000);
-
-    return () => clearInterval(stopWatch);
-  }, [timer]);
-
   return (
     <>
       <S.MainDiv>
@@ -283,7 +273,7 @@ export default function Canvas() {
               }}
             ></div>
           </S.PlayerBar>
-          <S.Timer>{timer}</S.Timer>
+
           <S.EnemyBar>
             <div style={{ backgroundColor: "yellow", height: "50px" }}></div>
             <div
