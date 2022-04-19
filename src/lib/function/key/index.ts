@@ -9,28 +9,28 @@ export function keyDown(e: string, key: any, player: any, keycap: any) {
       key.move = true;
       break;
     case keycap.w:
-      player.framecurrent = 0;
       if (!key.float) {
         player.speed.y = -25;
         key.jump = true;
         key.float = true;
         setTimeout(() => {
-          key.fall = true;
           key.jump = false;
           setTimeout(() => {
-            key.fall = false;
             key.float = false;
           }, 400);
         }, 400);
       }
       break;
     case keycap.attack:
-      player.framecurrent = 0;
-      if (!key.attack) {
-        key.attack = true;
-        setTimeout(() => {
-          key.attack = false;
-        }, 500);
+      if (!key.float) {
+        player.framecurrent = 0;
+        if (!key.attack) {
+          key.attack = true;
+          setTimeout(() => {
+            key.attack = false;
+            player.framecurrent = 0;
+          }, 900);
+        }
       }
       break;
   }
