@@ -1,15 +1,12 @@
 export function keyDown(e: string, key: any, player: any, keycap: any) {
   switch (e) {
     case keycap.d:
-      player.framecurrent = 0;
       key.r = true;
       key.move = true;
       break;
     case keycap.a:
-      player.framecurrent = 0;
       key.l = true;
       key.move = true;
-      player.delay = 15;
       break;
     case keycap.w:
       player.framecurrent = 0;

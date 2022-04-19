@@ -9,7 +9,41 @@ import wizardJump from "../../asset/img/wizardSprite/Jump.png";
 import wizardFall from "../../asset/img/wizardSprite/Fall.png";
 import wizardAttack1 from "../../asset/img/wizardSprite/Attack1.png";
 
-export const warriorImg = {
+interface PlayerAsset {
+  idle: string;
+  run: string;
+  jump: string;
+  fall: string;
+  attack1: string;
+}
+
+interface Key {
+  r: boolean;
+  l: boolean;
+  jump: boolean;
+  fall: boolean;
+  move: boolean;
+  float: boolean;
+  attack: boolean;
+}
+
+interface Keycap {
+  w: string;
+  a: string;
+  d: string;
+  attack: string;
+}
+
+interface Frame {
+  delay: number;
+  atkFrame: number;
+  jumpFrame: number;
+  fallFrame: number;
+  moveFrame: number;
+  idleFrame: number;
+}
+
+export const warriorImg: PlayerAsset = {
   idle: warriorIdle,
   run: warriorRun,
   jump: warriorJump,
@@ -17,7 +51,7 @@ export const warriorImg = {
   attack1: warriorAttack1,
 };
 
-export const wizardImg = {
+export const wizardImg: PlayerAsset = {
   idle: wizardIdle,
   run: wizardRun,
   jump: wizardJump,
@@ -25,7 +59,7 @@ export const wizardImg = {
   attack1: wizardAttack1,
 };
 
-export const ekey = {
+export const ekey: Key = {
   r: false,
   l: false,
   jump: false,
@@ -35,7 +69,7 @@ export const ekey = {
   attack: false,
 };
 
-export const pkey = {
+export const pkey: Key = {
   r: false,
   l: false,
   jump: false,
@@ -45,20 +79,20 @@ export const pkey = {
   attack: false,
 };
 
-export const pkeycap = {
+export const pkeycap: Keycap = {
   w: "w",
   a: "a",
   d: "d",
   attack: "u",
 };
-export const ekeycap = {
+export const ekeycap: Keycap = {
   w: "ArrowUp",
   a: "ArrowLeft",
   d: "ArrowRight",
   attack: "7",
 };
 
-export const pframe = {
+export const pframe: Frame = {
   delay: 5,
   atkFrame: 7,
   jumpFrame: 3,
@@ -67,7 +101,7 @@ export const pframe = {
   idleFrame: 10,
 };
 
-export const eframe = {
+export const eframe: Frame = {
   delay: 5,
   atkFrame: 8,
   jumpFrame: 2,
