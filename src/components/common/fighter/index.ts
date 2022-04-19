@@ -38,8 +38,8 @@ export class Fighter {
       x: 0,
       y: 10,
     };
-    this.height = 250;
-    this.width = 80;
+    this.height = 200;
+    this.width = 100;
     this.image = new Image();
     this.image.src = imageSrc;
     this.range = {
@@ -68,30 +68,27 @@ export class Fighter {
       0,
       this.image.width / this.frame,
       this.image.height,
-      this.position.x - 450,
-      this.position.y - 325,
+      this.position.x - 130,
+      this.position.y - 0,
       (this.image.width / this.frame) * 2,
       this.image.height * 2
     );
+    this.ctx.scale(-1, 1);
 
-    // this.ctx.fillStyle = "red";
-    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    this.ctx.fillStyle = "red";
+    this.ctx.fillRect(-this.position.x, this.position.y, -this.width, this.height);
 
-    // if (key.eattack) {
-    //   ctx.fillStyle = "white";
-    //   ctx.fillRect(
-    //     enemy.range.position.x,
-    //     enemy.range.position.y,
-    //     enemy.range.width,
-    //     enemy.range.height
-    //   );
-    // }
+    this.ctx.fillStyle = "white";
+    this.ctx.fillRect(
+      -this.position.x,
+      this.position.y,
+      this.range.width,
+      this.range.height
+    );
   }
 
   update() {
     this.draw();
-
-    const { width, height } = this.canvas;
 
     if (this.count % this.delay === 0) {
       if (this.framecurrent < this.frame - 1) {
@@ -109,17 +106,12 @@ export class Fighter {
       this.position.y + this.height + this.speed.y >=
       this.canvas.height - 75
     ) {
-      this.position.y = height - (75 + 250);
+      this.position.y = this.canvas.height - (75 + 200);
     } else {
       this.speed.y += gravity;
     }
 
     if (!this.position.x || !this.speed.x) return;
-    if (this.position.x < 10) {
-      this.position.x = 10;
-    } else if (this.position.x > width - 100) {
-      this.position.x = width - 100;
-    }
     this.position.x += this.speed.x;
 
     this.range.position.x = this.position.x + this.range.offset.x;
