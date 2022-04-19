@@ -4,16 +4,18 @@ import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import backgroundimg from "../../../asset/img/DeadForest_BG.png";
 import { keyDown, keyUp } from "../../../lib/function/key";
-import { warriorImg } from "../../../lib/export/data";
+import {
+  eframe,
+  ekeycap,
+  pframe,
+  pkeycap,
+  warriorImg,
+} from "../../../lib/export/data";
 import { wizardImg } from "../../../lib/export/data";
 import { ekey } from "../../../lib/export/data";
 import { pkey } from "../../../lib/export/data";
-
-const { warriorIdle, warriorRun, warriorJump, warriorFall, warriorAttack1 } =
-  warriorImg;
-
-const { wizardIdle, wizardRun, wizardJump, wizardFall, wizardAttack1 } =
-  wizardImg;
+import { animation } from "../../../lib/function/animation";
+import { Sprite } from "../../common/sprite";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -32,30 +34,13 @@ export default function Canvas() {
 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    class Sprite {
-      position;
-      image;
-      constructor({ position, imageSrc }: any) {
-        this.position = position;
-        this.image = new Image();
-        this.image.src = imageSrc;
-      }
-
-      draw() {
-        ctx.drawImage(this.image, this.position.x, this.position.y);
-      }
-
-      update() {
-        this.draw();
-      }
-    }
-
     const background = new Sprite({
       position: {
         x: 0,
         y: 0,
       },
       imageSrc: backgroundimg,
+      ctx: ctx,
     });
 
     type positionType = {
@@ -174,14 +159,12 @@ export default function Canvas() {
           player.position.x -= 9;
         }
 
-        if (!this.position.x) return;
+        if (!this.position.x || !this.speed.x) return;
         if (this.position.x < 10) {
           this.position.x = 10;
         } else if (this.position.x > width - 100) {
           this.position.x = width - 100;
         }
-
-        if (!this.position.x || !this.speed.x) return;
         this.position.x += this.speed.x;
 
         this.range.position.x = this.position.x + this.range.offset.x;
@@ -203,7 +186,7 @@ export default function Canvas() {
         x: 0,
         y: 0,
       },
-      imageSrc: warriorIdle,
+      imageSrc: warriorImg.idle,
       idleFrame: 10,
       width: 320,
       height: 250,
@@ -223,7 +206,7 @@ export default function Canvas() {
         x: -390,
         y: 0,
       },
-      imageSrc: wizardIdle,
+      imageSrc: wizardImg.idle,
       idleFrame: 8,
       width: 390,
       height: 250,
@@ -240,41 +223,8 @@ export default function Canvas() {
       pressSense(player, pkey.r, pkey.l, 8, -5);
       pressSense(enemy, ekey.r, ekey.l, 5, -8);
 
-      if (pkey.attack) {
-        player.delay = 5;
-        player.frame = 7;
-        player.speed.x = 0;
-        player.image.src = warriorAttack1;
-      } else if (pkey.jump) {
-        player.frame = 3;
-        player.image.src = warriorJump;
-      } else if (pkey.fall) {
-        player.image.src = warriorFall;
-      } else if (pkey.move) {
-        player.frame = 8;
-        player.image.src = warriorRun;
-      } else {
-        player.frame = 10;
-        player.image.src = warriorIdle;
-      }
-
-      if (ekey.attack) {
-        enemy.delay = 5;
-        enemy.frame = 8;
-        enemy.speed.x = 0;
-        enemy.image.src = wizardAttack1;
-      } else if (ekey.jump) {
-        enemy.frame = 2;
-        enemy.image.src = wizardJump;
-      } else if (ekey.fall) {
-        enemy.image.src = wizardFall;
-      } else if (ekey.move) {
-        enemy.frame = 8;
-        enemy.image.src = wizardRun;
-      } else {
-        enemy.frame = 8;
-        enemy.image.src = wizardIdle;
-      }
+      animation(pkey, player, warriorImg, pframe);
+      animation(ekey, enemy, wizardImg, eframe);
 
       if (!enemy.position.x || !enemy.position.y) return;
 
@@ -293,19 +243,6 @@ export default function Canvas() {
     }
 
     animate();
-
-    const pkeycap = {
-      w: "w",
-      a: "a",
-      d: "d",
-      attack: "u",
-    };
-    const ekeycap = {
-      w: "ArrowUp",
-      a: "ArrowLeft",
-      d: "ArrowRight",
-      attack: "7",
-    };
 
     window.addEventListener("keydown", (e) => {
       keyDown(e.key, pkey, player, pkeycap);
