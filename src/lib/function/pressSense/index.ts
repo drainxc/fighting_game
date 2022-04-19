@@ -1,11 +1,5 @@
-export function pressSense(
-  character: any,
-  f: boolean,
-  b: boolean,
-  n1: number,
-  n2: number
-) {
-  if (f) character.speed.x = n1;
-  else if (b) character.speed.x = n2;
+export function pressSense(character: any, f: boolean, b: boolean) {
+  if (f) character.speed.x = 9;
+  else if (b) character.speed.x = -5;
   else character.speed.x = 0;
 }
