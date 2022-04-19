@@ -1,27 +1,16 @@
-import warriorIdle from "../../asset/img/warriorSprite/Idle.png";
-import warriorRun from "../../asset/img/warriorSprite/Run.png";
-import warriorJump from "../../asset/img/warriorSprite/Jump.png";
-import warriorFall from "../../asset/img/warriorSprite/Fall.png";
-import warriorAttack1 from "../../asset/img/warriorSprite/Attack1.png";
-import wizardIdle from "../../asset/img/wizardSprite/Idle.png";
-import wizardRun from "../../asset/img/wizardSprite/Run.png";
-import wizardJump from "../../asset/img/wizardSprite/Jump.png";
-import wizardFall from "../../asset/img/wizardSprite/Fall.png";
-import wizardAttack1 from "../../asset/img/wizardSprite/Attack1.png";
+import bot1Idle from "../../asset/img/toaster/idle.png";
+import bot1Attack from "../../asset/img/toaster/attack.png";
+import bot1Run from "../../asset/img/toaster/run.png";
 
 interface PlayerAsset {
   idle: string;
   run: string;
-  jump: string;
-  fall: string;
   attack1: string;
 }
 
 interface Key {
   r: boolean;
   l: boolean;
-  jump: boolean;
-  fall: boolean;
   move: boolean;
   float: boolean;
   attack: boolean;
@@ -43,27 +32,21 @@ interface Frame {
   idleFrame: number;
 }
 
-export const warriorImg: PlayerAsset = {
-  idle: warriorIdle,
-  run: warriorRun,
-  jump: warriorJump,
-  fall: warriorFall,
-  attack1: warriorAttack1,
+export const playerImg: PlayerAsset = {
+  idle: bot1Idle,
+  run: bot1Run,
+  attack1: bot1Attack,
 };
 
-export const wizardImg: PlayerAsset = {
-  idle: wizardIdle,
-  run: wizardRun,
-  jump: wizardJump,
-  fall: wizardFall,
-  attack1: wizardAttack1,
+export const enemyImg: PlayerAsset = {
+  idle: bot1Idle,
+  run: bot1Run,
+  attack1: bot1Attack,
 };
 
 export const ekey: Key = {
   r: false,
   l: false,
-  jump: false,
-  fall: false,
   move: false,
   float: false,
   attack: false,
@@ -72,8 +55,6 @@ export const ekey: Key = {
 export const pkey: Key = {
   r: false,
   l: false,
-  jump: false,
-  fall: false,
   move: false,
   float: false,
   attack: false,
@@ -87,25 +68,25 @@ export const pkeycap: Keycap = {
 };
 export const ekeycap: Keycap = {
   w: "ArrowUp",
-  a: "ArrowLeft",
-  d: "ArrowRight",
+  a: "ArrowRight",
+  d: "ArrowLeft",
   attack: "7",
 };
 
 export const pframe: Frame = {
-  delay: 5,
-  atkFrame: 7,
-  jumpFrame: 3,
-  fallFrame: 3,
+  delay: 6,
+  atkFrame: 11,
+  jumpFrame: 8,
+  fallFrame: 8,
   moveFrame: 8,
-  idleFrame: 10,
+  idleFrame: 5,
 };
 
 export const eframe: Frame = {
-  delay: 5,
-  atkFrame: 8,
-  jumpFrame: 2,
-  fallFrame: 2,
+  delay: 6,
+  atkFrame: 11,
+  jumpFrame: 8,
+  fallFrame: 8,
   moveFrame: 8,
-  idleFrame: 8,
+  idleFrame: 5,
 };
