@@ -24,3 +24,8 @@ export const EnemyBar = styled.div`
   height: 50px;
   width: 100%;
 `;
+
+export const Barbg = styled.div`
+  background-color: yellow;
+  height: 50px;
+`;
