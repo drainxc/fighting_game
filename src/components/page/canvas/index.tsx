@@ -2,18 +2,8 @@ import React, { useRef, useEffect } from "react";
 import { collision } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
-import backgroundimg from "../../../asset/img/DeadForest_BG.png";
+import backgroundimg from "../../../asset/img/bg/bg1.gif";
 import { keyDown, keyUp } from "../../../lib/function/key";
-// import {
-//   eframe,
-//   ekeycap,
-//   pframe,
-//   pkeycap,
-//   warriorImg,
-//   wizardImg,
-//   ekey,
-//   pkey,
-// } from "../../../lib/export/data";
 import * as D from "../../../lib/export/data";
 
 import { animation } from "../../../lib/function/animation";
@@ -48,7 +38,7 @@ export default function Canvas() {
     });
 
     const player = new Fighter({
-      name: "warrior",
+      name: "player",
       position: {
         x: 300,
         y: 100,
@@ -57,28 +47,28 @@ export default function Canvas() {
         x: 0,
         y: 0,
       },
-      imageSrc: D.warriorImg.idle,
+      imageSrc: D.playerImg.idle,
       idleFrame: 10,
-      width: 320,
-      height: 250,
+      width: -900,
+      height: 200,
       canvas: canvas,
       ctx: ctx,
     });
 
     const enemy = new Fighter({
-      name: "wizard",
+      name: "enemy",
       position: {
-        x: 1520,
+        x: -1520,
         y: 100,
       },
       offset: {
-        x: -390,
+        x: 0,
         y: 0,
       },
-      imageSrc: D.wizardImg.idle,
+      imageSrc: D.enemyImg.idle,
       idleFrame: 8,
-      width: 390,
-      height: 250,
+      width: -900,
+      height: 200,
       canvas: canvas,
       ctx: ctx,
     });
@@ -93,22 +83,22 @@ export default function Canvas() {
       if (!player.position.x || !enemy.position.x) return;
       push(player, enemy);
 
-      pressSense(player, D.pkey.r, D.pkey.l, 8, -5);
-      pressSense(enemy, D.ekey.r, D.ekey.l, 5, -8);
+      pressSense(player, D.pkey.r, D.pkey.l);
+      pressSense(enemy, D.ekey.r, D.ekey.l);
 
-      animation(D.pkey, player, D.warriorImg, D.pframe);
-      animation(D.ekey, enemy, D.wizardImg, D.eframe);
+      animation(D.pkey, player, D.playerImg, D.pframe);
+      animation(D.ekey, enemy, D.enemyImg, D.eframe);
 
       if (!enemy.position.x || !enemy.position.y) return;
 
       if (
-        collision(player, enemy, D.pkey.attack, 4) &&
+        collision(player, enemy, D.pkey.attack, 7) &&
         enemyHealthRef.current !== null
       ) {
         enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 2%)`;
       }
       if (
-        collision(enemy, player, D.ekey.attack, 3) &&
+        collision(enemy, player, D.ekey.attack, 7) &&
         playerHealthRef.current !== null
       ) {
         playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1.5%)`;
