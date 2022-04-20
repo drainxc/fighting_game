@@ -91,8 +91,8 @@ export default function Canvas() {
 
       if (!enemy.position.x || !enemy.position.y) return;
 
-      combo(D.pHit, D.pkey, player, enemy, enemyHealthRef);
-      combo(D.eHit, D.ekey, enemy, player, playerHealthRef); // 히트 판정
+      combo(D.pHit, D.pkey, player, enemy, enemyHealthRef, D.ekey);
+      combo(D.eHit, D.ekey, enemy, player, playerHealthRef, D.pkey); // 히트 판정
     }
 
     animate();

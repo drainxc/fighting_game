@@ -8,10 +8,17 @@ function collision(p: any, e: any, a: boolean, f: number) {
   );
 }
 
-export function combo(h: any, k: any, p: any, e: any, ref: any) {
+export function combo(h: any, k: any, p: any, e: any, ref: any, d: any) {
   for (let i = 0; i < h.hittime; i++) {
-    if (collision(p, e, k.attack, h.hitFrame[i]) && ref.current !== null) {
-      ref.current.style.width = `calc(${ref.current.style.width} - 1%)`;
+    if (collision(p, e, k.attack, h.hitFrame[i])) {
+      if (ref.current.style.width !== `calc(${0}%)`) {
+        d.beShot = true;
+        d.attack = false;
+        e.framecurrent = 0;
+        ref.current.style.width = `calc(${ref.current.style.width} - ${h.damaged}%)`;
+      } else {
+        d.death = true;
+      }
     }
   }
 }
