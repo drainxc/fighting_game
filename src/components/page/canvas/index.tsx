@@ -98,8 +98,8 @@ export default function Canvas() {
     animate();
 
     window.addEventListener("keydown", (e) => {
-      keyDown(e.key, D.pkey, player, D.pkeycap, D.pHit.atkFrame);
-      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eHit.atkFrame);
+      keyDown(e.key, D.pkey, player, D.pkeycap, D.pHit);
+      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eHit);
     });
 
     window.addEventListener("keyup", (e) => {

@@ -3,7 +3,7 @@ export function keyDown(
   key: any,
   player: any,
   keycap: any,
-  atkframe: number
+  hit: any
 ) {
   switch (e) {
     case keycap.d:
@@ -28,15 +28,19 @@ export function keyDown(
       }
       break;
     case keycap.attack:
-      // if (!key.float) {
-      player.framecurrent = 0;
-      if (!key.attack) {
-        key.attack = true;
-        setTimeout(() => {
-          key.attack = false;
-        }, atkframe * 100);
+      if (!key.attacking) {
+        key.attacking = true;
+        player.framecurrent = 0;
+        if (!key.attack) {
+          key.attack = true;
+          setTimeout(() => {
+            key.attack = false;
+            setTimeout(() => {
+              key.attacking = false;
+            }, hit.cooltime * 100);
+          }, hit.atkFrame * 100);
+        }
       }
-      // }
       break;
   }
 }

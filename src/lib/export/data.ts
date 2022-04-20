@@ -42,6 +42,7 @@ interface Key {
   attack: boolean;
   beShot: boolean;
   death: boolean;
+  attacking: boolean;
 }
 
 interface Keycap {
@@ -65,11 +66,11 @@ interface Data {
 }
 
 export const playerImg: PlayerAsset = {
-  idle: bot2Idle,
-  run: bot2Run,
-  attack: bot2Attack,
-  beShot: bot2BeShot,
-  death: bot2Death,
+  idle: bot5Idle,
+  run: bot5Run,
+  attack: bot5Attack,
+  beShot: bot5BeShot,
+  death: bot5Death,
 };
 
 export const enemyImg: PlayerAsset = {
@@ -88,9 +89,9 @@ const bot1Data: Data = {
   atkFrame: 11,
   moveFrame: 8,
   idleFrame: 1,
-  damaged: 1,
+  damaged: 0.625,
   deathFrame: 6,
-  cooltime: 5,
+  cooltime: 3,
 };
 
 const bot2Data: Data = {
@@ -101,9 +102,9 @@ const bot2Data: Data = {
   atkFrame: 27,
   moveFrame: 8,
   idleFrame: 1,
-  damaged: 1,
+  damaged: 4,
   deathFrame: 5,
-  cooltime: 5,
+  cooltime: 3,
 };
 
 const bot3Data: Data = {
@@ -114,9 +115,9 @@ const bot3Data: Data = {
   atkFrame: 7,
   moveFrame: 6,
   idleFrame: 5,
-  damaged: 1,
+  damaged: 1.5625,
   deathFrame: 8,
-  cooltime: 5,
+  cooltime: 3,
 };
 
 const bot4Data: Data = {
@@ -127,9 +128,9 @@ const bot4Data: Data = {
   atkFrame: 9,
   moveFrame: 8,
   idleFrame: 5,
-  damaged: 1,
+  damaged: 0.5,
   deathFrame: 5,
-  cooltime: 5,
+  cooltime: 1,
 };
 
 const bot5Data: Data = {
@@ -140,22 +141,22 @@ const bot5Data: Data = {
   atkFrame: 13,
   moveFrame: 7,
   idleFrame: 7,
-  damaged: 1,
+  damaged: 1.25,
   deathFrame: 12,
-  cooltime: 5,
+  cooltime: 1.5,
 };
 
 export const pHit: Data = {
-  width: bot2Data.width,
-  height: bot2Data.height,
-  hittime: bot2Data.hittime,
-  hitFrame: bot2Data.hitFrame,
-  atkFrame: bot2Data.atkFrame,
-  moveFrame: bot2Data.moveFrame,
-  idleFrame: bot2Data.idleFrame,
-  damaged: bot2Data.damaged,
-  deathFrame: bot2Data.deathFrame,
-  cooltime: bot2Data.cooltime,
+  width: bot5Data.width,
+  height: bot5Data.height,
+  hittime: bot5Data.hittime,
+  hitFrame: bot5Data.hitFrame,
+  atkFrame: bot5Data.atkFrame,
+  moveFrame: bot5Data.moveFrame,
+  idleFrame: bot5Data.idleFrame,
+  damaged: bot5Data.damaged,
+  deathFrame: bot5Data.deathFrame,
+  cooltime: bot5Data.cooltime,
 };
 
 export const eHit: Data = {
@@ -179,6 +180,7 @@ export const ekey: Key = {
   attack: false,
   beShot: false,
   death: false,
+  attacking: false,
 };
 
 export const pkey: Key = {
@@ -189,6 +191,7 @@ export const pkey: Key = {
   attack: false,
   beShot: false,
   death: false,
+  attacking: false,
 };
 
 export const pkeycap: Keycap = {

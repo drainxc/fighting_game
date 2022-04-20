@@ -1,6 +1,6 @@
 export function animation(k: any, player: any, img: any, frame: any) {
   const { attack, run, idle, beShot, death } = img;
-  const { atkFrame, moveFrame, idleFrame, deathframe } = frame;
+  const { atkFrame, moveFrame, idleFrame, deathFrame } = frame;
   if (k.beShot) {
     player.frame = 2;
     player.speed.x = 0;
@@ -9,12 +9,12 @@ export function animation(k: any, player: any, img: any, frame: any) {
       k.beShot = false;
     }, 200);
   } else if (k.death) {
-    player.frame = deathframe;
+    player.frame = deathFrame;
     player.image.src = death;
     setTimeout(() => {
       player.delay = 0;
-      player.framecurrent = deathframe - 1;
-    }, deathframe * 100);
+      player.framecurrent = deathFrame - 1;
+    }, deathFrame * 100);
   } else if (k.attack) {
     player.delay = 6;
     player.frame = atkFrame;
