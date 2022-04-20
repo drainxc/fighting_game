@@ -64,27 +64,27 @@ export class Fighter {
     if (!this.position.x || !this.position.y) return;
     this.ctx.drawImage(
       this.image,
-      this.framecurrent * (this.image.width / this.frame),
       0,
-      this.image.width / this.frame,
-      this.image.height,
+      this.framecurrent * (this.image.height / this.frame),
+      this.image.width,
+      this.image.height / this.frame,
       this.position.x - 130,
       this.position.y - 0,
-      (this.image.width / this.frame) * 2,
-      this.image.height * 2
+      this.image.width * 2,
+      (this.image.height / this.frame) * 2
     );
     this.ctx.scale(-1, 1);
 
-    this.ctx.fillStyle = "red";
-    this.ctx.fillRect(-this.position.x, this.position.y, -this.width, this.height);
+    // this.ctx.fillStyle = "red";
+    // this.ctx.fillRect(-this.position.x, this.position.y, -this.width, this.height);
 
-    this.ctx.fillStyle = "white";
-    this.ctx.fillRect(
-      -this.position.x,
-      this.position.y,
-      this.range.width,
-      this.range.height
-    );
+    // this.ctx.fillStyle = "white";
+    // this.ctx.fillRect(
+    //   -this.position.x,
+    //   this.position.y,
+    //   this.range.width,
+    //   this.range.height
+    // );
   }
 
   update() {
