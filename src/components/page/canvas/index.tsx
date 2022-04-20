@@ -86,8 +86,8 @@ export default function Canvas() {
       pressSense(player, D.pkey.r, D.pkey.l);
       pressSense(enemy, D.ekey.r, D.ekey.l);
 
-      animation(D.pkey, player, D.playerImg, D.pframe);
-      animation(D.ekey, enemy, D.enemyImg, D.eframe);
+      animation(D.pkey, player, D.playerImg, D.pHit);
+      animation(D.ekey, enemy, D.enemyImg, D.eHit);
 
       if (!enemy.position.x || !enemy.position.y) return;
 
@@ -98,8 +98,8 @@ export default function Canvas() {
     animate();
 
     window.addEventListener("keydown", (e) => {
-      keyDown(e.key, D.pkey, player, D.pkeycap, D.pframe.atkFrame);
-      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eframe.atkFrame);
+      keyDown(e.key, D.pkey, player, D.pkeycap, D.pHit.atkFrame);
+      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eHit.atkFrame);
     });
 
     window.addEventListener("keyup", (e) => {

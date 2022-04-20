@@ -34,7 +34,6 @@ export function keyDown(
         key.attack = true;
         setTimeout(() => {
           key.attack = false;
-          player.framecurrent = 0;
         }, atkframe * 100);
       }
       // }
