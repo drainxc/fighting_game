@@ -5,6 +5,7 @@ export function keyDown(
   keycap: any,
   hit: any
 ) {
+  
   switch (e) {
     case keycap.d:
       key.r = true;

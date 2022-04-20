@@ -91,7 +91,7 @@ const bot1Data: Data = {
   idleFrame: 1,
   damaged: 0.625,
   deathFrame: 6,
-  cooltime: 3,
+  cooltime: 2,
 };
 
 const bot2Data: Data = {
@@ -102,9 +102,9 @@ const bot2Data: Data = {
   atkFrame: 27,
   moveFrame: 8,
   idleFrame: 1,
-  damaged: 4,
+  damaged: 5,
   deathFrame: 5,
-  cooltime: 3,
+  cooltime: 5,
 };
 
 const bot3Data: Data = {
@@ -115,7 +115,7 @@ const bot3Data: Data = {
   atkFrame: 7,
   moveFrame: 6,
   idleFrame: 5,
-  damaged: 1.5625,
+  damaged: 2,
   deathFrame: 8,
   cooltime: 3,
 };
@@ -141,9 +141,9 @@ const bot5Data: Data = {
   atkFrame: 13,
   moveFrame: 7,
   idleFrame: 7,
-  damaged: 1.25,
+  damaged: 1.5625,
   deathFrame: 12,
-  cooltime: 1.5,
+  cooltime: 1,
 };
 
 export const pHit: Data = {

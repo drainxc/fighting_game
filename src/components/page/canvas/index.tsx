@@ -5,7 +5,6 @@ import * as S from "./styles";
 import backgroundimg from "../../../asset/img/bg/bg1.gif";
 import { keyDown, keyUp } from "../../../lib/function/key";
 import * as D from "../../../lib/export/data";
-
 import { animation } from "../../../lib/function/animation";
 import { Sprite } from "../../common/sprite";
 import { Fighter } from "../../common/fighter";
@@ -38,17 +37,12 @@ export default function Canvas() {
     });
 
     const player = new Fighter({
-      name: "player",
       position: {
         x: 300,
-        y: 100,
-      },
-      offset: {
-        x: 0,
-        y: 0,
+        y: 300,
       },
       imageSrc: D.playerImg.idle,
-      idleFrame: 10,
+      idleFrame: D.pHit.idleFrame,
       width: D.pHit.width,
       height: D.pHit.height,
       canvas: canvas,
@@ -56,17 +50,12 @@ export default function Canvas() {
     });
 
     const enemy = new Fighter({
-      name: "enemy",
       position: {
         x: -1520,
-        y: 100,
-      },
-      offset: {
-        x: 0,
-        y: 0,
+        y: 300,
       },
       imageSrc: D.enemyImg.idle,
-      idleFrame: 8,
+      idleFrame: D.eHit.idleFrame,
       width: D.eHit.width,
       height: D.eHit.height,
       canvas: canvas,
@@ -80,7 +69,6 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      if (!player.position.x || !enemy.position.x) return;
       push(player, enemy);
 
       pressSense(player, D.pkey.r, D.pkey.l);
@@ -88,8 +76,6 @@ export default function Canvas() {
 
       animation(D.pkey, player, D.playerImg, D.pHit);
       animation(D.ekey, enemy, D.enemyImg, D.eHit);
-
-      if (!enemy.position.x || !enemy.position.y) return;
 
       combo(D.pHit, D.pkey, player, enemy, enemyHealthRef, D.ekey);
       combo(D.eHit, D.ekey, enemy, player, playerHealthRef, D.pkey); // 히트 판정

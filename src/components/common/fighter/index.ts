@@ -6,7 +6,6 @@ type positionType = {
 };
 
 export class Fighter {
-  name: string;
   position: positionType;
   speed: positionType;
   width: number;
@@ -22,17 +21,14 @@ export class Fighter {
   ctx;
 
   constructor({
-    name,
     position,
     imageSrc,
-    offset,
     idleFrame,
     width,
     height,
     canvas,
     ctx,
   }: any) {
-    this.name = name;
     this.position = position;
     this.speed = {
       x: 0,
@@ -47,7 +43,6 @@ export class Fighter {
         x: this.position.x,
         y: this.position.y,
       },
-      offset,
       width: width,
       height: height,
     };
@@ -114,7 +109,7 @@ export class Fighter {
     if (!this.position.x || !this.speed.x) return;
     this.position.x += this.speed.x;
 
-    this.range.position.x = this.position.x + this.range.offset.x;
+    this.range.position.x = this.position.x;
     this.range.position.y = this.position.y;
   }
 }
