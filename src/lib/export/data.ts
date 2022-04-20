@@ -16,6 +16,11 @@ import bot4Attack from "../../asset/img/Ball and Chain Bot/attack.png";
 import bot4Run from "../../asset/img/Ball and Chain Bot/run.png";
 import bot4BeShot from "../../asset/img/Ball and Chain Bot/hit.png";
 import bot4Death from "../../asset/img/Ball and Chain Bot/death.png";
+import bot5Idle from "../../asset/img/Eye ball Monster/idle.png"
+import bot5Attack from "../../asset/img/Eye ball Monster/attack.png"
+import bot5Run from "../../asset/img/Eye ball Monster/run.png"
+import bot5BeShot from "../../asset/img/Eye ball Monster/hit.png"
+import bot5Death from "../../asset/img/Eye ball Monster/death.png"
 
 interface PlayerAsset {
   idle: string;
@@ -63,11 +68,11 @@ export const playerImg: PlayerAsset = {
 };
 
 export const enemyImg: PlayerAsset = {
-  idle: bot4Idle,
-  run: bot4Run,
-  attack: bot4Attack,
-  beShot: bot4BeShot,
-  death: bot4Death,
+  idle: bot5Idle,
+  run: bot5Run,
+  attack: bot5Attack,
+  beShot: bot5BeShot,
+  death: bot5Death,
 };
 
 const bot2Data: Data = {
@@ -90,7 +95,7 @@ const bot3Data: Data = {
   atkFrame: 7,
   moveFrame: 6,
   idleFrame: 5,
-  damaged: 1,
+  damaged: 2,
   deathframe: 8,
 };
 
@@ -102,11 +107,21 @@ const bot4Data: Data = {
   atkFrame: 9,
   moveFrame: 8,
   idleFrame: 5,
-  damaged: 1,
+  damaged: 2,
   deathframe: 5,
 };
 
-
+const bot5Data: Data = {
+  width: -480,
+  height: 200,
+  hittime: 1,
+  hitframe: [6],
+  atkFrame: 13,
+  moveFrame: 7,
+  idleFrame: 7,
+  damaged: 2,
+  deathframe: 12,
+};
 
 export const pHit = {
   width: bot2Data.width,
@@ -121,15 +136,15 @@ export const pHit = {
 };
 
 export const eHit = {
-  width: bot4Data.width,
-  height: bot4Data.height,
-  hittime: bot4Data.hittime,
-  hitFrame: bot4Data.hitframe,
-  atkFrame: bot4Data.atkFrame,
-  moveFrame: bot4Data.moveFrame,
-  idleFrame: bot4Data.idleFrame,
-  damaged: bot4Data.damaged,
-  deathframe: bot4Data.deathframe
+  width: bot5Data.width,
+  height: bot5Data.height,
+  hittime: bot5Data.hittime,
+  hitFrame: bot5Data.hitframe,
+  atkFrame: bot5Data.atkFrame,
+  moveFrame: bot5Data.moveFrame,
+  idleFrame: bot5Data.idleFrame,
+  damaged: bot5Data.damaged,
+  deathframe: bot5Data.deathframe
 };
 
 export const ekey: Key = {
