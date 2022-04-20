@@ -1,4 +1,10 @@
-export function keyDown(e: string, key: any, player: any, keycap: any) {
+export function keyDown(
+  e: string,
+  key: any,
+  player: any,
+  keycap: any,
+  atkframe: number
+) {
   switch (e) {
     case keycap.d:
       key.r = true;
@@ -29,7 +35,7 @@ export function keyDown(e: string, key: any, player: any, keycap: any) {
         setTimeout(() => {
           key.attack = false;
           player.framecurrent = 0;
-        }, 2700);
+        }, atkframe * 100);
       }
       // }
       break;

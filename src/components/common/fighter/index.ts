@@ -39,7 +39,7 @@ export class Fighter {
       y: 10,
     };
     this.height = 200;
-    this.width = 100;
+    this.width = 70;
     this.image = new Image();
     this.image.src = imageSrc;
     this.range = {

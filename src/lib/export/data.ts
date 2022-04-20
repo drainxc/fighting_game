@@ -1,9 +1,12 @@
-import bot1Idle from "../../asset/img/toaster/idle.png";
-import bot1Attack from "../../asset/img/toaster/attack.png";
-import bot1Run from "../../asset/img/toaster/run.png";
+// import bot1Idle from "../../asset/img/toaster/idle.png";
+// import bot1Attack from "../../asset/img/toaster/attack.png";
+// import bot1Run from "../../asset/img/toaster/run.png";
 import bot2Idle from "../../asset/img/Shock Sweeper/wake2.png";
 import bot2Attack from "../../asset/img/Shock Sweeper/attackCombo.png";
 import bot2Run from "../../asset/img/Shock Sweeper/shuffe(move).png";
+import bot3Idle from "../../asset/img/Mud Guard/idle.png";
+import bot3Attack from "../../asset/img/Mud Guard/attack 2.png";
+import bot3Run from "../../asset/img/Mud Guard/Run.png";
 
 interface PlayerAsset {
   idle: string;
@@ -40,9 +43,9 @@ export const playerImg: PlayerAsset = {
 };
 
 export const enemyImg: PlayerAsset = {
-  idle: bot2Idle,
-  run: bot2Run,
-  attack1: bot2Attack,
+  idle: bot3Idle,
+  run: bot3Run,
+  attack1: bot3Attack,
 };
 
 export const pHit = {
@@ -53,10 +56,10 @@ export const pHit = {
 };
 
 export const eHit = {
-  width: -240,
-  height: 200,
-  hittime: 3,
-  hitFrame: [6, 14, 22],
+  width: -610,
+  height: 100,
+  hittime: 1,
+  hitFrame: [4],
 };
 
 export const pframe: Frame = {
@@ -68,9 +71,9 @@ export const pframe: Frame = {
 
 export const eframe: Frame = {
   delay: 6,
-  atkFrame: 27,
-  moveFrame: 8,
-  idleFrame: 1,
+  atkFrame: 7,
+  moveFrame: 6,
+  idleFrame: 5,
 };
 
 export const ekey: Key = {

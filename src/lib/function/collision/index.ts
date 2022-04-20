@@ -11,7 +11,7 @@ function collision(p: any, e: any, a: boolean, f: number) {
 export function combo(h: any, k: any, p: any, e: any, ref: any) {
   for (let i = 0; i < h.hittime; i++) {
     if (collision(p, e, k.attack, h.hitFrame[i]) && ref.current !== null) {
-      ref.current.style.width = `calc(${ref.current.style.width} - 2%)`;
+      ref.current.style.width = `calc(${ref.current.style.width} - 1%)`;
     }
   }
 }

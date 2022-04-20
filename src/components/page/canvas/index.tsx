@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { collision } from "../../../lib/function/collision";
+import { combo } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import backgroundimg from "../../../asset/img/bg/bg1.gif";
@@ -91,25 +91,15 @@ export default function Canvas() {
 
       if (!enemy.position.x || !enemy.position.y) return;
 
-      if (
-        collision(player, enemy, D.pkey.attack, D.pHit.hitFrame) &&
-        enemyHealthRef.current !== null
-      ) {
-        enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 2%)`;
-      }
-      if (
-        collision(enemy, player, D.ekey.attack, D.eHit.hitFrame) &&
-        playerHealthRef.current !== null
-      ) {
-        playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1.5%)`;
-      } // 히트 판정
+      combo(D.pHit, D.pkey, player, enemy, enemyHealthRef);
+      combo(D.eHit, D.ekey, enemy, player, playerHealthRef); // 히트 판정
     }
 
     animate();
 
     window.addEventListener("keydown", (e) => {
-      keyDown(e.key, D.pkey, player, D.pkeycap);
-      keyDown(e.key, D.ekey, enemy, D.ekeycap);
+      keyDown(e.key, D.pkey, player, D.pkeycap, D.pframe.atkFrame);
+      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eframe.atkFrame);
     });
 
     window.addEventListener("keyup", (e) => {
