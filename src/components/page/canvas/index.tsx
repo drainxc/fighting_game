@@ -49,8 +49,8 @@ export default function Canvas() {
       },
       imageSrc: D.playerImg.idle,
       idleFrame: 10,
-      width: -900,
-      height: 200,
+      width: D.pHit.width,
+      height: D.pHit.height,
       canvas: canvas,
       ctx: ctx,
     });
@@ -67,8 +67,8 @@ export default function Canvas() {
       },
       imageSrc: D.enemyImg.idle,
       idleFrame: 8,
-      width: -900,
-      height: 200,
+      width: D.eHit.width,
+      height: D.eHit.height,
       canvas: canvas,
       ctx: ctx,
     });
@@ -92,13 +92,13 @@ export default function Canvas() {
       if (!enemy.position.x || !enemy.position.y) return;
 
       if (
-        collision(player, enemy, D.pkey.attack, 7) &&
+        collision(player, enemy, D.pkey.attack, D.pHit.hitFrame) &&
         enemyHealthRef.current !== null
       ) {
         enemyHealthRef.current.style.width = `calc(${enemyHealthRef.current.style.width} - 2%)`;
       }
       if (
-        collision(enemy, player, D.ekey.attack, 7) &&
+        collision(enemy, player, D.ekey.attack, D.eHit.hitFrame) &&
         playerHealthRef.current !== null
       ) {
         playerHealthRef.current.style.width = `calc(${playerHealthRef.current.style.width} - 1.5%)`;
