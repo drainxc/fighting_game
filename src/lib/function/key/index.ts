@@ -22,16 +22,16 @@ export function keyDown(e: string, key: any, player: any, keycap: any) {
       }
       break;
     case keycap.attack:
-      if (!key.float) {
-        player.framecurrent = 0;
-        if (!key.attack) {
-          key.attack = true;
-          setTimeout(() => {
-            key.attack = false;
-            player.framecurrent = 0;
-          }, 900);
-        }
+      // if (!key.float) {
+      player.framecurrent = 0;
+      if (!key.attack) {
+        key.attack = true;
+        setTimeout(() => {
+          key.attack = false;
+          player.framecurrent = 0;
+        }, 2700);
       }
+      // }
       break;
   }
 }

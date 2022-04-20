@@ -48,13 +48,15 @@ export const enemyImg: PlayerAsset = {
 export const pHit = {
   width: -240,
   height: 200,
-  hitFrame: 6,
+  hittime: 3,
+  hitFrame: [6, 14, 22],
 };
 
 export const eHit = {
   width: -240,
   height: 200,
-  hitFrame: 6,
+  hittime: 3,
+  hitFrame: [6, 14, 22],
 };
 
 export const pframe: Frame = {
