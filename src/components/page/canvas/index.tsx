@@ -10,11 +10,22 @@ import { Sprite } from "../../common/sprite";
 import { Fighter } from "../../common/fighter";
 import { push } from "../../../lib/function/push";
 import HealthBar from "../../common/healthbar";
+import { useParams } from "react-router-dom";
 
 export default function Canvas() {
+  const { id } = useParams();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const enemyHealthRef = useRef<HTMLDivElement>(null);
   const playerHealthRef = useRef<HTMLDivElement>(null);
+  let gamer: number[] = [];
+
+  if (id !== undefined) {
+    gamer = id.split("").map(function (item) {
+      return parseInt(item, 10);
+    });
+  }
+
+  console.log(gamer);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,10 +50,10 @@ export default function Canvas() {
         x: 300,
         y: 300,
       },
-      imageSrc: D.playerImg.idle,
-      idleFrame: D.pHit.idleFrame,
-      width: D.pHit.width,
-      height: D.pHit.height,
+      imageSrc: D.gameData[gamer[0]][1],
+      idleFrame: D.gameData[gamer[0]][5].idleFrame,
+      width: D.gameData[gamer[0]][5].width,
+      height: D.gameData[gamer[0]][5].height,
       canvas: canvas,
       ctx: ctx,
     }); // 플레이어 1
@@ -52,10 +63,10 @@ export default function Canvas() {
         x: -1520,
         y: 300,
       },
-      imageSrc: D.enemyImg.idle,
-      idleFrame: D.eHit.idleFrame,
-      width: D.eHit.width,
-      height: D.eHit.height,
+      imageSrc: D.gameData[gamer[1]][1],
+      idleFrame: D.gameData[gamer[1]][5].idleFrame,
+      width: D.gameData[gamer[1]][5].width,
+      height: D.gameData[gamer[1]][5].height,
       canvas: canvas,
       ctx: ctx,
     }); // 플레이어 2
@@ -72,18 +83,34 @@ export default function Canvas() {
       pressSense(player, D.pkey.r, D.pkey.l);
       pressSense(enemy, D.ekey.r, D.ekey.l); // 속도 바꾸기
 
-      animation(D.pkey, player, D.playerImg, D.pHit);
-      animation(D.ekey, enemy, D.enemyImg, D.eHit); // 애니메이션
+      animation(D.pkey, player, D.gameData[gamer[0]], D.gameData[gamer[0]][5]);
+      animation(D.ekey, enemy, D.gameData[gamer[1]], D.gameData[gamer[1]][5]); // 애니메이션
 
-      combo(D.pHit, D.pkey, player, enemy, enemyHealthRef, D.ekey);
-      combo(D.eHit, D.ekey, enemy, player, playerHealthRef, D.pkey); // 히트 판정
+      combo(
+        D.gameData[gamer[0]][5],
+        D.pkey,
+        D.ekey,
+        player,
+        enemy,
+        enemyHealthRef,
+        D.gameData[gamer[1]][5]
+      );
+      combo(
+        D.gameData[gamer[1]][5],
+        D.ekey,
+        D.pkey,
+        enemy,
+        player,
+        playerHealthRef,
+        D.gameData[gamer[0]][5]
+      ); // 히트 판정
     }
 
     animate();
 
     window.addEventListener("keydown", (e) => {
-      keyDown(e.key, D.pkey, player, D.pkeycap, D.pHit);
-      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eHit);
+      keyDown(e.key, D.pkey, player, D.pkeycap, D.gameData[gamer[0]][5]);
+      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.gameData[gamer[1]][5]);
     }); // 키 눌렀을 때
 
     window.addEventListener("keyup", (e) => {

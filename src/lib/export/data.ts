@@ -102,7 +102,7 @@ const bot2Data: Data = {
   atkFrame: 27,
   moveFrame: 8,
   idleFrame: 1,
-  damaged: 5,
+  damaged: 2.5,
   deathFrame: 5,
   cooltime: 5,
 };
@@ -130,7 +130,7 @@ const bot4Data: Data = {
   idleFrame: 5,
   damaged: 0.5,
   deathFrame: 5,
-  cooltime: 1,
+  cooltime: 0,
 };
 
 const bot5Data: Data = {
@@ -146,31 +146,13 @@ const bot5Data: Data = {
   cooltime: 1,
 };
 
-export const pHit: Data = {
-  width: bot5Data.width,
-  height: bot5Data.height,
-  hittime: bot5Data.hittime,
-  hitFrame: bot5Data.hitFrame,
-  atkFrame: bot5Data.atkFrame,
-  moveFrame: bot5Data.moveFrame,
-  idleFrame: bot5Data.idleFrame,
-  damaged: bot5Data.damaged,
-  deathFrame: bot5Data.deathFrame,
-  cooltime: bot5Data.cooltime,
-}; 
-
-export const eHit: Data = {
-  width: bot1Data.width,
-  height: bot1Data.height,
-  hittime: bot1Data.hittime,
-  hitFrame: bot1Data.hitFrame,
-  atkFrame: bot1Data.atkFrame,
-  moveFrame: bot1Data.moveFrame,
-  idleFrame: bot1Data.idleFrame,
-  damaged: bot1Data.damaged,
-  deathFrame: bot1Data.deathFrame,
-  cooltime: bot1Data.cooltime,
-}; // 플레이어 애니메이션
+export const gameData: any[] = [
+  [bot1Idle, bot1Attack, bot1Run, bot1BeShot, bot1Death, bot1Data],
+  [bot2Idle, bot2Attack, bot2Run, bot2BeShot, bot2Death, bot2Data],
+  [bot3Idle, bot3Attack, bot3Run, bot3BeShot, bot3Death, bot3Data],
+  [bot4Idle, bot4Attack, bot4Run, bot4BeShot, bot4Death, bot4Data],
+  [bot5Idle, bot5Attack, bot5Run, bot5BeShot, bot5Death, bot5Data],
+];
 
 export const ekey: Key = {
   r: false,
