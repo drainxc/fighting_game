@@ -10,6 +10,7 @@ import { Sprite } from "../../common/sprite";
 import { Fighter } from "../../common/fighter";
 import { push } from "../../../lib/function/push";
 import Timer from "../../common/timer";
+import HealthBar from "../../common/healthbar";
 
 export default function Canvas() {
   const canvasRef = useRef(null);
@@ -97,38 +98,7 @@ export default function Canvas() {
   return (
     <>
       <S.MainDiv>
-        <S.HealthBar>
-          <S.PlayerBar>
-            <S.Barbg />
-            <div
-              ref={playerHealthRef}
-              style={{
-                position: "absolute",
-                background: "red",
-                width: "100%",
-                top: 0,
-                bottom: 0,
-                right: 0,
-              }}
-            ></div>
-          </S.PlayerBar>
-          <Timer />
-          <S.EnemyBar>
-            <S.Barbg />
-            <div
-              ref={enemyHealthRef}
-              style={{
-                position: "absolute",
-                background: "red",
-                width: "100%",
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-              }}
-            ></div>
-          </S.EnemyBar>
-        </S.HealthBar>
+        <HealthBar pref={playerHealthRef} eref={enemyHealthRef} />
         <canvas ref={canvasRef}></canvas>
       </S.MainDiv>
     </>
