@@ -8,7 +8,7 @@ function collision(p: any, e: any, a: boolean, f: number) {
   );
 }
 
-export function combo(h: any, k: any, p: any, e: any, ref: any, d: any) {
+export function combo(h: any, k: any, p: any, e: any, ref: any, d: any): void {
   for (let i = 0; i < h.hittime; i++) {
     if (collision(p, e, k.attack, h.hitFrame[i])) {
       if (ref.current.style.width !== `calc(${0}%)`) {
@@ -21,4 +21,5 @@ export function combo(h: any, k: any, p: any, e: any, ref: any, d: any) {
       }
     }
   }
+  return;
 }

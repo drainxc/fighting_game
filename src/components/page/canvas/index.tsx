@@ -9,7 +9,6 @@ import { animation } from "../../../lib/function/animation";
 import { Sprite } from "../../common/sprite";
 import { Fighter } from "../../common/fighter";
 import { push } from "../../../lib/function/push";
-import Timer from "../../common/timer";
 import HealthBar from "../../common/healthbar";
 
 export default function Canvas() {

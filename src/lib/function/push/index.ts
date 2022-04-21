@@ -9,4 +9,5 @@ export function push(p: any, e: any) {
   if (e.position.x < -1900) {
     e.position.x = -1900;
   }
+  return;
 }

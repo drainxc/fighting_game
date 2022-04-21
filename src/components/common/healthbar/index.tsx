@@ -1,5 +1,4 @@
 import * as S from "./styles";
-import React, { useRef } from "react";
 import Timer from "../timer/index";
 
 export default function HealthBar({ pref, eref }: any) {

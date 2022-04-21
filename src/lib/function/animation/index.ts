@@ -1,4 +1,4 @@
-export function animation(k: any, player: any, img: any, frame: any) {
+export function animation(k: any, player: any, img: any, frame: any): void {
   const { attack, run, idle, beShot, death } = img;
   const { atkFrame, moveFrame, idleFrame, deathFrame } = frame;
   if (k.beShot) {
@@ -27,4 +27,5 @@ export function animation(k: any, player: any, img: any, frame: any) {
     player.frame = idleFrame;
     player.image.src = idle;
   }
+  return;
 }

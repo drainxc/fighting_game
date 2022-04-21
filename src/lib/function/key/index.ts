@@ -5,7 +5,6 @@ export function keyDown(
   keycap: any,
   hit: any
 ) {
-  
   switch (e) {
     case keycap.d:
       key.r = true;
@@ -44,6 +43,7 @@ export function keyDown(
       }
       break;
   }
+  return;
 }
 
 export function keyUp(e: string, key: any, player: any, keycap: any) {
@@ -58,4 +58,5 @@ export function keyUp(e: string, key: any, player: any, keycap: any) {
       player.delay = 6;
       break;
   }
+  return;
 }
