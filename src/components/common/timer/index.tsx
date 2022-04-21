@@ -9,9 +9,8 @@ export default function Timer() {
         setTimer(timer - 1);
       }
     }, 1000);
-
     return () => clearInterval(stopWatch);
-  }, [timer]);
+  }, [timer]); // 타이머
   return (
     <>
       <S.Time>{timer}</S.Time>

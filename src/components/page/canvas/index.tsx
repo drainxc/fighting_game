@@ -12,20 +12,18 @@ import { push } from "../../../lib/function/push";
 import HealthBar from "../../common/healthbar";
 
 export default function Canvas() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const enemyHealthRef = useRef<HTMLDivElement>(null);
   const playerHealthRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas: any = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
 
     if (!canvas) return;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const background = new Sprite({
       position: {
@@ -34,7 +32,7 @@ export default function Canvas() {
       },
       imageSrc: backgroundimg,
       ctx: ctx,
-    });
+    }); // 배경
 
     const player = new Fighter({
       position: {
@@ -47,7 +45,7 @@ export default function Canvas() {
       height: D.pHit.height,
       canvas: canvas,
       ctx: ctx,
-    });
+    }); // 플레이어 1
 
     const enemy = new Fighter({
       position: {
@@ -60,7 +58,7 @@ export default function Canvas() {
       height: D.eHit.height,
       canvas: canvas,
       ctx: ctx,
-    });
+    }); // 플레이어 2
 
     function animate() {
       window.requestAnimationFrame(animate);
@@ -69,13 +67,13 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      push(player, enemy);
+      push(player, enemy); // 밀리기
 
       pressSense(player, D.pkey.r, D.pkey.l);
-      pressSense(enemy, D.ekey.r, D.ekey.l);
+      pressSense(enemy, D.ekey.r, D.ekey.l); // 속도 바꾸기
 
       animation(D.pkey, player, D.playerImg, D.pHit);
-      animation(D.ekey, enemy, D.enemyImg, D.eHit);
+      animation(D.ekey, enemy, D.enemyImg, D.eHit); // 애니메이션
 
       combo(D.pHit, D.pkey, player, enemy, enemyHealthRef, D.ekey);
       combo(D.eHit, D.ekey, enemy, player, playerHealthRef, D.pkey); // 히트 판정
@@ -86,12 +84,12 @@ export default function Canvas() {
     window.addEventListener("keydown", (e) => {
       keyDown(e.key, D.pkey, player, D.pkeycap, D.pHit);
       keyDown(e.key, D.ekey, enemy, D.ekeycap, D.eHit);
-    });
+    }); // 키 눌렀을 때
 
     window.addEventListener("keyup", (e) => {
       keyUp(e.key, D.pkey, player, D.pkeycap);
       keyUp(e.key, D.ekey, enemy, D.ekeycap);
-    });
+    }); // 키 땠을 때
   }, []);
 
   return (

@@ -44,7 +44,7 @@ export function keyDown(
       break;
   }
   return;
-}
+} // 키를 눌렀을 때
 
 export function keyUp(e: string, key: any, player: any, keycap: any) {
   switch (e) {
@@ -59,4 +59,4 @@ export function keyUp(e: string, key: any, player: any, keycap: any) {
       break;
   }
   return;
-}
+} // 키를 땠을 때

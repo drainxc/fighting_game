@@ -7,6 +7,14 @@ export const HealthBar = styled.div`
   align-items: center;
   padding: 50px;
   box-sizing: border-box;
+  span {
+    position: absolute;
+    background: red;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
 `;
 
 export const PlayerBar = styled.div`

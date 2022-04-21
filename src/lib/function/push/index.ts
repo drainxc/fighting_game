@@ -10,4 +10,4 @@ export function push(p: any, e: any) {
     e.position.x = -1900;
   }
   return;
-}
+} // 플레이어 간 밀어내기
