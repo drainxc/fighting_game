@@ -44,21 +44,20 @@ export default function Select() {
     if (player.length >= 3) {
       player.shift();
     }
-    console.log(player);
   }
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [randomBg, bg1, bg2, bg3];
 
-  const nextSlide = () => {
+  const next = () => {
     if (currentSlide >= images.length - 1) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
-    console.log(currentSlide);
   };
 
-  const preSlide = () => {
+  const pre = () => {
     if (currentSlide === 0) {
       setCurrentSlide(images.length - 1);
     } else {
@@ -67,38 +66,44 @@ export default function Select() {
   };
 
   return (
-    <S.MainDiv>
-      <button onClick={() => preSlide()}>Previous Slide</button>
-      {images.map((img: string, i: number) => (
-        <>{currentSlide === i ? <S.BgImg src={img} alt="" /> : <></>}</>
-      ))}
-      <button onClick={() => nextSlide()}>Next Slide</button>
-
-      <S.Bottom>
-        <S.Page>
-          {/* <Link to={"/game" + player[0] + player[1]}> */}
-          <div>back</div>
-          {/* </Link> */}
-        </S.Page>
-        <S.BtnDiv>
-          {character.map((name: string, i: number) => (
-            <>
-              <button onClick={(e) => selectCharacter(e, i)}>
-                <img src={profile[i]} alt={name} />
-              </button>
-            </>
-          ))}
-        </S.BtnDiv>
-        <S.Page>
-          {player.length === 2 ? (
-            <Link to={"/game" + player[0] + player[1]}>
+    <>
+      <S.Background />
+      <S.MainDiv>
+        <S.Top>
+          <S.Map>
+            <S.Slide onClick={() => pre()}>‹</S.Slide>
+            {images.map((img: string, i: number) => (
+              <>{currentSlide === i ? <S.BgImg src={img} alt="" /> : <></>}</>
+            ))}
+            <S.Slide onClick={() => next()}>›</S.Slide>
+          </S.Map>
+        </S.Top>
+        <S.Bottom>
+          <S.Page>
+            {/* <Link to={"/game" + player[0] + player[1]}> */}
+            <div>back</div>
+            {/* </Link> */}
+          </S.Page>
+          <S.BtnDiv>
+            {character.map((name: string, i: number) => (
+              <>
+                <button onClick={(e) => selectCharacter(e, i)}>
+                  <img src={profile[i]} alt={name} />
+                </button>
+              </>
+            ))}
+          </S.BtnDiv>
+          <S.Page>
+            {player.length === 2 ? (
+              <Link to={"/game" + player[0] + player[1]}>
+                <div>start</div>
+              </Link>
+            ) : (
               <div>start</div>
-            </Link>
-          ) : (
-            <div>start</div>
-          )}
-        </S.Page>
-      </S.Bottom>
-    </S.MainDiv>
+            )}
+          </S.Page>
+        </S.Bottom>
+      </S.MainDiv>
+    </>
   );
 }
