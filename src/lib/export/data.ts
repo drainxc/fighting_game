@@ -1,43 +1,38 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import bot1Idle from "../../asset/img/Bot Wheel/static idle.png";
-import bot1Attack from "../../asset/img/Bot Wheel/attack.png";
-import bot1Run from "../../asset/img/Bot Wheel/move with FX.png";
-import bot1BeShot from "../../asset/img/Bot Wheel/damaged.png";
-import bot1Death from "../../asset/img/Bot Wheel/death.png";
-import bot2Idle from "../../asset/img/Shock Sweeper/wake2.png";
-import bot2Attack from "../../asset/img/Shock Sweeper/attackCombo.png";
-import bot2Run from "../../asset/img/Shock Sweeper/shuffe(move).png";
-import bot2BeShot from "../../asset/img/Shock Sweeper/hit.png";
-import bot2Death from "../../asset/img/Shock Sweeper/death.png";
-import bot3Idle from "../../asset/img/Mud Guard/idle.png";
-import bot3Attack from "../../asset/img/Mud Guard/attack 2.png";
-import bot3Run from "../../asset/img/Mud Guard/Run.png";
-import bot3BeShot from "../../asset/img/Mud Guard/hit.png";
-import bot3Death from "../../asset/img/Mud Guard/damaged and death.png";
-import bot4Idle from "../../asset/img/Ball and Chain Bot/idle.png";
-import bot4Attack from "../../asset/img/Ball and Chain Bot/attack.png";
-import bot4Run from "../../asset/img/Ball and Chain Bot/run.png";
-import bot4BeShot from "../../asset/img/Ball and Chain Bot/hit.png";
-import bot4Death from "../../asset/img/Ball and Chain Bot/death.png";
-import bot5Idle from "../../asset/img/Eye ball Monster/idle.png";
-import bot5Attack from "../../asset/img/Eye ball Monster/attack.png";
-import bot5Run from "../../asset/img/Eye ball Monster/run.png";
-import bot5BeShot from "../../asset/img/Eye ball Monster/hit.png";
-import bot5Death from "../../asset/img/Eye ball Monster/death.png";
-import bot6Idle from "../../asset/img/Toaster Bot/idle.png";
-import bot6Attack from "../../asset/img/Toaster Bot/attack.png";
-import bot6Run from "../../asset/img/Toaster Bot/run.png";
-import bot6BeShot from "../../asset/img/Toaster Bot/damaged.png";
-import bot6Death from "../../asset/img/Toaster Bot/death.png";
-
-interface PlayerAsset {
-  idle: string;
-  run: string;
-  attack: string;
-  beShot: string;
-  death: string;
-}
+import player1Idle from "../../asset/img/Bot Wheel/static idle.png";
+import player1Attack from "../../asset/img/Bot Wheel/attack.png";
+import player1Run from "../../asset/img/Bot Wheel/move with FX.png";
+import player1BeShot from "../../asset/img/Bot Wheel/damaged.png";
+import player1Death from "../../asset/img/Bot Wheel/death.png";
+import player2Idle from "../../asset/img/Shock Sweeper/wake2.png";
+import player2Attack from "../../asset/img/Shock Sweeper/attackCombo.png";
+import player2Run from "../../asset/img/Shock Sweeper/shuffe(move).png";
+import player2BeShot from "../../asset/img/Shock Sweeper/hit.png";
+import player2Death from "../../asset/img/Shock Sweeper/death.png";
+import player3Idle from "../../asset/img/Mud Guard/idle.png";
+import player3Attack from "../../asset/img/Mud Guard/attack 2.png";
+import player3Run from "../../asset/img/Mud Guard/Run.png";
+import player3BeShot from "../../asset/img/Mud Guard/hit.png";
+import player3Death from "../../asset/img/Mud Guard/damaged and death.png";
+import player4Idle from "../../asset/img/Ball and Chain Bot/idle.png";
+import player4Attack from "../../asset/img/Ball and Chain Bot/attack.png";
+import player4Run from "../../asset/img/Ball and Chain Bot/run.png";
+import player4BeShot from "../../asset/img/Ball and Chain Bot/hit.png";
+import player4Death from "../../asset/img/Ball and Chain Bot/death.png";
+import player5Idle from "../../asset/img/Eye ball Monster/idle.png";
+import player5Attack from "../../asset/img/Eye ball Monster/attack.png";
+import player5Run from "../../asset/img/Eye ball Monster/run.png";
+import player5BeShot from "../../asset/img/Eye ball Monster/hit.png";
+import player5Death from "../../asset/img/Eye ball Monster/death.png";
+import player6Idle from "../../asset/img/Toaster Bot/idle.png";
+import player6Attack from "../../asset/img/Toaster Bot/attack.png";
+import player6Run from "../../asset/img/Toaster Bot/run.png";
+import player6BeShot from "../../asset/img/Toaster Bot/damaged.png";
+import player6Death from "../../asset/img/Toaster Bot/death.png";
+import player7Idle from "../../asset/img/Ronin/spr_RoninIdle_strip.png";
+import player7Attack from "../../asset/img/Ronin/spr_RoninAttack_strip.png";
+import player7Run from "../../asset/img/Ronin/spr_RoninRun_strip.png";
+import player7BeShot from "../../asset/img/Ronin/spr_RoninGetHit_strip.png";
+import player7Death from "../../asset/img/Ronin/spr_RoninDeath_strip.png";
 
 interface Key {
   r: boolean;
@@ -71,7 +66,7 @@ interface Data {
   img: string;
 }
 
-const bot1Data: Data = {
+const player1Data: Data = {
   width: -650,
   height: 200,
   hittime: 2,
@@ -85,7 +80,7 @@ const bot1Data: Data = {
   img: "height",
 };
 
-const bot2Data: Data = {
+const player2Data: Data = {
   width: -345,
   height: 200,
   hittime: 3,
@@ -99,7 +94,7 @@ const bot2Data: Data = {
   img: "height",
 };
 
-const bot3Data: Data = {
+const player3Data: Data = {
   width: -610,
   height: 100,
   hittime: 1,
@@ -113,7 +108,7 @@ const bot3Data: Data = {
   img: "height",
 };
 
-const bot4Data: Data = {
+const player4Data: Data = {
   width: -320,
   height: 200,
   hittime: 2,
@@ -127,7 +122,7 @@ const bot4Data: Data = {
   img: "height",
 };
 
-const bot5Data: Data = {
+const player5Data: Data = {
   width: -480,
   height: 200,
   hittime: 1,
@@ -141,7 +136,7 @@ const bot5Data: Data = {
   img: "height",
 };
 
-const bot6Data: Data = {
+const player6Data: Data = {
   width: -925,
   height: 200,
   hittime: 1,
@@ -155,13 +150,77 @@ const bot6Data: Data = {
   img: "width",
 };
 
+const player7Data: Data = {
+  width: -925,
+  height: 200,
+  hittime: 3,
+  hitFrame: [3, 9, 16],
+  atkFrame: 25,
+  moveFrame: 10,
+  idleFrame: 8,
+  damaged: 1.5625,
+  deathFrame: 16,
+  cooltime: 3,
+  img: "width",
+};
+
 export const gameData: any[] = [
-  [bot1Idle, bot1Attack, bot1Run, bot1BeShot, bot1Death, bot1Data],
-  [bot2Idle, bot2Attack, bot2Run, bot2BeShot, bot2Death, bot2Data],
-  [bot3Idle, bot3Attack, bot3Run, bot3BeShot, bot3Death, bot3Data],
-  [bot4Idle, bot4Attack, bot4Run, bot4BeShot, bot4Death, bot4Data],
-  [bot5Idle, bot5Attack, bot5Run, bot5BeShot, bot5Death, bot5Data],
-  [bot6Idle, bot6Attack, bot6Run, bot6BeShot, bot6Death, bot6Data],
+  [
+    player1Idle,
+    player1Attack,
+    player1Run,
+    player1BeShot,
+    player1Death,
+    player1Data,
+  ],
+  [
+    player2Idle,
+    player2Attack,
+    player2Run,
+    player2BeShot,
+    player2Death,
+    player2Data,
+  ],
+  [
+    player3Idle,
+    player3Attack,
+    player3Run,
+    player3BeShot,
+    player3Death,
+    player3Data,
+  ],
+  [
+    player4Idle,
+    player4Attack,
+    player4Run,
+    player4BeShot,
+    player4Death,
+    player4Data,
+  ],
+  [
+    player5Idle,
+    player5Attack,
+    player5Run,
+    player5BeShot,
+    player5Death,
+    player5Data,
+  ],
+  [
+    player6Idle,
+    player6Attack,
+    player6Run,
+    player6BeShot,
+    player6Death,
+    player6Data,
+  ],
+  [
+    player7Idle,
+    player7Attack,
+    player7Run,
+    player7BeShot,
+    player7Death,
+    player7Data,
+  ],
 ];
 
 export const ekey: Key = {
