@@ -68,7 +68,7 @@ export const Page = styled.div``;
 
 export const Bottom = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: 5%;
   width: 100%;
   display: inline-flex;
   align-items: flex-end;

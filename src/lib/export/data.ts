@@ -25,6 +25,11 @@ import bot5Attack from "../../asset/img/Eye ball Monster/attack.png";
 import bot5Run from "../../asset/img/Eye ball Monster/run.png";
 import bot5BeShot from "../../asset/img/Eye ball Monster/hit.png";
 import bot5Death from "../../asset/img/Eye ball Monster/death.png";
+import bot6Idle from "../../asset/img/Toaster Bot/idle.png";
+import bot6Attack from "../../asset/img/Toaster Bot/attack.png";
+import bot6Run from "../../asset/img/Toaster Bot/run.png";
+import bot6BeShot from "../../asset/img/Toaster Bot/damaged.png";
+import bot6Death from "../../asset/img/Toaster Bot/death.png";
 
 interface PlayerAsset {
   idle: string;
@@ -63,23 +68,8 @@ interface Data {
   damaged: number;
   deathFrame: number;
   cooltime: number;
+  img: string;
 }
-
-export const playerImg: PlayerAsset = {
-  idle: bot5Idle,
-  run: bot5Run,
-  attack: bot5Attack,
-  beShot: bot5BeShot,
-  death: bot5Death,
-}; // 플레이어1 asset
-
-export const enemyImg: PlayerAsset = {
-  idle: bot1Idle,
-  run: bot1Run,
-  attack: bot1Attack,
-  beShot: bot1BeShot,
-  death: bot1Death,
-}; // 플레이어2 asset
 
 const bot1Data: Data = {
   width: -650,
@@ -92,6 +82,7 @@ const bot1Data: Data = {
   damaged: 0.625,
   deathFrame: 6,
   cooltime: 2,
+  img: "height",
 };
 
 const bot2Data: Data = {
@@ -105,6 +96,7 @@ const bot2Data: Data = {
   damaged: 2.5,
   deathFrame: 5,
   cooltime: 5,
+  img: "height",
 };
 
 const bot3Data: Data = {
@@ -118,6 +110,7 @@ const bot3Data: Data = {
   damaged: 2,
   deathFrame: 8,
   cooltime: 3,
+  img: "height",
 };
 
 const bot4Data: Data = {
@@ -131,6 +124,7 @@ const bot4Data: Data = {
   damaged: 0.5,
   deathFrame: 5,
   cooltime: 0,
+  img: "height",
 };
 
 const bot5Data: Data = {
@@ -144,6 +138,21 @@ const bot5Data: Data = {
   damaged: 1.5625,
   deathFrame: 12,
   cooltime: 1,
+  img: "height",
+};
+
+const bot6Data: Data = {
+  width: -925,
+  height: 200,
+  hittime: 1,
+  hitFrame: [6],
+  atkFrame: 11,
+  moveFrame: 8,
+  idleFrame: 5,
+  damaged: 1.25,
+  deathFrame: 5,
+  cooltime: 1,
+  img: "width",
 };
 
 export const gameData: any[] = [
@@ -152,6 +161,7 @@ export const gameData: any[] = [
   [bot3Idle, bot3Attack, bot3Run, bot3BeShot, bot3Death, bot3Data],
   [bot4Idle, bot4Attack, bot4Run, bot4BeShot, bot4Death, bot4Data],
   [bot5Idle, bot5Attack, bot5Run, bot5BeShot, bot5Death, bot5Data],
+  [bot6Idle, bot6Attack, bot6Run, bot6BeShot, bot6Death, bot6Data],
 ];
 
 export const ekey: Key = {

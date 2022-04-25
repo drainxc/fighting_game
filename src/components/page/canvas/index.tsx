@@ -56,6 +56,7 @@ export default function Canvas() {
       height: D.gameData[gamer[0]][5].height,
       canvas: canvas,
       ctx: ctx,
+      img: D.gameData[gamer[0]][5].img
     }); // 플레이어 1
 
     const enemy = new Fighter({
@@ -69,6 +70,7 @@ export default function Canvas() {
       height: D.gameData[gamer[1]][5].height,
       canvas: canvas,
       ctx: ctx,
+      img: D.gameData[gamer[1]][5].img
     }); // 플레이어 2
 
     function animate() {

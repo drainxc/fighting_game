@@ -19,6 +19,7 @@ export class Fighter {
   delay: number;
   canvas;
   ctx;
+  img: string;
 
   constructor({
     position,
@@ -28,6 +29,7 @@ export class Fighter {
     height,
     canvas,
     ctx,
+    img,
   }: any) {
     this.position = position;
     this.speed = {
@@ -53,21 +55,36 @@ export class Fighter {
     this.delay = 6;
     this.canvas = canvas;
     this.ctx = ctx;
+    this.img = img;
   }
 
   draw() {
     if (!this.position.x || !this.position.y) return;
-    this.ctx.drawImage(
-      this.image,
-      0,
-      this.framecurrent * (this.image.height / this.frame),
-      this.image.width,
-      this.image.height / this.frame,
-      this.position.x - 130,
-      this.position.y - 0,
-      this.image.width * 2,
-      (this.image.height / this.frame) * 2
-    );
+    if (this.img === "height") {
+      this.ctx.drawImage(
+        this.image,
+        0,
+        this.framecurrent * (this.image.height / this.frame),
+        this.image.width,
+        this.image.height / this.frame,
+        this.position.x - 130,
+        this.position.y - 0,
+        this.image.width * 2,
+        (this.image.height / this.frame) * 2
+      );
+    } else {
+      this.ctx.drawImage(
+        this.image,
+        this.framecurrent * (this.image.width / this.frame),
+        0,
+        this.image.width / this.frame,
+        this.image.height,
+        this.position.x - 130,
+        this.position.y - 0,
+        (this.image.width / this.frame) * 2,
+        this.image.height * 2
+      );
+    }
     this.ctx.scale(-1, 1);
 
     // this.ctx.fillStyle = "red";
