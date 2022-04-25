@@ -38,6 +38,11 @@ import player8Attack from "../../asset/img/Striker/spr_StrikerSlash_stripWithEff
 import player8Run from "../../asset/img/Striker/spr_StrikerRun_strip.png";
 import player8BeShot from "../../asset/img/Striker/spr_StrikerGetHit_strip.png";
 import player8Death from "../../asset/img/Striker/spr_StrikerDeath_strip.png";
+import player9Idle from "../../asset/img/Wizard/idle.png";
+import player9Attack from "../../asset/img/Wizard/attack.png";
+import player9Run from "../../asset/img/Wizard/run.png";
+import player9BeShot from "../../asset/img/Wizard/damaged.png";
+import player9Death from "../../asset/img/Wizard/death.png";
 
 interface Key {
   r: boolean;
@@ -183,6 +188,20 @@ const player8Data: Data = {
   img: "width",
 };
 
+const player9Data: Data = {
+  width: -200,
+  height: 200,
+  hittime: 1,
+  hitFrame: [4],
+  atkFrame: 8,
+  moveFrame: 7,
+  idleFrame: 8,
+  damaged: 1.5625,
+  deathFrame: 8,
+  cooltime: 3,
+  img: "width",
+};
+
 export const gameData: any[] = [
   [
     player1Idle,
@@ -247,6 +266,14 @@ export const gameData: any[] = [
     player8BeShot,
     player8Death,
     player8Data,
+  ],
+  [
+    player9Idle,
+    player9Attack,
+    player9Run,
+    player9BeShot,
+    player9Death,
+    player9Data,
   ],
 ];
 
