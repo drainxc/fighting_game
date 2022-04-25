@@ -33,6 +33,11 @@ import player7Attack from "../../asset/img/Ronin/spr_RoninAttack_strip.png";
 import player7Run from "../../asset/img/Ronin/spr_RoninRun_strip.png";
 import player7BeShot from "../../asset/img/Ronin/spr_RoninGetHit_strip.png";
 import player7Death from "../../asset/img/Ronin/spr_RoninDeath_strip.png";
+import player8Idle from "../../asset/img/Striker/spr_StrikerIdle_strip.png";
+import player8Attack from "../../asset/img/Striker/spr_StrikerSlash_stripWithEffect.png";
+import player8Run from "../../asset/img/Striker/spr_StrikerRun_strip.png";
+import player8BeShot from "../../asset/img/Striker/spr_StrikerGetHit_strip.png";
+import player8Death from "../../asset/img/Striker/spr_StrikerDeath_strip.png";
 
 interface Key {
   r: boolean;
@@ -151,12 +156,26 @@ const player6Data: Data = {
 };
 
 const player7Data: Data = {
-  width: -925,
+  width: -250,
   height: 200,
   hittime: 3,
   hitFrame: [3, 9, 16],
   atkFrame: 25,
   moveFrame: 10,
+  idleFrame: 8,
+  damaged: 1.5625,
+  deathFrame: 16,
+  cooltime: 3,
+  img: "width",
+};
+
+const player8Data: Data = {
+  width: -250,
+  height: 200,
+  hittime: 3,
+  hitFrame: [2, 6, 13],
+  atkFrame: 16,
+  moveFrame: 8,
   idleFrame: 8,
   damaged: 1.5625,
   deathFrame: 16,
@@ -220,6 +239,14 @@ export const gameData: any[] = [
     player7BeShot,
     player7Death,
     player7Data,
+  ],
+  [
+    player8Idle,
+    player8Attack,
+    player8Run,
+    player8BeShot,
+    player8Death,
+    player8Data,
   ],
 ];
 
