@@ -8,6 +8,10 @@ import mudGuard from "../../../asset/img/Mud Guard/profile.png";
 import ballAndChain from "../../../asset/img/Ball and Chain Bot/profile.png";
 import eyeBall from "../../../asset/img/Eye ball Monster/profile.png";
 import questionMark from "../../../asset/img/question-sign.png";
+import striker from "../../../asset/img/Striker/profile.png";
+import ronin from "../../../asset/img/Ronin/profile.png";
+import toasterBot from "../../../asset/img/Toaster Bot/profile.png";
+import wizard from "../../../asset/img/Wizard/profile.png";
 import bg1 from "../../../asset/img/bg/bg1.gif";
 import bg2 from "../../../asset/img/bg/bg2.gif";
 import bg3 from "../../../asset/img/bg/bg3.gif";
@@ -15,29 +19,39 @@ import randomBg from "../../../asset/img/bg/randomMap.jpg";
 
 export default function Select() {
   const character = [
-    "Bot Wheel",
+    "Striker",
+    "Wizard",
     "Shork Sweeper",
     "Mud Guard",
     "Ball and Chain",
+    "Bot Wheel",
+    "Ronin",
     "?",
     "Eye Ball",
+    "Toaster Bot",
   ];
 
   const profile: string[] = [
-    botWheel,
+    striker,
+    wizard,
     shorkSweeper,
     mudGuard,
     ballAndChain,
+    botWheel,
+    ronin,
     questionMark,
     eyeBall,
+    toasterBot,
   ];
+
+  const images = [randomBg, bg1, bg2, bg3];
 
   const [player, setPlayer] = useState<number[]>([]);
   function selectCharacter(e: any, n: number) {
     if (e.target.alt === "?") {
       n = getRandomIntInclusive(0, character.length - 1);
     }
-    if (n >= 5) {
+    if (n >= 7) {
       n -= 1;
     }
     setPlayer((play) => [...play, n]);
@@ -47,7 +61,6 @@ export default function Select() {
   }
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const images = [randomBg, bg1, bg2, bg3];
 
   const next = () => {
     if (currentSlide >= images.length - 1) {
@@ -80,9 +93,7 @@ export default function Select() {
         </S.Top>
         <S.Bottom>
           <S.Page>
-            {/* <Link to={"/game" + player[0] + player[1]}> */}
             <div>back</div>
-            {/* </Link> */}
           </S.Page>
           <S.BtnDiv>
             {character.map((name: string, i: number) => (
@@ -95,7 +106,7 @@ export default function Select() {
           </S.BtnDiv>
           <S.Page>
             {player.length === 2 ? (
-              <Link to={"/game" + player[0] + player[1]}>
+              <Link to={"/game" + player[0] + player[1] + currentSlide}>
                 <div>start</div>
               </Link>
             ) : (

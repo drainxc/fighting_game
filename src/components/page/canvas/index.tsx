@@ -11,6 +11,7 @@ import { Fighter } from "../../common/fighter";
 import { push } from "../../../lib/function/push";
 import HealthBar from "../../common/healthbar";
 import { useParams } from "react-router-dom";
+import { getRandomIntInclusive } from "../../../lib/function/random";
 
 export default function Canvas() {
   const { id } = useParams();
@@ -25,7 +26,9 @@ export default function Canvas() {
     });
   }
 
-  console.log(gamer);
+  if(gamer[2] === 0) {
+    gamer[2] = getRandomIntInclusive(1, D.background.length)
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -41,7 +44,7 @@ export default function Canvas() {
         x: 0,
         y: 0,
       },
-      imageSrc: backgroundimg,
+      imageSrc: D.background[gamer[2] - 1],
       ctx: ctx,
     }); // 배경
 
@@ -56,7 +59,7 @@ export default function Canvas() {
       height: D.gameData[gamer[0]][5].height,
       canvas: canvas,
       ctx: ctx,
-      img: D.gameData[gamer[0]][5].img
+      img: D.gameData[gamer[0]][5].img,
     }); // 플레이어 1
 
     const enemy = new Fighter({
@@ -70,7 +73,7 @@ export default function Canvas() {
       height: D.gameData[gamer[1]][5].height,
       canvas: canvas,
       ctx: ctx,
-      img: D.gameData[gamer[1]][5].img
+      img: D.gameData[gamer[1]][5].img,
     }); // 플레이어 2
 
     function animate() {
