@@ -17,6 +17,7 @@ export default function Canvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const enemyHealthRef = useRef<HTMLDivElement>(null);
   const playerHealthRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   let gamer: number[] = [];
 
   if (id !== undefined) {
@@ -174,7 +175,7 @@ export default function Canvas() {
           D.gameData[gamer[1]][12].height5,
         ],
       ];
-      
+
       for (let i = 0; i < atk.length / 2; i++) {
         combo(atk[i], D.ekey, player, enemy, enemyHealthRef);
         combo(atk[i + atk.length / 2], D.pkey, enemy, player, playerHealthRef); // 히트 판정
@@ -192,7 +193,7 @@ export default function Canvas() {
       keyUp(e.key, D.pkey, player, D.pkeycap);
       keyUp(e.key, D.ekey, enemy, D.ekeycap);
     }); // 키 땠을 때
-  }, []);
+  }, [gamer]);
 
   return (
     <>

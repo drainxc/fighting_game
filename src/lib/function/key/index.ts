@@ -26,7 +26,7 @@ export function keyDown(
           player.framecurrent = 0;
           setTimeout(() => {
             key.defend = false;
-          }, hit.defendFrame * 100);
+          }, hit.defendFrame * 110);
         }
         break;
       case keycap.d:
@@ -48,7 +48,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk1Frame * 100);
+            }, hit.atk1Frame * 110);
           }
         } else if (!key.attacking && !key.defend && key.float) {
           key.attacking = true;
@@ -61,7 +61,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.airatkFrame * 100);
+            }, hit.airatkFrame * 110);
           }
         }
         break;
@@ -76,7 +76,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk2Frame * 100);
+            }, hit.atk2Frame * 110);
           }
         }
         break;
@@ -91,7 +91,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk3Frame * 100);
+            }, hit.atk3Frame * 110);
           }
         }
         break;
@@ -106,7 +106,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk4Frame * 100);
+            }, hit.atk4Frame * 110);
           }
         }
         break;
@@ -124,7 +124,6 @@ export function keyUp(e: string, key: any, player: any, keycap: any) {
     case keycap.a:
       key.l = false;
       key.move = false;
-      player.delay = 6;
       break;
   }
   return;

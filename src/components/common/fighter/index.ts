@@ -41,7 +41,7 @@ export class Fighter {
     this.frame = idleFrame;
     this.framecurrent = 0;
     this.count = 1;
-    this.delay = 6;
+    this.delay = 7;
     this.canvas = canvas;
     this.ctx = ctx;
     this.img = img;

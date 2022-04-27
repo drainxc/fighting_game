@@ -22,6 +22,7 @@ export function combo(atk: any, ek: any, p: any, e: any, ref: any): void {
 
   for (let i = 0; i < atk[3]; i++) {
     if (collision(p, atk[4], atk[5], e, atk[0], atk[2][i], ek.defend)) {
+      console.log(ref.current.style.width.replace(regex, ""));
       if (ref.current.style.width.replace(regex, "") > 0) {
         // 피가 0이 아니라면
         ek.beShot = true;

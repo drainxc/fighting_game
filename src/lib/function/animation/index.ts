@@ -14,7 +14,7 @@ export function animation(k: any, player: any, img: any, frame: any): void {
     defendFrame,
   } = frame;
   if (k.attacking) {
-    player.delay = 6;
+    player.delay = 7;
     player.speed.x = 0;
   }
   if (k.death) {
