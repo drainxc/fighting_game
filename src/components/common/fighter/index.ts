@@ -1,13 +1,13 @@
 const gravity = 1.1;
 
-type positionType = {
+type coordinateType = {
   x?: number;
   y?: number;
 };
 
 export class Fighter {
-  position: positionType;
-  speed: positionType;
+  position: coordinateType;
+  speed: coordinateType;
   width: number;
   height: number;
   range;
@@ -21,16 +21,7 @@ export class Fighter {
   ctx;
   img: string;
 
-  constructor({
-    position,
-    imageSrc,
-    idleFrame,
-    width,
-    height,
-    canvas,
-    ctx,
-    img,
-  }: any) {
+  constructor({ position, imageSrc, idleFrame, canvas, ctx, img }: any) {
     this.position = position;
     this.speed = {
       x: 0,
@@ -45,8 +36,6 @@ export class Fighter {
         x: this.position.x,
         y: this.position.y,
       },
-      width: width,
-      height: height,
     };
     this.attacking = false;
     this.frame = idleFrame;
@@ -60,42 +49,25 @@ export class Fighter {
 
   draw() {
     if (!this.position.x || !this.position.y) return;
-    if (this.img === "height") {
-      this.ctx.drawImage(
-        this.image,
-        0,
-        this.framecurrent * (this.image.height / this.frame),
-        this.image.width,
-        this.image.height / this.frame,
-        this.position.x - 130,
-        this.position.y - 0,
-        this.image.width * 2,
-        (this.image.height / this.frame) * 2
-      );
-    } else {
-      this.ctx.drawImage(
-        this.image,
-        this.framecurrent * (this.image.width / this.frame),
-        0,
-        this.image.width / this.frame,
-        this.image.height,
-        this.position.x - 130,
-        this.position.y - 0,
-        (this.image.width / this.frame) * 2,
-        this.image.height * 2
-      );
-    }
+    this.ctx.drawImage(
+      this.image,
+      this.framecurrent * (this.image.width / this.frame),
+      0,
+      this.image.width / this.frame,
+      this.image.height,
+      this.position.x - 550,
+      this.position.y - 300,
+      (this.image.width / this.frame) * 2,
+      this.image.height * 2
+    );
     this.ctx.scale(-1, 1);
 
     // this.ctx.fillStyle = "red";
-    // this.ctx.fillRect(-this.position.x, this.position.y, -this.width, this.height);
-
-    // this.ctx.fillStyle = "white";
     // this.ctx.fillRect(
     //   -this.position.x,
     //   this.position.y,
-    //   this.range.width,
-    //   this.range.height
+    //   -this.width,
+    //   this.height
     // );
   }
 

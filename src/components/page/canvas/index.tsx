@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import { combo } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
-import backgroundimg from "../../../asset/img/bg/bg1.gif";
 import { keyDown, keyUp } from "../../../lib/function/key";
 import * as D from "../../../lib/export/data";
 import { animation } from "../../../lib/function/animation";
@@ -26,8 +25,8 @@ export default function Canvas() {
     });
   }
 
-  if(gamer[2] === 0) {
-    gamer[2] = getRandomIntInclusive(1, D.background.length)
+  if (gamer[2] === 0) {
+    gamer[2] = getRandomIntInclusive(1, D.background.length);
   }
 
   useEffect(() => {
@@ -53,13 +52,13 @@ export default function Canvas() {
         x: 300,
         y: 300,
       },
-      imageSrc: D.gameData[gamer[0]][1],
-      idleFrame: D.gameData[gamer[0]][5].idleFrame,
-      width: D.gameData[gamer[0]][5].width,
-      height: D.gameData[gamer[0]][5].height,
+      imageSrc: D.gameData[gamer[0]][0],
+      idleFrame: D.gameData[gamer[0]][12].idleFrame,
+      width: D.gameData[gamer[0]][12].width,
+      height: D.gameData[gamer[0]][12].height,
       canvas: canvas,
       ctx: ctx,
-      img: D.gameData[gamer[0]][5].img,
+      img: D.gameData[gamer[0]][12].img,
     }); // 플레이어 1
 
     const enemy = new Fighter({
@@ -67,13 +66,13 @@ export default function Canvas() {
         x: -1520,
         y: 300,
       },
-      imageSrc: D.gameData[gamer[1]][1],
-      idleFrame: D.gameData[gamer[1]][5].idleFrame,
-      width: D.gameData[gamer[1]][5].width,
-      height: D.gameData[gamer[1]][5].height,
+      imageSrc: D.gameData[gamer[1]][0],
+      idleFrame: D.gameData[gamer[1]][12].idleFrame,
+      width: D.gameData[gamer[1]][12].width,
+      height: D.gameData[gamer[1]][12].height,
       canvas: canvas,
       ctx: ctx,
-      img: D.gameData[gamer[1]][5].img,
+      img: D.gameData[gamer[1]][12].img,
     }); // 플레이어 2
 
     function animate() {
@@ -88,34 +87,87 @@ export default function Canvas() {
       pressSense(player, D.pkey.r, D.pkey.l);
       pressSense(enemy, D.ekey.r, D.ekey.l); // 속도 바꾸기
 
-      animation(D.pkey, player, D.gameData[gamer[0]], D.gameData[gamer[0]][5]);
-      animation(D.ekey, enemy, D.gameData[gamer[1]], D.gameData[gamer[1]][5]); // 애니메이션
+      animation(D.pkey, player, D.gameData[gamer[0]], D.gameData[gamer[0]][12]);
+      animation(D.ekey, enemy, D.gameData[gamer[1]], D.gameData[gamer[1]][12]); // 애니메이션
 
-      combo(
-        D.gameData[gamer[0]][5],
-        D.pkey,
-        D.ekey,
-        player,
-        enemy,
-        enemyHealthRef,
-        D.gameData[gamer[1]][5]
-      );
-      combo(
-        D.gameData[gamer[1]][5],
-        D.ekey,
-        D.pkey,
-        enemy,
-        player,
-        playerHealthRef,
-        D.gameData[gamer[0]][5]
-      ); // 히트 판정
+      const atk = [
+        [
+          D.pkey.attack1,
+          D.gameData[gamer[0]][12].damaged1,
+          D.gameData[gamer[0]][12].atk1hitFrame,
+          D.gameData[gamer[0]][12].atk1hittime,
+          D.gameData[gamer[0]][12].width1,
+          D.gameData[gamer[0]][12].height1,
+        ],
+        [
+          D.pkey.attack2,
+          D.gameData[gamer[0]][12].damaged2,
+          D.gameData[gamer[0]][12].atk2hitFrame,
+          D.gameData[gamer[0]][12].atk2hittime,
+          D.gameData[gamer[0]][12].width2,
+          D.gameData[gamer[0]][12].height2,
+        ],
+        [
+          D.pkey.attack3,
+          D.gameData[gamer[0]][12].damaged3,
+          D.gameData[gamer[0]][12].atk3hitFrame,
+          D.gameData[gamer[0]][12].atk3hittime,
+          D.gameData[gamer[0]][12].width3,
+          D.gameData[gamer[0]][12].height3,
+        ],
+        [
+          D.pkey.attack4,
+          D.gameData[gamer[0]][12].damaged4,
+          D.gameData[gamer[0]][12].atk4hitFrame,
+          D.gameData[gamer[0]][12].atk4hittime,
+          D.gameData[gamer[0]][12].width4,
+          D.gameData[gamer[0]][12].height4,
+        ],
+        [
+          D.ekey.attack1,
+          D.gameData[gamer[1]][12].damaged1,
+          D.gameData[gamer[1]][12].atk1hitFrame,
+          D.gameData[gamer[1]][12].atk1hittime,
+          D.gameData[gamer[1]][12].width1,
+          D.gameData[gamer[1]][12].height1,
+        ],
+        [
+          D.ekey.attack2,
+          D.gameData[gamer[1]][12].damaged2,
+          D.gameData[gamer[1]][12].atk2hitFrame,
+          D.gameData[gamer[1]][12].atk2hittime,
+          D.gameData[gamer[1]][12].width2,
+          D.gameData[gamer[1]][12].height2,
+        ],
+        [
+          D.ekey.attack3,
+          D.gameData[gamer[1]][12].damaged3,
+          D.gameData[gamer[1]][12].atk3hitFrame,
+          D.gameData[gamer[1]][12].atk3hittime,
+          D.gameData[gamer[1]][12].width3,
+          D.gameData[gamer[1]][12].height3,
+        ],
+        [
+          D.ekey.attack4,
+          D.gameData[gamer[1]][12].damaged4,
+          D.gameData[gamer[1]][12].atk4hitFrame,
+          D.gameData[gamer[1]][12].atk4hittime,
+          D.gameData[gamer[1]][12].width4,
+          D.gameData[gamer[1]][12].height4,
+        ],
+      ];
+
+      for (let i = 0; i < atk.length / 2; i++) {
+        combo(atk[i], D.ekey, player, enemy, enemyHealthRef);
+        combo(atk[i + atk.length / 2], D.pkey, enemy, player, playerHealthRef); // 히트 판정
+      }
     }
 
     animate();
 
     window.addEventListener("keydown", (e) => {
-      keyDown(e.key, D.pkey, player, D.pkeycap, D.gameData[gamer[0]][5]);
-      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.gameData[gamer[1]][5]);
+      keyDown(e.key, D.pkey, player, D.pkeycap, D.gameData[gamer[0]][12]);
+      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.gameData[gamer[1]][12]);
     }); // 키 눌렀을 때
 
     window.addEventListener("keyup", (e) => {

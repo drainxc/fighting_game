@@ -6,14 +6,6 @@ export function keyDown(
   hit: any
 ) {
   switch (e) {
-    case keycap.d:
-      key.r = true;
-      key.move = true;
-      break;
-    case keycap.a:
-      key.l = true;
-      key.move = true;
-      break;
     case keycap.w:
       if (!key.float) {
         player.speed.y = -25;
@@ -27,18 +19,71 @@ export function keyDown(
         }, 400);
       }
       break;
-    case keycap.attack:
+    case keycap.d:
+      key.r = true;
+      key.move = true;
+      break;
+    case keycap.a:
+      key.l = true;
+      key.move = true;
+      break;
+    case keycap.attack1:
       if (!key.attacking) {
         key.attacking = true;
         player.framecurrent = 0;
-        if (!key.attack) {
-          key.attack = true;
+        if (!key.attack1) {
+          key.attack1 = true;
           setTimeout(() => {
-            key.attack = false;
+            key.attack1 = false;
             setTimeout(() => {
               key.attacking = false;
             }, hit.cooltime * 100);
-          }, hit.atkFrame * 100);
+          }, hit.atk1Frame * 100);
+        }
+      }
+      break;
+    case keycap.attack2:
+      if (!key.attacking) {
+        key.attacking = true;
+        player.framecurrent = 0;
+        if (!key.attack2) {
+          key.attack2 = true;
+          setTimeout(() => {
+            key.attack2 = false;
+            setTimeout(() => {
+              key.attacking = false;
+            }, hit.cooltime * 100);
+          }, hit.atk2Frame * 100);
+        }
+      }
+      break;
+    case keycap.attack3:
+      if (!key.attacking) {
+        key.attacking = true;
+        player.framecurrent = 0;
+        if (!key.attack3) {
+          key.attack3 = true;
+          setTimeout(() => {
+            key.attack3 = false;
+            setTimeout(() => {
+              key.attacking = false;
+            }, hit.cooltime * 100);
+          }, hit.atk3Frame * 100);
+        }
+      }
+      break;
+    case keycap.attack4:
+      if (!key.attacking) {
+        key.attacking = true;
+        player.framecurrent = 0;
+        if (!key.attack4) {
+          key.attack4 = true;
+          setTimeout(() => {
+            key.attack4 = false;
+            setTimeout(() => {
+              key.attacking = false;
+            }, hit.cooltime * 100);
+          }, hit.atk4Frame * 100);
         }
       }
       break;

@@ -1,318 +1,168 @@
-import player6Idle from "../../asset/img/Bot Wheel/static idle.png";
-import player6Attack from "../../asset/img/Bot Wheel/attack.png";
-import player6Run from "../../asset/img/Bot Wheel/move with FX.png";
-import player6BeShot from "../../asset/img/Bot Wheel/damaged.png";
-import player6Death from "../../asset/img/Bot Wheel/death.png";
-import player3Idle from "../../asset/img/Shock Sweeper/wake2.png";
-import player3Attack from "../../asset/img/Shock Sweeper/attackCombo.png";
-import player3Run from "../../asset/img/Shock Sweeper/shuffe(move).png";
-import player3BeShot from "../../asset/img/Shock Sweeper/hit.png";
-import player3Death from "../../asset/img/Shock Sweeper/death.png";
-import player4Idle from "../../asset/img/Mud Guard/idle.png";
-import player4Attack from "../../asset/img/Mud Guard/attack 2.png";
-import player4Run from "../../asset/img/Mud Guard/Run.png";
-import player4BeShot from "../../asset/img/Mud Guard/hit.png";
-import player4Death from "../../asset/img/Mud Guard/damaged and death.png";
-import player5Idle from "../../asset/img/Ball and Chain Bot/idle.png";
-import player5Attack from "../../asset/img/Ball and Chain Bot/attack.png";
-import player5Run from "../../asset/img/Ball and Chain Bot/run.png";
-import player5BeShot from "../../asset/img/Ball and Chain Bot/hit.png";
-import player5Death from "../../asset/img/Ball and Chain Bot/death.png";
-import player8Idle from "../../asset/img/Eye ball Monster/idle.png";
-import player8Attack from "../../asset/img/Eye ball Monster/attack.png";
-import player8Run from "../../asset/img/Eye ball Monster/run.png";
-import player8BeShot from "../../asset/img/Eye ball Monster/hit.png";
-import player8Death from "../../asset/img/Eye ball Monster/death.png";
-import player9Idle from "../../asset/img/Toaster Bot/idle.png";
-import player9Attack from "../../asset/img/Toaster Bot/attack.png";
-import player9Run from "../../asset/img/Toaster Bot/run.png";
-import player9BeShot from "../../asset/img/Toaster Bot/damaged.png";
-import player9Death from "../../asset/img/Toaster Bot/death.png";
-import player7Idle from "../../asset/img/Ronin/spr_RoninIdle_strip.png";
-import player7Attack from "../../asset/img/Ronin/spr_RoninAttack_strip.png";
-import player7Run from "../../asset/img/Ronin/spr_RoninRun_strip.png";
-import player7BeShot from "../../asset/img/Ronin/spr_RoninGetHit_strip.png";
-import player7Death from "../../asset/img/Ronin/spr_RoninDeath_strip.png";
-import player1Idle from "../../asset/img/Striker/spr_StrikerIdle_strip.png";
-import player1Attack from "../../asset/img/Striker/spr_StrikerSlash_stripWithEffect.png";
-import player1Run from "../../asset/img/Striker/spr_StrikerRun_strip.png";
-import player1BeShot from "../../asset/img/Striker/spr_StrikerGetHit_strip.png";
-import player1Death from "../../asset/img/Striker/spr_StrikerDeath_strip.png";
-import player2Idle from "../../asset/img/Wizard/idle.png";
-import player2Attack from "../../asset/img/Wizard/attack.png";
-import player2Run from "../../asset/img/Wizard/run.png";
-import player2BeShot from "../../asset/img/Wizard/damaged.png";
-import player2Death from "../../asset/img/Wizard/death.png";
+import player1Idle from "../../asset/img/fire_knight/01_idle/idle.png";
+import player1Run from "../../asset/img/fire_knight/02_run/run.png";
+import player1Up from "../../asset/img/fire_knight/03_jump_up/jump_up.png";
+import player1Down from "../../asset/img/fire_knight/03_jump_down/jump_down.png";
+import player1Atk1 from "../../asset/img/fire_knight/05_1_atk/1_atk.png";
+import player1Atk2 from "../../asset/img/fire_knight/06_2_atk/2_atk.png";
+import player1Atk3 from "../../asset/img/fire_knight/07_3_atk/3_atk.png";
+import player1Atk4 from "../../asset/img/fire_knight/08_sp_atk/sp_atk.png";
+import player1Defend from "../../asset/img/fire_knight/09_defend/defend.png";
+import player1BeShot from "../../asset/img/fire_knight/10_take_hit/take_hit.png";
+import player1Death from "../../asset/img/fire_knight/11_death/death.png";
+import player1AirAtk from "../../asset/img/fire_knight/air_atk/air_atk.png";
+import player2Idle from "../../asset/img/fire_knight/01_idle/idle.png";
+import player2Run from "../../asset/img/fire_knight/02_run/run.png";
+import player2Up from "../../asset/img/fire_knight/03_jump_up/jump_up.png";
+import player2Down from "../../asset/img/fire_knight/03_jump_down/jump_down.png";
+import player2Atk1 from "../../asset/img/fire_knight/05_1_atk/1_atk.png";
+import player2Atk2 from "../../asset/img/fire_knight/06_2_atk/2_atk.png";
+import player2Atk3 from "../../asset/img/fire_knight/07_3_atk/3_atk.png";
+import player2Atk4 from "../../asset/img/fire_knight/08_sp_atk/sp_atk.png";
+import player2Defend from "../../asset/img/fire_knight/09_defend/defend.png";
+import player2BeShot from "../../asset/img/fire_knight/10_take_hit/take_hit.png";
+import player2Death from "../../asset/img/fire_knight/11_death/death.png";
+import player2AirAtk from "../../asset/img/fire_knight/air_atk/air_atk.png";
+
 import bg1 from "../../asset/img/bg/bg1.gif";
 import bg2 from "../../asset/img/bg/bg2.gif";
 import bg3 from "../../asset/img/bg/bg3.gif";
 
-interface Key {
-  r: boolean;
-  l: boolean;
-  move: boolean;
-  float: boolean;
-  attack: boolean;
-  beShot: boolean;
-  death: boolean;
-  attacking: boolean;
-}
-
-interface Keycap {
-  w: string;
-  a: string;
-  d: string;
-  attack: string;
-}
-
-interface Data {
-  width: number;
-  height: number;
-  hittime: number;
-  hitFrame: number[];
-  atkFrame: number;
-  moveFrame: number;
-  idleFrame: number;
-  damaged: number;
-  deathFrame: number;
-  cooltime: number;
-  img: string;
-}
-
 export const background = [bg1, bg2, bg3];
 
-const player6Data: Data = {
+const player1Data = {
+  atk1hittime: 1,
+  atk1hitFrame: [4],
+  atk1Frame: 11,
+  width1: -300,
+  height1: 200,
+  damaged1: 1,
+
+  atk2hittime: 2,
+  atk2hitFrame: [5, 7],
+  atk2Frame: 12,
+  width2: -300,
+  height2: 200,
+  damaged2: 0.5,
+
+  atk3hittime: 1,
+  atk3hitFrame: [4],
+  width3: -400,
+  height3: 200,
+  damaged3: 1,
+
+  atk3Frame: 9,
+  atk4hittime: 1,
+  atk4hitFrame: [12],
+  atk4Frame: 18,
+  width4: -400,
+  height4: 200,
+  damaged4: 3,
+
+  moveFrame: 8,
+  idleFrame: 8,
+  damagedFrame: 6,
+  jumpupFrame: 3,
+  jumpdownFrame: 3,
+  deathFrame: 13,
+  cooltime: 1,
+  img: "width",
+};
+
+const player2Data = {
   width: -650,
   height: 200,
   hittime: 2,
   hitFrame: [1, 8],
-  atkFrame: 11,
+  atk1Frame: 11,
+  atk2Frame: 19,
+  atk3Frame: 28,
+  atk4Frame: 18,
   moveFrame: 8,
-  idleFrame: 1,
+  idleFrame: 8,
+  jumpupFrame: 3,
+  jumpdownFrame: 3,
   damaged: 0.625,
-  deathFrame: 6,
+  deathFrame: 13,
   cooltime: 2,
-  img: "height",
-};
-
-const player3Data: Data = {
-  width: -345,
-  height: 200,
-  hittime: 3,
-  hitFrame: [6, 14, 22],
-  atkFrame: 27,
-  moveFrame: 8,
-  idleFrame: 1,
-  damaged: 2.5,
-  deathFrame: 5,
-  cooltime: 5,
-  img: "height",
-};
-
-const player4Data: Data = {
-  width: -610,
-  height: 100,
-  hittime: 1,
-  hitFrame: [4],
-  atkFrame: 7,
-  moveFrame: 6,
-  idleFrame: 5,
-  damaged: 2,
-  deathFrame: 8,
-  cooltime: 3,
-  img: "height",
-};
-
-const player5Data: Data = {
-  width: -320,
-  height: 200,
-  hittime: 2,
-  hitFrame: [2, 6],
-  atkFrame: 9,
-  moveFrame: 8,
-  idleFrame: 5,
-  damaged: 0.5,
-  deathFrame: 5,
-  cooltime: 0,
-  img: "height",
-};
-
-const player8Data: Data = {
-  width: -480,
-  height: 200,
-  hittime: 1,
-  hitFrame: [6],
-  atkFrame: 13,
-  moveFrame: 7,
-  idleFrame: 7,
-  damaged: 1.5625,
-  deathFrame: 12,
-  cooltime: 1,
-  img: "height",
-};
-
-const player9Data: Data = {
-  width: -925,
-  height: 200,
-  hittime: 1,
-  hitFrame: [6],
-  atkFrame: 11,
-  moveFrame: 8,
-  idleFrame: 5,
-  damaged: 1.25,
-  deathFrame: 5,
-  cooltime: 1,
-  img: "width",
-};
-
-const player7Data: Data = {
-  width: -250,
-  height: 200,
-  hittime: 3,
-  hitFrame: [3, 9, 16],
-  atkFrame: 25,
-  moveFrame: 10,
-  idleFrame: 8,
-  damaged: 1.5625,
-  deathFrame: 16,
-  cooltime: 3,
-  img: "width",
-};
-
-const player1Data: Data = {
-  width: -250,
-  height: 200,
-  hittime: 3,
-  hitFrame: [2, 6, 13],
-  atkFrame: 16,
-  moveFrame: 8,
-  idleFrame: 8,
-  damaged: 1.5625,
-  deathFrame: 16,
-  cooltime: 3,
-  img: "width",
-};
-
-const player2Data: Data = {
-  width: -200,
-  height: 200,
-  hittime: 1,
-  hitFrame: [4],
-  atkFrame: 8,
-  moveFrame: 7,
-  idleFrame: 8,
-  damaged: 1.5625,
-  deathFrame: 8,
-  cooltime: 3,
   img: "width",
 };
 
 export const gameData: any[] = [
   [
     player1Idle,
-    player1Attack,
+    player1Atk1,
+    player1Atk2,
+    player1Atk3,
+    player1Atk4,
     player1Run,
     player1BeShot,
     player1Death,
+    player1Up,
+    player1Down,
+    player1Defend,
+    player1AirAtk,
     player1Data,
   ],
   [
     player2Idle,
-    player2Attack,
+    player2Atk1,
+    player2Atk2,
+    player2Atk3,
+    player2Atk4,
     player2Run,
     player2BeShot,
     player2Death,
+    player2Up,
+    player2Down,
+    player2Defend,
+    player2AirAtk,
     player2Data,
-  ],
-  [
-    player3Idle,
-    player3Attack,
-    player3Run,
-    player3BeShot,
-    player3Death,
-    player3Data,
-  ],
-  [
-    player4Idle,
-    player4Attack,
-    player4Run,
-    player4BeShot,
-    player4Death,
-    player4Data,
-  ],
-  [
-    player5Idle,
-    player5Attack,
-    player5Run,
-    player5BeShot,
-    player5Death,
-    player5Data,
-  ],
-  [
-    player6Idle,
-    player6Attack,
-    player6Run,
-    player6BeShot,
-    player6Death,
-    player6Data,
-  ],
-  [
-    player7Idle,
-    player7Attack,
-    player7Run,
-    player7BeShot,
-    player7Death,
-    player7Data,
-  ],
-  [
-    player8Idle,
-    player8Attack,
-    player8Run,
-    player8BeShot,
-    player8Death,
-    player8Data,
-  ],
-  [
-    player9Idle,
-    player9Attack,
-    player9Run,
-    player9BeShot,
-    player9Death,
-    player9Data,
   ],
 ];
 
-export const ekey: Key = {
+export const ekey = {
   r: false,
   l: false,
   move: false,
   float: false,
-  attack: false,
+  attack1: false,
+  attack2: false,
+  attack3: false,
+  attack4: false,
   beShot: false,
   death: false,
   attacking: false,
 };
 
-export const pkey: Key = {
+export const pkey = {
   r: false,
   l: false,
   move: false,
   float: false,
-  attack: false,
+  attack1: false,
+  attack2: false,
+  attack3: false,
+  attack4: false,
   beShot: false,
   death: false,
   attacking: false,
 }; // 상태 감지
 
-export const pkeycap: Keycap = {
+export const pkeycap = {
   w: "w",
   a: "a",
   d: "d",
-  attack: "u",
+  attack1: "u",
+  attack2: "i",
+  attack3: "j",
+  attack4: "k",
 };
-export const ekeycap: Keycap = {
+export const ekeycap = {
   w: "ArrowUp",
   a: "ArrowRight",
   d: "ArrowLeft",
-  attack: "7",
+  attack1: "7",
+  attack2: "8",
+  attack3: "4",
+  attack4: "5",
 }; // 키 감지
