@@ -1,7 +1,7 @@
 function collision(
   p: any,
   width: number,
-  height: number,
+  height: number[],
   e: any,
   a: boolean,
   f: number,
@@ -9,8 +9,8 @@ function collision(
 ): boolean {
   return (
     width - p.position.x < e.position.x + e.width &&
-    p.position.y + height >= e.position.y &&
-    p.position.y <= e.position.y + e.height &&
+    p.position.y + height[1] >= e.position.y &&
+    p.position.y + height[0] <= e.position.y + e.height &&
     a &&
     p.framecurrent === f &&
     !d

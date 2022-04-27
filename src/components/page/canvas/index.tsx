@@ -90,7 +90,9 @@ export default function Canvas() {
       animation(D.pkey, player, D.gameData[gamer[0]], D.gameData[gamer[0]][12]);
       animation(D.ekey, enemy, D.gameData[gamer[1]], D.gameData[gamer[1]][12]); // 애니메이션
 
-      const atk = [
+      let atk = [];
+
+      atk = [
         [
           D.pkey.attack1,
           D.gameData[gamer[0]][12].damaged1,
@@ -172,7 +174,7 @@ export default function Canvas() {
           D.gameData[gamer[1]][12].height5,
         ],
       ];
-
+      
       for (let i = 0; i < atk.length / 2; i++) {
         combo(atk[i], D.ekey, player, enemy, enemyHealthRef);
         combo(atk[i + atk.length / 2], D.pkey, enemy, player, playerHealthRef); // 히트 판정
