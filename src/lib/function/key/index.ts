@@ -5,110 +5,112 @@ export function keyDown(
   keycap: any,
   hit: any
 ) {
-  switch (e) {
-    case keycap.w:
-      if (!key.float) {
-        player.speed.y = -25;
-        key.jump = true;
-        key.float = true;
-        setTimeout(() => {
-          key.jump = false;
+  if (!key.death) {
+    switch (e) {
+      case keycap.w:
+        if (!key.float) {
+          player.speed.y = -25;
+          key.jump = true;
+          key.float = true;
           setTimeout(() => {
-            key.float = false;
+            key.jump = false;
+            setTimeout(() => {
+              key.float = false;
+            }, 400);
           }, 400);
-        }, 400);
-      }
-      break;
-    case keycap.s:
-      if (!key.defend) {
-        key.defend = true;
-        player.framecurrent = 0;
-        setTimeout(() => {
-          key.defend = false;
-        }, hit.defendFrame * 100);
-      }
-      break;
-    case keycap.d:
-      key.r = true;
-      key.move = true;
-      break;
-    case keycap.a:
-      key.l = true;
-      key.move = true;
-      break;
-    case keycap.attack1:
-      if (!key.attacking && !key.defend && !key.float) {
-        key.attacking = true;
-        player.framecurrent = 0;
-        if (!key.attack1) {
-          key.attack1 = true;
-          setTimeout(() => {
-            key.attack1 = false;
-            setTimeout(() => {
-              key.attacking = false;
-            }, hit.cooltime * 100);
-          }, hit.atk1Frame * 100);
         }
-      } else if (!key.attacking && !key.defend && key.float) {
-        key.attacking = true;
-        player.framecurrent = 0;
-        if (!key.attack1) {
-          key.airatk = true;
+        break;
+      case keycap.s:
+        if (!key.defend) {
+          key.defend = true;
+          player.framecurrent = 0;
           setTimeout(() => {
-            key.airatk = false;
-            player.speed.y = 5;
-            setTimeout(() => {
-              key.attacking = false;
-            }, hit.cooltime * 100);
-          }, hit.airatkFrame * 100);
+            key.defend = false;
+          }, hit.defendFrame * 100);
         }
-      }
-      break;
-    case keycap.attack2:
-      if (!key.attacking && !key.defend) {
-        key.attacking = true;
-        player.framecurrent = 0;
-        if (!key.attack2) {
-          key.attack2 = true;
-          setTimeout(() => {
-            key.attack2 = false;
+        break;
+      case keycap.d:
+        key.r = true;
+        key.move = true;
+        break;
+      case keycap.a:
+        key.l = true;
+        key.move = true;
+        break;
+      case keycap.attack1:
+        if (!key.attacking && !key.defend && !key.float) {
+          key.attacking = true;
+          player.framecurrent = 0;
+          if (!key.attack1) {
+            key.attack1 = true;
             setTimeout(() => {
-              key.attacking = false;
-            }, hit.cooltime * 100);
-          }, hit.atk2Frame * 100);
-        }
-      }
-      break;
-    case keycap.attack3:
-      if (!key.attacking && !key.defend) {
-        key.attacking = true;
-        player.framecurrent = 0;
-        if (!key.attack3) {
-          key.attack3 = true;
-          setTimeout(() => {
-            key.attack3 = false;
+              key.attack1 = false;
+              setTimeout(() => {
+                key.attacking = false;
+              }, hit.cooltime * 100);
+            }, hit.atk1Frame * 100);
+          }
+        } else if (!key.attacking && !key.defend && key.float) {
+          key.attacking = true;
+          player.framecurrent = 0;
+          if (!key.attack1) {
+            key.airatk = true;
             setTimeout(() => {
-              key.attacking = false;
-            }, hit.cooltime * 100);
-          }, hit.atk3Frame * 100);
+              key.airatk = false;
+              player.speed.y = 5;
+              setTimeout(() => {
+                key.attacking = false;
+              }, hit.cooltime * 100);
+            }, hit.airatkFrame * 100);
+          }
         }
-      }
-      break;
-    case keycap.attack4:
-      if (!key.attacking && !key.defend) {
-        key.attacking = true;
-        player.framecurrent = 0;
-        if (!key.attack4) {
-          key.attack4 = true;
-          setTimeout(() => {
-            key.attack4 = false;
+        break;
+      case keycap.attack2:
+        if (!key.attacking && !key.defend) {
+          key.attacking = true;
+          player.framecurrent = 0;
+          if (!key.attack2) {
+            key.attack2 = true;
             setTimeout(() => {
-              key.attacking = false;
-            }, hit.cooltime * 100);
-          }, hit.atk4Frame * 100);
+              key.attack2 = false;
+              setTimeout(() => {
+                key.attacking = false;
+              }, hit.cooltime * 100);
+            }, hit.atk2Frame * 100);
+          }
         }
-      }
-      break;
+        break;
+      case keycap.attack3:
+        if (!key.attacking && !key.defend) {
+          key.attacking = true;
+          player.framecurrent = 0;
+          if (!key.attack3) {
+            key.attack3 = true;
+            setTimeout(() => {
+              key.attack3 = false;
+              setTimeout(() => {
+                key.attacking = false;
+              }, hit.cooltime * 100);
+            }, hit.atk3Frame * 100);
+          }
+        }
+        break;
+      case keycap.attack4:
+        if (!key.attacking && !key.defend) {
+          key.attacking = true;
+          player.framecurrent = 0;
+          if (!key.attack4) {
+            key.attack4 = true;
+            setTimeout(() => {
+              key.attack4 = false;
+              setTimeout(() => {
+                key.attacking = false;
+              }, hit.cooltime * 100);
+            }, hit.atk4Frame * 100);
+          }
+        }
+        break;
+    }
   }
   return;
 } // 키를 눌렀을 때
