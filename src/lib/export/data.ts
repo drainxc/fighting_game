@@ -10,18 +10,6 @@ import player1Defend from "../../asset/img/fire_knight/09_defend/defend.png";
 import player1BeShot from "../../asset/img/fire_knight/10_take_hit/take_hit.png";
 import player1Death from "../../asset/img/fire_knight/11_death/death.png";
 import player1AirAtk from "../../asset/img/fire_knight/air_atk/air_atk.png";
-import player2Idle from "../../asset/img/fire_knight/01_idle/idle.png";
-import player2Run from "../../asset/img/fire_knight/02_run/run.png";
-import player2Up from "../../asset/img/fire_knight/03_jump_up/jump_up.png";
-import player2Down from "../../asset/img/fire_knight/03_jump_down/jump_down.png";
-import player2Atk1 from "../../asset/img/fire_knight/05_1_atk/1_atk.png";
-import player2Atk2 from "../../asset/img/fire_knight/06_2_atk/2_atk.png";
-import player2Atk3 from "../../asset/img/fire_knight/07_3_atk/3_atk.png";
-import player2Atk4 from "../../asset/img/fire_knight/08_sp_atk/sp_atk.png";
-import player2Defend from "../../asset/img/fire_knight/09_defend/defend.png";
-import player2BeShot from "../../asset/img/fire_knight/10_take_hit/take_hit.png";
-import player2Death from "../../asset/img/fire_knight/11_death/death.png";
-import player2AirAtk from "../../asset/img/fire_knight/air_atk/air_atk.png";
 
 import bg1 from "../../asset/img/bg/bg1.gif";
 import bg2 from "../../asset/img/bg/bg2.gif";
@@ -42,13 +30,13 @@ const player1Data = {
   atk2Frame: 12,
   width2: -300,
   height2: 200,
-  damaged2: 0.5,
+  damaged2: 0.75,
 
   atk3hittime: 1,
   atk3hitFrame: [4],
   width3: -400,
   height3: 200,
-  damaged3: 1,
+  damaged3: 1.5,
 
   atk3Frame: 9,
   atk4hittime: 1,
@@ -56,34 +44,16 @@ const player1Data = {
   atk4Frame: 18,
   width4: -400,
   height4: 200,
-  damaged4: 3,
+  damaged4: 4,
 
   moveFrame: 8,
   idleFrame: 8,
   damagedFrame: 6,
   jumpupFrame: 3,
   jumpdownFrame: 3,
+  defendFrame: 10,
   deathFrame: 13,
   cooltime: 1,
-  img: "width",
-};
-
-const player2Data = {
-  width: -650,
-  height: 200,
-  hittime: 2,
-  hitFrame: [1, 8],
-  atk1Frame: 11,
-  atk2Frame: 19,
-  atk3Frame: 28,
-  atk4Frame: 18,
-  moveFrame: 8,
-  idleFrame: 8,
-  jumpupFrame: 3,
-  jumpdownFrame: 3,
-  damaged: 0.625,
-  deathFrame: 13,
-  cooltime: 2,
   img: "width",
 };
 
@@ -103,21 +73,6 @@ export const gameData: any[] = [
     player1AirAtk,
     player1Data,
   ],
-  [
-    player2Idle,
-    player2Atk1,
-    player2Atk2,
-    player2Atk3,
-    player2Atk4,
-    player2Run,
-    player2BeShot,
-    player2Death,
-    player2Up,
-    player2Down,
-    player2Defend,
-    player2AirAtk,
-    player2Data,
-  ],
 ];
 
 export const ekey = {
@@ -132,6 +87,7 @@ export const ekey = {
   beShot: false,
   death: false,
   attacking: false,
+  defend: false,
 };
 
 export const pkey = {
@@ -146,12 +102,14 @@ export const pkey = {
   beShot: false,
   death: false,
   attacking: false,
+  defend: false,
 }; // 상태 감지
 
 export const pkeycap = {
   w: "w",
   a: "a",
   d: "d",
+  s: "s",
   attack1: "u",
   attack2: "i",
   attack3: "j",
@@ -161,6 +119,7 @@ export const ekeycap = {
   w: "ArrowUp",
   a: "ArrowRight",
   d: "ArrowLeft",
+  s: "ArrowDown",
   attack1: "7",
   attack2: "8",
   attack3: "4",

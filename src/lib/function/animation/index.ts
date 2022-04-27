@@ -10,6 +10,7 @@ export function animation(k: any, player: any, img: any, frame: any): void {
     jumpupFrame,
     jumpdownFrame,
     damagedFrame,
+    defendFrame,
   } = frame;
   if (k.attacking) {
     player.delay = 6;
@@ -23,6 +24,11 @@ export function animation(k: any, player: any, img: any, frame: any): void {
       player.delay = 0;
       player.framecurrent = deathFrame - 1;
     }, deathFrame * 100);
+  } else if (k.defend) {
+    player.frame = defendFrame;
+    player.speed.x = 0;
+    player.image.src = img[10];
+    k.attacking = false;
   } else if (k.beShot) {
     // 데미지를 받았을 때
     player.frame = damagedFrame;
@@ -31,16 +37,16 @@ export function animation(k: any, player: any, img: any, frame: any): void {
     setTimeout(() => {
       k.beShot = false;
     }, damagedFrame * 100);
-  } else if (k.attack1) {
+  } else if (k.attack1 && k.attacking) {
     player.frame = atk1Frame;
     player.image.src = img[1];
-  } else if (k.attack2) {
+  } else if (k.attack2 && k.attacking) {
     player.frame = atk2Frame;
     player.image.src = img[2];
-  } else if (k.attack3) {
+  } else if (k.attack3 && k.attacking) {
     player.frame = atk3Frame;
     player.image.src = img[3];
-  } else if (k.attack4) {
+  } else if (k.attack4 && k.attacking) {
     player.frame = atk4Frame;
     player.image.src = img[4];
   } else if (k.jump) {

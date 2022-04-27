@@ -2,16 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { getRandomIntInclusive } from "../../../lib/function/random";
 import * as S from "./styles";
-import botWheel from "../../../asset/img/Bot Wheel/profile.png";
-import shorkSweeper from "../../../asset/img/Shock Sweeper/profile.png";
-import mudGuard from "../../../asset/img/Mud Guard/profile.png";
-import ballAndChain from "../../../asset/img/Ball and Chain Bot/profile.png";
-import eyeBall from "../../../asset/img/Eye ball Monster/profile.png";
-import questionMark from "../../../asset/img/question-sign.png";
-import striker from "../../../asset/img/Striker/profile.png";
-import ronin from "../../../asset/img/Ronin/profile.png";
-import toasterBot from "../../../asset/img/Toaster Bot/profile.png";
-import wizard from "../../../asset/img/Wizard/profile.png";
 import bg1 from "../../../asset/img/bg/bg1.gif";
 import bg2 from "../../../asset/img/bg/bg2.gif";
 import bg3 from "../../../asset/img/bg/bg3.gif";
@@ -31,18 +21,7 @@ export default function Select() {
     "Toaster Bot",
   ];
 
-  const profile: string[] = [
-    striker,
-    wizard,
-    shorkSweeper,
-    mudGuard,
-    ballAndChain,
-    botWheel,
-    ronin,
-    questionMark,
-    eyeBall,
-    toasterBot,
-  ];
+  const profile: string[] = [];
 
   const images = [randomBg, bg1, bg2, bg3];
 
