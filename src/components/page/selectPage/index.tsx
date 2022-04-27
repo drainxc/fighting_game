@@ -3,27 +3,28 @@ import { Link } from "react-router-dom";
 import { getRandomIntInclusive } from "../../../lib/function/random";
 import * as S from "./styles";
 import bg1 from "../../../asset/img/bg/bg1.gif";
-import bg2 from "../../../asset/img/bg/bg2.gif";
+import bg2 from "../../../asset/img/bg/bg10.png";
 import bg3 from "../../../asset/img/bg/bg3.gif";
+import bg4 from "../../../asset/img/bg/bg4.png";
+import bg5 from "../../../asset/img/bg/bg5.png";
+import bg6 from "../../../asset/img/bg/bg6.png";
+import bg7 from "../../../asset/img/bg/bg7.png";
+import bg8 from "../../../asset/img/bg/bg8.png";
+import bg9 from "../../../asset/img/bg/bg9.png";
 import randomBg from "../../../asset/img/bg/randomMap.jpg";
+import { background } from "../../../lib/export/data";
 
 export default function Select() {
   const character = [
-    "Striker",
-    "Wizard",
-    "Shork Sweeper",
-    "Mud Guard",
-    "Ball and Chain",
-    "Bot Wheel",
-    "Ronin",
+    "fire_knight",
+    "water_priestess",
     "?",
-    "Eye Ball",
-    "Toaster Bot",
+    "metal_bladekeeper",
   ];
 
   const profile: string[] = [];
 
-  const images = [randomBg, bg1, bg2, bg3];
+  const images = [randomBg, bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9];
 
   const [player, setPlayer] = useState<number[]>([]);
   function selectCharacter(e: any, n: number) {
@@ -59,7 +60,8 @@ export default function Select() {
 
   return (
     <>
-      <S.Background />
+      <S.BgColor />
+      <S.Background image={background[currentSlide]} />
       <S.MainDiv>
         <S.Top>
           <S.Map>

@@ -7,15 +7,28 @@ export const MainDiv = styled.div`
   justify-content: center;
 `;
 
-export const Background = styled.div`
+export const Background = styled.div<{
+  image: string;
+}>`
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url(${bg1});
+  background-color: black;
+  background-image: url(${(props) => props.image});
   width: 100%;
   height: 937px;
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.5;
+`;
+
+export const BgColor = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #020202;
+  width: 100%;
+  height: 937px;
+  z-index: -1;
 `;
 
 export const Slide = styled.div`
@@ -46,7 +59,7 @@ export const Top = styled.div`
 export const BtnDiv = styled.div`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 30px;
   grid-column-gap: 20px;
 

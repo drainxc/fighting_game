@@ -44,7 +44,7 @@ export default function Canvas() {
         x: 0,
         y: 0,
       },
-      imageSrc: D.background[gamer[2] - 1],
+      imageSrc: D.background[gamer[2]],
       ctx: ctx,
     }); // 배경
 

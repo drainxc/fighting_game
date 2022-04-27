@@ -36,10 +36,28 @@ import player3Death from "../../asset/img/metal_bladekeeper/13_death/13_death.pn
 import player3AirAtk from "../../asset/img/metal_bladekeeper/air_atk/air_atk.png";
 
 import bg1 from "../../asset/img/bg/bg1.gif";
-import bg2 from "../../asset/img/bg/bg2.gif";
+import bg2 from "../../asset/img/bg/bg10.png";
 import bg3 from "../../asset/img/bg/bg3.gif";
+import bg4 from "../../asset/img/bg/bg4.png";
+import bg5 from "../../asset/img/bg/bg5.png";
+import bg6 from "../../asset/img/bg/bg6.png";
+import bg7 from "../../asset/img/bg/bg7.png";
+import bg8 from "../../asset/img/bg/bg8.png";
+import bg9 from "../../asset/img/bg/bg9.png";
+import randomBg from "../../asset/img/bg/randomMap.jpg";
 
-export const background = [bg1, bg2, bg3];
+export const background = [
+  randomBg,
+  bg1,
+  bg2,
+  bg3,
+  bg4,
+  bg5,
+  bg6,
+  bg7,
+  bg8,
+  bg9,
+];
 
 const player1Data = {
   atk1hittime: 1,
@@ -122,7 +140,7 @@ const player2Data = {
   airatkhitFrame: [3, 4],
   width5: -350,
   height5: [0, 100],
-  damaged5: 1,
+  damaged5: 2,
 
   moveFrame: 8,
   idleFrame: 8,
@@ -139,35 +157,35 @@ const player3Data = {
   atk1hittime: 1,
   atk1hitFrame: [1],
   atk1Frame: 6,
-  width1: -250,
-  height1: [100, 150],
+  width1: -220,
+  height1: [50, 100],
   damaged1: 1,
 
   atk2hittime: 1,
   atk2hitFrame: [2],
   atk2Frame: 6,
-  width2: -320,
-  height2: [100, 50],
+  width2: -220,
+  height2: [50, 100],
   damaged2: 1,
 
   atk3hittime: 6,
   atk3hitFrame: [6, 7, 8, 9, 10, 11],
   atk3Frame: 13,
-  width3: -380,
-  height3: [0, 200],
+  width3: -235,
+  height3: [50, 100],
   damaged3: 1,
 
   atk4hittime: 4,
   atk4hitFrame: [4, 5, 6, 7],
   atk4Frame: 11,
   width4: -400,
-  height4: [150, 50],
+  height4: [0, 200],
   damaged4: 1,
 
   airatkFrame: 8,
   airatkhittime: 4,
   airatkhitFrame: [2, 3, 4, 5],
-  width5: -350,
+  width5: -280,
   height5: [0, 100],
   damaged5: 1,
 
