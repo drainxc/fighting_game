@@ -8,7 +8,7 @@ function collision(
   d: boolean
 ): boolean {
   return (
-    width - p.range.position.x < e.position.x + e.width &&
+    width - p.position.x < e.position.x + e.width &&
     p.position.y + height >= e.position.y &&
     p.position.y <= e.position.y + e.height &&
     a &&
@@ -30,7 +30,7 @@ export function combo(atk: any, ek: any, p: any, e: any, ref: any): void {
         ek.attack3 = false;
         ek.attack4 = false;
         e.framecurrent = 0;
-        if (ref.current.style.width.replace(regex, "") - atk[1] >= 0)
+        if (ref.current.style.width.replace(regex, "") - atk[1] * atk[3] >= 0)
           ref.current.style.width = `calc(${ref.current.style.width} - ${atk[1]}%)`; // 피 닳기
         else ref.current.style.width = "0%";
       } else {

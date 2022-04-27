@@ -2,8 +2,9 @@ export function animation(k: any, player: any, img: any, frame: any): void {
   const {
     atk1Frame,
     atk2Frame,
-    atk4Frame,
     atk3Frame,
+    atk4Frame,
+    airatkFrame,
     moveFrame,
     idleFrame,
     deathFrame,
@@ -37,6 +38,10 @@ export function animation(k: any, player: any, img: any, frame: any): void {
     setTimeout(() => {
       k.beShot = false;
     }, damagedFrame * 100);
+  } else if (k.airatk) {
+    player.frame = airatkFrame;
+    player.speed.y = 0;
+    player.image.src = img[11];
   } else if (k.attack1 && k.attacking) {
     player.frame = atk1Frame;
     player.image.src = img[1];

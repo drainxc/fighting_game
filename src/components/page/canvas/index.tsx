@@ -124,6 +124,14 @@ export default function Canvas() {
           D.gameData[gamer[0]][12].height4,
         ],
         [
+          D.pkey.airatk,
+          D.gameData[gamer[0]][12].damaged5,
+          D.gameData[gamer[0]][12].airatkhitFrame,
+          D.gameData[gamer[0]][12].airatkhittime,
+          D.gameData[gamer[0]][12].width5,
+          D.gameData[gamer[0]][12].height5,
+        ],
+        [
           D.ekey.attack1,
           D.gameData[gamer[1]][12].damaged1,
           D.gameData[gamer[1]][12].atk1hitFrame,
@@ -154,6 +162,14 @@ export default function Canvas() {
           D.gameData[gamer[1]][12].atk4hittime,
           D.gameData[gamer[1]][12].width4,
           D.gameData[gamer[1]][12].height4,
+        ],
+        [
+          D.ekey.airatk,
+          D.gameData[gamer[1]][12].damaged5,
+          D.gameData[gamer[1]][12].airatkhitFrame,
+          D.gameData[gamer[1]][12].airatkhittime,
+          D.gameData[gamer[1]][12].width5,
+          D.gameData[gamer[1]][12].height5,
         ],
       ];
 

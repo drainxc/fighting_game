@@ -69,6 +69,9 @@ export class Fighter {
     //   -this.width,
     //   this.height
     // );
+
+    // this.ctx.fillStyle = "white";
+    // this.ctx.fillRect(-this.position.x, this.position.y, -400, 100);
   }
 
   update() {
