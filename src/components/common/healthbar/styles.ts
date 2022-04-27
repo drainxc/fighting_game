@@ -13,7 +13,6 @@ export const HealthBar = styled.div`
     width: 100%;
     top: 0;
     bottom: 0;
-    right: 0;
   }
 `;
 

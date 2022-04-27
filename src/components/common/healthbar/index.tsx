@@ -21,6 +21,7 @@ export default function HealthBar({ pref, eref }: any) {
             ref={eref}
             style={{
               width: "100%",
+              right: 0,
             }}
           />
         </S.EnemyBar>
