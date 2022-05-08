@@ -46,6 +46,91 @@ import bg8 from "../../asset/img/bg/bg8.png";
 import bg9 from "../../asset/img/bg/bg9.png";
 import randomBg from "../../asset/img/bg/randomMap.jpg";
 
+export const atk = (n1: number, n2: number) => {
+  return [
+    [
+      pkey.attack1,
+      gameData[n1][12].damaged1,
+      gameData[n1][12].atk1hitFrame,
+      gameData[n1][12].atk1hittime,
+      gameData[n1][12].width1,
+      gameData[n1][12].height1,
+    ],
+    [
+      pkey.attack2,
+      gameData[n1][12].damaged2,
+      gameData[n1][12].atk2hitFrame,
+      gameData[n1][12].atk2hittime,
+      gameData[n1][12].width2,
+      gameData[n1][12].height2,
+    ],
+    [
+      pkey.attack3,
+      gameData[n1][12].damaged3,
+      gameData[n1][12].atk3hitFrame,
+      gameData[n1][12].atk3hittime,
+      gameData[n1][12].width3,
+      gameData[n1][12].height3,
+    ],
+    [
+      pkey.attack4,
+      gameData[n1][12].damaged4,
+      gameData[n1][12].atk4hitFrame,
+      gameData[n1][12].atk4hittime,
+      gameData[n1][12].width4,
+      gameData[n1][12].height4,
+    ],
+    [
+      pkey.airatk,
+      gameData[n1][12].damaged5,
+      gameData[n1][12].airatkhitFrame,
+      gameData[n1][12].airatkhittime,
+      gameData[n1][12].width5,
+      gameData[n1][12].height5,
+    ],
+    [
+      ekey.attack1,
+      gameData[n2][12].damaged1,
+      gameData[n2][12].atk1hitFrame,
+      gameData[n2][12].atk1hittime,
+      gameData[n2][12].width1,
+      gameData[n2][12].height1,
+    ],
+    [
+      ekey.attack2,
+      gameData[n2][12].damaged2,
+      gameData[n2][12].atk2hitFrame,
+      gameData[n2][12].atk2hittime,
+      gameData[n2][12].width2,
+      gameData[n2][12].height2,
+    ],
+    [
+      ekey.attack3,
+      gameData[n2][12].damaged3,
+      gameData[n2][12].atk3hitFrame,
+      gameData[n2][12].atk3hittime,
+      gameData[n2][12].width3,
+      gameData[n2][12].height3,
+    ],
+    [
+      ekey.attack4,
+      gameData[n2][12].damaged4,
+      gameData[n2][12].atk4hitFrame,
+      gameData[n2][12].atk4hittime,
+      gameData[n2][12].width4,
+      gameData[n2][12].height4,
+    ],
+    [
+      ekey.airatk,
+      gameData[n2][12].damaged5,
+      gameData[n2][12].airatkhitFrame,
+      gameData[n2][12].airatkhittime,
+      gameData[n2][12].width5,
+      gameData[n2][12].height5,
+    ],
+  ];
+};
+
 export const background = [
   randomBg,
   bg1,
@@ -103,7 +188,6 @@ const player1Data = {
   defendFrame: 10,
   deathFrame: 13,
   cooltime: 1,
-  img: "width",
 };
 
 const player2Data = {
@@ -126,7 +210,7 @@ const player2Data = {
   atk3Frame: 14,
   width3: -380,
   height3: [0, 200],
-  damaged3: 1,
+  damaged3: 2,
 
   atk4hittime: 10,
   atk4hitFrame: [12, 13, 22, 23, 24, 25, 26, 27, 28, 29],
@@ -150,7 +234,6 @@ const player2Data = {
   defendFrame: 12,
   deathFrame: 16,
   cooltime: 1,
-  img: "width",
 };
 
 const player3Data = {
@@ -197,7 +280,6 @@ const player3Data = {
   defendFrame: 12,
   deathFrame: 12,
   cooltime: 0,
-  img: "width",
 };
 
 export const gameData: any[] = [
@@ -248,7 +330,7 @@ export const gameData: any[] = [
   ],
 ];
 
-export const ekey = {
+const key = {
   r: false,
   l: false,
   move: false,
@@ -264,21 +346,8 @@ export const ekey = {
   defend: false,
 };
 
-export const pkey = {
-  r: false,
-  l: false,
-  move: false,
-  float: false,
-  attack1: false,
-  attack2: false,
-  attack3: false,
-  attack4: false,
-  airatk: false,
-  beShot: false,
-  death: false,
-  attacking: false,
-  defend: false,
-}; // 상태 감지
+export const ekey = JSON.parse(JSON.stringify(key));
+export const pkey = JSON.parse(JSON.stringify(key));
 
 export const pkeycap = {
   w: "w",
