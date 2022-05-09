@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import bg1 from "../../../asset/img/bg/bg1.gif";
-
 export const MainDiv = styled.div`
   margin-top: 0px;
   display: flex;
@@ -41,6 +39,7 @@ export const Slide = styled.div`
   align-items: center;
   font-size: 100px;
   height: 50px;
+  cursor: pointer;
 `;
 
 export const Map = styled.div`
@@ -59,9 +58,9 @@ export const Top = styled.div`
 export const BtnDiv = styled.div`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-row-gap: 30px;
-  grid-column-gap: 20px;
+  grid-column-gap: 50px;
 
   button {
     width: 150px;
@@ -69,9 +68,12 @@ export const BtnDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: whitesmoke;
+    cursor: pointer;
     img {
-      width: 150px;
-      height: 150px;
+      background-color: whitesmoke;
+      width: 135px;
+      height: 135px;
       object-fit: cover;
     }
   }

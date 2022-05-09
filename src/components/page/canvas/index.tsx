@@ -25,9 +25,8 @@ export default function Canvas() {
       return parseInt(item, 10);
     });
   }
-
   if (gamer[2] === 0) {
-    gamer[2] = getRandomIntInclusive(1, D.background.length);
+    gamer[2] = getRandomIntInclusive(1, D.background.length - 1);
   }
 
   useEffect(() => {
@@ -91,90 +90,7 @@ export default function Canvas() {
       animation(D.pkey, player, D.gameData[gamer[0]], D.gameData[gamer[0]][12]);
       animation(D.ekey, enemy, D.gameData[gamer[1]], D.gameData[gamer[1]][12]); // 애니메이션
 
-      let atk = [];
-
-      atk = [
-        [
-          D.pkey.attack1,
-          D.gameData[gamer[0]][12].damaged1,
-          D.gameData[gamer[0]][12].atk1hitFrame,
-          D.gameData[gamer[0]][12].atk1hittime,
-          D.gameData[gamer[0]][12].width1,
-          D.gameData[gamer[0]][12].height1,
-        ],
-        [
-          D.pkey.attack2,
-          D.gameData[gamer[0]][12].damaged2,
-          D.gameData[gamer[0]][12].atk2hitFrame,
-          D.gameData[gamer[0]][12].atk2hittime,
-          D.gameData[gamer[0]][12].width2,
-          D.gameData[gamer[0]][12].height2,
-        ],
-        [
-          D.pkey.attack3,
-          D.gameData[gamer[0]][12].damaged3,
-          D.gameData[gamer[0]][12].atk3hitFrame,
-          D.gameData[gamer[0]][12].atk3hittime,
-          D.gameData[gamer[0]][12].width3,
-          D.gameData[gamer[0]][12].height3,
-        ],
-        [
-          D.pkey.attack4,
-          D.gameData[gamer[0]][12].damaged4,
-          D.gameData[gamer[0]][12].atk4hitFrame,
-          D.gameData[gamer[0]][12].atk4hittime,
-          D.gameData[gamer[0]][12].width4,
-          D.gameData[gamer[0]][12].height4,
-        ],
-        [
-          D.pkey.airatk,
-          D.gameData[gamer[0]][12].damaged5,
-          D.gameData[gamer[0]][12].airatkhitFrame,
-          D.gameData[gamer[0]][12].airatkhittime,
-          D.gameData[gamer[0]][12].width5,
-          D.gameData[gamer[0]][12].height5,
-        ],
-        [
-          D.ekey.attack1,
-          D.gameData[gamer[1]][12].damaged1,
-          D.gameData[gamer[1]][12].atk1hitFrame,
-          D.gameData[gamer[1]][12].atk1hittime,
-          D.gameData[gamer[1]][12].width1,
-          D.gameData[gamer[1]][12].height1,
-        ],
-        [
-          D.ekey.attack2,
-          D.gameData[gamer[1]][12].damaged2,
-          D.gameData[gamer[1]][12].atk2hitFrame,
-          D.gameData[gamer[1]][12].atk2hittime,
-          D.gameData[gamer[1]][12].width2,
-          D.gameData[gamer[1]][12].height2,
-        ],
-        [
-          D.ekey.attack3,
-          D.gameData[gamer[1]][12].damaged3,
-          D.gameData[gamer[1]][12].atk3hitFrame,
-          D.gameData[gamer[1]][12].atk3hittime,
-          D.gameData[gamer[1]][12].width3,
-          D.gameData[gamer[1]][12].height3,
-        ],
-        [
-          D.ekey.attack4,
-          D.gameData[gamer[1]][12].damaged4,
-          D.gameData[gamer[1]][12].atk4hitFrame,
-          D.gameData[gamer[1]][12].atk4hittime,
-          D.gameData[gamer[1]][12].width4,
-          D.gameData[gamer[1]][12].height4,
-        ],
-        [
-          D.ekey.airatk,
-          D.gameData[gamer[1]][12].damaged5,
-          D.gameData[gamer[1]][12].airatkhitFrame,
-          D.gameData[gamer[1]][12].airatkhittime,
-          D.gameData[gamer[1]][12].width5,
-          D.gameData[gamer[1]][12].height5,
-        ],
-      ];
+      let atk = D.atk(gamer[0], gamer[1]);
 
       for (let i = 0; i < atk.length / 2; i++) {
         combo(atk[i], D.ekey, player, enemy, enemyHealthRef);

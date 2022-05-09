@@ -34,6 +34,18 @@ import player3Defend from "../../asset/img/metal_bladekeeper/11_defend/11_defend
 import player3BeShot from "../../asset/img/metal_bladekeeper/12_take_hit/12_take_hit.png";
 import player3Death from "../../asset/img/metal_bladekeeper/13_death/13_death.png";
 import player3AirAtk from "../../asset/img/metal_bladekeeper/air_atk/air_atk.png";
+import player4Idle from "../../asset/img/ground-monk/idle/idle.png";
+import player4Run from "../../asset/img/ground-monk/run/run.png";
+import player4Up from "../../asset/img/ground-monk/j_up/j_up.png";
+import player4Down from "../../asset/img/ground-monk/j_down/j_down.png";
+import player4Atk1 from "../../asset/img/ground-monk/1_atk/1_atk.png";
+import player4Atk2 from "../../asset/img/ground-monk/2_atk/2_atk.png";
+import player4Atk3 from "../../asset/img/ground-monk/3_atk/3_atk.png";
+import player4Atk4 from "../../asset/img/ground-monk/sp_atk/sp_atk.png";
+import player4Defend from "../../asset/img/ground-monk/defend/defend.png";
+import player4BeShot from "../../asset/img/ground-monk/take_hit/take_hit.png";
+import player4Death from "../../asset/img/ground-monk/death/death.png";
+import player4AirAtk from "../../asset/img/ground-monk/air_atk/air_atk.png";
 
 import bg1 from "../../asset/img/bg/bg1.gif";
 import bg2 from "../../asset/img/bg/bg10.png";
@@ -282,6 +294,52 @@ const player3Data = {
   cooltime: 0,
 };
 
+const player4Data = {
+  atk1hittime: 1,
+  atk1hitFrame: [2],
+  atk1Frame: 6,
+  width1: -220,
+  height1: [50, 100],
+  damaged1: 1,
+
+  atk2hittime: 2,
+  atk2hitFrame: [2, 5],
+  atk2Frame: 9,
+  width2: -220,
+  height2: [50, 100],
+  damaged2: 1,
+
+  atk3hittime: 6,
+  atk3hitFrame: [8, 9, 10],
+  atk3Frame: 14,
+  width3: -235,
+  height3: [50, 100],
+  damaged3: 1,
+
+  atk4hittime: 4,
+  atk4hitFrame: [5, 17],
+  atk4Frame: 25,
+  width4: -400,
+  height4: [0, 200],
+  damaged4: 5,
+
+  airatkFrame: 8,
+  airatkhittime: 1,
+  airatkhitFrame: [3],
+  width5: -280,
+  height5: [0, 100],
+  damaged5: 1,
+
+  moveFrame: 8,
+  idleFrame: 6,
+  damagedFrame: 6,
+  jumpupFrame: 3,
+  jumpdownFrame: 3,
+  defendFrame: 13,
+  deathFrame: 18,
+  cooltime: 1,
+};
+
 export const gameData: any[] = [
   [
     player1Idle,
@@ -327,6 +385,21 @@ export const gameData: any[] = [
     player3Defend,
     player3AirAtk,
     player3Data,
+  ],
+  [
+    player4Idle,
+    player4Atk1,
+    player4Atk2,
+    player4Atk3,
+    player4Atk4,
+    player4Run,
+    player4BeShot,
+    player4Death,
+    player4Up,
+    player4Down,
+    player4Defend,
+    player4AirAtk,
+    player4Data,
   ],
 ];
 
