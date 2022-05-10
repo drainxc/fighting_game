@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { combo } from "../../../lib/function/collision";
+import { attack } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
 import { keyDown, keyUp } from "../../../lib/function/key";
@@ -93,8 +93,8 @@ export default function Canvas() {
       let atk = D.atk(gamer[0], gamer[1]);
 
       for (let i = 0; i < atk.length / 2; i++) {
-        combo(atk[i], D.ekey, player, enemy, enemyHealthRef);
-        combo(atk[i + atk.length / 2], D.pkey, enemy, player, playerHealthRef); // 히트 판정
+        attack(atk[i], D.ekey, player, enemy, enemyHealthRef);
+        attack(atk[i + atk.length / 2], D.pkey, enemy, player, playerHealthRef); // 히트 판정
       }
     }
 
