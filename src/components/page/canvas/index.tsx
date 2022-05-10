@@ -93,8 +93,15 @@ export default function Canvas() {
       let atk = D.atk(gamer[0], gamer[1]);
 
       for (let i = 0; i < atk.length / 2; i++) {
-        attack(atk[i], D.ekey, player, enemy, enemyHealthRef);
-        attack(atk[i + atk.length / 2], D.pkey, enemy, player, playerHealthRef); // 히트 판정
+        attack(atk[i], D.ekey, player, enemy, enemyHealthRef, D.pkey);
+        attack(
+          atk[i + atk.length / 2],
+          D.pkey,
+          enemy,
+          player,
+          playerHealthRef,
+          D.ekey
+        ); // 히트 판정
       }
     }
 
