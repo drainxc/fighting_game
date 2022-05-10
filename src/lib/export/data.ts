@@ -67,6 +67,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n1][12].atk1hittime,
       gameData[n1][12].width1,
       gameData[n1][12].height1,
+      gameData[n1][12].allDirection1,
     ],
     [
       pkey.attack2,
@@ -75,6 +76,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n1][12].atk2hittime,
       gameData[n1][12].width2,
       gameData[n1][12].height2,
+      gameData[n1][12].allDirection2,
     ],
     [
       pkey.attack3,
@@ -83,6 +85,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n1][12].atk3hittime,
       gameData[n1][12].width3,
       gameData[n1][12].height3,
+      gameData[n1][12].allDirection3,
     ],
     [
       pkey.attack4,
@@ -91,6 +94,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n1][12].atk4hittime,
       gameData[n1][12].width4,
       gameData[n1][12].height4,
+      gameData[n1][12].allDirection4,
     ],
     [
       pkey.airatk,
@@ -99,6 +103,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n1][12].airatkhittime,
       gameData[n1][12].width5,
       gameData[n1][12].height5,
+      gameData[n1][12].allDirection5,
     ],
     [
       ekey.attack1,
@@ -107,6 +112,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n2][12].atk1hittime,
       gameData[n2][12].width1,
       gameData[n2][12].height1,
+      gameData[n2][12].allDirection1,
     ],
     [
       ekey.attack2,
@@ -115,6 +121,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n2][12].atk2hittime,
       gameData[n2][12].width2,
       gameData[n2][12].height2,
+      gameData[n2][12].allDirection2,
     ],
     [
       ekey.attack3,
@@ -123,6 +130,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n2][12].atk3hittime,
       gameData[n2][12].width3,
       gameData[n2][12].height3,
+      gameData[n2][12].allDirection3,
     ],
     [
       ekey.attack4,
@@ -131,6 +139,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n2][12].atk4hittime,
       gameData[n2][12].width4,
       gameData[n2][12].height4,
+      gameData[n2][12].allDirection4,
     ],
     [
       ekey.airatk,
@@ -139,6 +148,7 @@ export const atk = (n1: number, n2: number) => {
       gameData[n2][12].airatkhittime,
       gameData[n2][12].width5,
       gameData[n2][12].height5,
+      gameData[n2][12].allDirection5,
     ],
   ];
 };
@@ -163,6 +173,7 @@ const player1Data = {
   width1: -290,
   height1: [-150, 350],
   damaged1: 1,
+  allDirection1: false,
 
   atk2hittime: 2,
   atk2hitFrame: [5, 7],
@@ -170,6 +181,7 @@ const player1Data = {
   width2: -300,
   height2: [0, 200],
   damaged2: 1,
+  allDirection2: true,
 
   atk3hittime: 1,
   atk3hitFrame: [4],
@@ -177,6 +189,7 @@ const player1Data = {
   width3: -400,
   height3: [-100, 300],
   damaged3: 2,
+  allDirection3: false,
 
   atk4hittime: 1,
   atk4hitFrame: [12],
@@ -184,6 +197,7 @@ const player1Data = {
   width4: -400,
   height4: [-100, 300],
   damaged4: 4,
+  allDirection4: false,
 
   airatkFrame: 8,
   airatkhittime: 1,
@@ -191,6 +205,7 @@ const player1Data = {
   width5: -400,
   height5: [0, 100],
   damaged5: 2,
+  allDirection5: false,
 
   moveFrame: 8,
   idleFrame: 8,
@@ -209,6 +224,7 @@ const player2Data = {
   width1: -250,
   height1: [100, 150],
   damaged1: 1,
+  allDirection1: false,
 
   atk2hittime: 1,
   atk2hitFrame: [14],
@@ -216,6 +232,7 @@ const player2Data = {
   width2: -320,
   height2: [100, 50],
   damaged2: 3,
+  allDirection2: false,
 
   atk3hittime: 3,
   atk3hitFrame: [8, 9, 10],
@@ -223,6 +240,7 @@ const player2Data = {
   width3: -380,
   height3: [0, 200],
   damaged3: 2,
+  allDirection3: false,
 
   atk4hittime: 10,
   atk4hitFrame: [12, 13, 22, 23, 24, 25, 26, 27, 28, 29],
@@ -230,6 +248,7 @@ const player2Data = {
   width4: -400,
   height4: [150, 50],
   damaged4: 1,
+  allDirection4: false,
 
   airatkFrame: 8,
   airatkhittime: 2,
@@ -237,6 +256,7 @@ const player2Data = {
   width5: -350,
   height5: [0, 100],
   damaged5: 2,
+  allDirection5: false,
 
   moveFrame: 8,
   idleFrame: 8,
@@ -255,6 +275,7 @@ const player3Data = {
   width1: -220,
   height1: [50, 100],
   damaged1: 1,
+  allDirection1: false,
 
   atk2hittime: 1,
   atk2hitFrame: [2],
@@ -262,6 +283,7 @@ const player3Data = {
   width2: -220,
   height2: [50, 100],
   damaged2: 1,
+  allDirection2: false,
 
   atk3hittime: 6,
   atk3hitFrame: [6, 7, 8, 9, 10, 11],
@@ -269,6 +291,7 @@ const player3Data = {
   width3: -235,
   height3: [50, 100],
   damaged3: 1,
+  allDirection3: false,
 
   atk4hittime: 4,
   atk4hitFrame: [4, 5, 6, 7],
@@ -276,6 +299,7 @@ const player3Data = {
   width4: -400,
   height4: [0, 200],
   damaged4: 1,
+  allDirection4: false,
 
   airatkFrame: 8,
   airatkhittime: 4,
@@ -283,6 +307,7 @@ const player3Data = {
   width5: -280,
   height5: [0, 100],
   damaged5: 1,
+  allDirection5: false,
 
   moveFrame: 8,
   idleFrame: 8,
@@ -301,6 +326,7 @@ const player4Data = {
   width1: -160,
   height1: [80, 60],
   damaged1: 1,
+  allDirection1: false,
 
   atk2hittime: 2,
   atk2hitFrame: [2, 5],
@@ -308,6 +334,7 @@ const player4Data = {
   width2: -160,
   height2: [80, 60],
   damaged2: 1,
+  allDirection2: false,
 
   atk3hittime: 6,
   atk3hitFrame: [8, 9, 10],
@@ -315,6 +342,7 @@ const player4Data = {
   width3: -400,
   height3: [100, 100],
   damaged3: 1,
+  allDirection3: false,
 
   atk4hittime: 4,
   atk4hitFrame: [5, 17],
@@ -322,13 +350,15 @@ const player4Data = {
   width4: -400,
   height4: [50, 150],
   damaged4: 5,
+  allDirection4: false,
 
-  airatkFrame: 8,
+  airatkFrame: 7,
   airatkhittime: 1,
   airatkhitFrame: [3],
   width5: -280,
   height5: [0, 100],
   damaged5: 1,
+  allDirection5: true,
 
   moveFrame: 8,
   idleFrame: 6,
@@ -404,6 +434,8 @@ export const gameData: any[] = [
 ];
 
 const key = {
+  rf: false,
+  lf: false,
   r: false,
   l: false,
   move: false,
