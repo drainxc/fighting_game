@@ -299,7 +299,7 @@ const player3Data = {
   width4: -400,
   height4: [0, 200],
   damaged4: 1,
-  allDirection4: false,
+  allDirection4: true,
 
   airatkFrame: 8,
   airatkhittime: 4,

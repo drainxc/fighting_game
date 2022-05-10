@@ -5,7 +5,7 @@ export function keyDown(
   keycap: any,
   hit: any
 ) {
-  if (!key.death) {
+  if (!key.death && !key.beShot) {
     switch (e) {
       case keycap.w:
         if (!key.float) {
@@ -30,10 +30,14 @@ export function keyDown(
         }
         break;
       case keycap.d:
+        key.lf = false;
+        key.rf = true;
         key.r = true;
         key.move = true;
         break;
       case keycap.a:
+        key.rf = false;
+        key.lf = true;
         key.l = true;
         key.move = true;
         break;

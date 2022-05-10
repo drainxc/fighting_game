@@ -82,7 +82,8 @@ export default function Canvas() {
       player.update();
       enemy.update();
 
-      push(player, enemy); // 밀리기
+      push(player, 1);
+      push(enemy, -1);
 
       pressSense(player, D.pkey.r, D.pkey.l);
       pressSense(enemy, D.ekey.r, D.ekey.l); // 속도 바꾸기

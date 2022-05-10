@@ -1,13 +1,9 @@
-export function push(p: any, e: any) {
-  if (!(p.position.x < -(e.position.x + 130))) {
-    e.position.x -= 9;
-    p.position.x -= 9;
+export function push(player: any, n: number) {
+  if (Math.abs(player.position.x) <= 150) {
+    player.position.x = n * 150;
   }
-  // if (p.position.x < 10) {
-  //   p.position.x = 10;
-  // }
-  // if (e.position.x < -1900) {
-  //   e.position.x = -1900;
-  // }
+  if (Math.abs(player.position.x) >= 1750) {
+    player.position.x = n * 1750;
+  }
   return;
 } // 플레이어 간 밀어내기
