@@ -1,3 +1,6 @@
+import * as D from "../../../lib/export/data";
+import { drawImg } from "../../../lib/function/drawImage";
+
 const gravity = 1.1;
 
 type coordinateType = {
@@ -12,7 +15,6 @@ export class Fighter {
   height: number;
   range;
   image;
-  attacking: boolean;
   frame: number;
   framecurrent: number;
   count: number;
@@ -37,7 +39,6 @@ export class Fighter {
         y: this.position.y,
       },
     };
-    this.attacking = false;
     this.frame = idleFrame;
     this.framecurrent = 0;
     this.count = 1;
@@ -48,18 +49,34 @@ export class Fighter {
   }
 
   draw() {
+    const data = {
+      ctx: this.ctx,
+      image: this.image,
+      framecurrent: this.framecurrent,
+      imageWidth: this.image.width,
+      frame: this.frame,
+      imageHeight: this.image.height,
+      posY: this.position.y,
+    };
+
     if (!this.position.x || !this.position.y) return;
-    this.ctx.drawImage(
-      this.image,
-      this.framecurrent * (this.image.width / this.frame),
-      0,
-      this.image.width / this.frame,
-      this.image.height,
-      this.position.x - 550,
-      this.position.y - 300,
-      (this.image.width / this.frame) * 2,
-      this.image.height * 2
-    );
+    if (D.pkey.lf) {
+      this.ctx.scale(-1, 1);
+      drawImg(data, -this.position.x, 75);
+    } else if (D.pkey.rf) {
+      drawImg(data, this.position.x, 0);
+    } else {
+      drawImg(data, this.position.x, 0);
+    }
+
+    if (D.ekey.lf) {
+      drawImg(data, -this.position.x, 75);
+      this.ctx.scale(-1, 1);
+    } else if (D.ekey.rf) {
+      drawImg(data, this.position.x, 0);
+    } else {
+      drawImg(data, this.position.x, 0);
+    }
     this.ctx.scale(-1, 1);
 
     // this.ctx.fillStyle = "red";
