@@ -12,6 +12,7 @@ export function animation(k: any, player: any, img: any, frame: any): void {
     jumpdownFrame,
     damagedFrame,
     defendFrame,
+    dashFrame,
   } = frame;
   if (k.attacking) {
     player.delay = 7;
@@ -25,11 +26,14 @@ export function animation(k: any, player: any, img: any, frame: any): void {
       player.delay = 0;
       player.framecurrent = deathFrame - 1;
     }, deathFrame * 100);
-  } else if (k.dash) {
-    player.frame = defendFrame;
-    if (k.lf) player.speed.x = -10;
-    else if (k.rf) player.speed.x = 10;
-    player.image.src = img[10];
+  } else if (k.ldash) {
+    player.frame = dashFrame;
+    player.speed.x = -11;
+    player.image.src = img[13];
+  } else if (k.rdash) {
+    player.frame = dashFrame;
+    player.speed.x = 11;
+    player.image.src = img[13];
   } else if (k.defend) {
     player.frame = defendFrame;
     player.speed.x = 0;

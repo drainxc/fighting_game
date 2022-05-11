@@ -10,6 +10,7 @@ import player1Defend from "../../asset/img/fire_knight/09_defend/defend.png";
 import player1BeShot from "../../asset/img/fire_knight/10_take_hit/take_hit.png";
 import player1Death from "../../asset/img/fire_knight/11_death/death.png";
 import player1AirAtk from "../../asset/img/fire_knight/air_atk/air_atk.png";
+import player1Dash from "../../asset/img/fire_knight/04_roll/roll.png";
 import player2Idle from "../../asset/img/water_priestess/01_idle/idle.png";
 import player2Run from "../../asset/img/water_priestess/03_surf/surf.png";
 import player2Up from "../../asset/img/water_priestess/04_j_up/j_up.png";
@@ -22,6 +23,7 @@ import player2Defend from "../../asset/img/water_priestess/12_defend/defend.png"
 import player2BeShot from "../../asset/img/water_priestess/13_take_hit/take_hit.png";
 import player2Death from "../../asset/img/water_priestess/14_death/death.png";
 import player2AirAtk from "../../asset/img/water_priestess/air_atk/air_atk.png";
+import player2Dash from "../../asset/img/water_priestess/06_tumble/tumble.png";
 import player3Idle from "../../asset/img/metal_bladekeeper/01_idle/01_idle.png";
 import player3Run from "../../asset/img/metal_bladekeeper/02_run/02_run.png";
 import player3Down from "../../asset/img/metal_bladekeeper/03_jump_down/03_jump_down.png";
@@ -34,6 +36,7 @@ import player3Defend from "../../asset/img/metal_bladekeeper/11_defend/11_defend
 import player3BeShot from "../../asset/img/metal_bladekeeper/12_take_hit/12_take_hit.png";
 import player3Death from "../../asset/img/metal_bladekeeper/13_death/13_death.png";
 import player3AirAtk from "../../asset/img/metal_bladekeeper/air_atk/air_atk.png";
+import player3Dash from "../../asset/img/metal_bladekeeper/04_roll/04_roll.png";
 import player4Idle from "../../asset/img/ground-monk/idle/idle.png";
 import player4Run from "../../asset/img/ground-monk/run/run.png";
 import player4Up from "../../asset/img/ground-monk/j_up/j_up.png";
@@ -46,6 +49,7 @@ import player4Defend from "../../asset/img/ground-monk/defend/defend.png";
 import player4BeShot from "../../asset/img/ground-monk/take_hit/take_hit.png";
 import player4Death from "../../asset/img/ground-monk/death/death.png";
 import player4AirAtk from "../../asset/img/ground-monk/air_atk/air_atk.png";
+import player4Dash from "../../asset/img/ground-monk/roll/roll.png";
 import player5Idle from "../../asset/img/wind hashashin/idle/idle.png";
 import player5Run from "../../asset/img/wind hashashin/run/run.png";
 import player5Up from "../../asset/img/wind hashashin/j_up/j_up.png";
@@ -58,6 +62,7 @@ import player5Defend from "../../asset/img/wind hashashin/defend/defend.png";
 import player5BeShot from "../../asset/img/wind hashashin/take_hit/take_hit.png";
 import player5Death from "../../asset/img/wind hashashin/death/death.png";
 import player5AirAtk from "../../asset/img/wind hashashin/air_atk/air_atk.png";
+import player5Dash from "../../asset/img/wind hashashin/roll/roll.png";
 
 import profile1 from "../../asset/img/fire_knight/fire_knight.png";
 import profile2 from "../../asset/img/water_priestess/water_priestess.png";
@@ -233,6 +238,7 @@ const player1Data = {
   jumpdownFrame: 3,
   defendFrame: 10,
   deathFrame: 13,
+  dashFrame: 8,
   cooltime: 1,
 };
 
@@ -284,6 +290,7 @@ const player2Data = {
   jumpdownFrame: 3,
   defendFrame: 12,
   deathFrame: 16,
+  dashFrame: 6,
   cooltime: 1,
 };
 
@@ -335,6 +342,7 @@ const player3Data = {
   jumpdownFrame: 3,
   defendFrame: 12,
   deathFrame: 12,
+  dashFrame: 7,
   cooltime: 0,
 };
 
@@ -386,6 +394,7 @@ const player4Data = {
   jumpdownFrame: 3,
   defendFrame: 13,
   deathFrame: 18,
+  dashFrame: 6,
   cooltime: 1,
 };
 
@@ -437,6 +446,7 @@ const player5Data = {
   jumpdownFrame: 3,
   defendFrame: 8,
   deathFrame: 19,
+  dashFrame: 6,
   cooltime: 1,
 };
 
@@ -455,6 +465,7 @@ export const gameData: any[] = [
     player1Defend,
     player1AirAtk,
     player1Data,
+    player1Dash,
   ],
   [
     player2Idle,
@@ -470,6 +481,7 @@ export const gameData: any[] = [
     player2Defend,
     player2AirAtk,
     player2Data,
+    player2Dash,
   ],
   [
     player3Idle,
@@ -485,6 +497,7 @@ export const gameData: any[] = [
     player3Defend,
     player3AirAtk,
     player3Data,
+    player3Dash,
   ],
   [
     player4Idle,
@@ -500,6 +513,7 @@ export const gameData: any[] = [
     player4Defend,
     player4AirAtk,
     player4Data,
+    player4Dash,
   ],
   [
     player5Idle,
@@ -515,6 +529,7 @@ export const gameData: any[] = [
     player5Defend,
     player5AirAtk,
     player5Data,
+    player5Dash,
   ],
 ];
 
@@ -535,7 +550,8 @@ const key = {
   death: false,
   attacking: false,
   defend: false,
-  dash: false,
+  rdash: false,
+  ldash: false,
 };
 
 export const ekey = JSON.parse(JSON.stringify(key));

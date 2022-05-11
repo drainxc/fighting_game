@@ -114,8 +114,8 @@ export default function Canvas() {
     }); // 키 눌렀을 때
 
     window.addEventListener("keyup", (e) => {
-      keyUp(e.key, D.pkey, player, D.pkeycap);
-      keyUp(e.key, D.ekey, enemy, D.ekeycap);
+      keyUp(e.key, D.pkey, player, D.pkeycap, D.gameData[gamer[0]][12]);
+      keyUp(e.key, D.ekey, enemy, D.ekeycap, D.gameData[gamer[1]][12]);
     }); // 키 땠을 때
   }, [gamer]);
 

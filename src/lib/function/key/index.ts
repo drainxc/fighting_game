@@ -118,13 +118,19 @@ export function keyDown(
   return;
 } // 키를 눌렀을 때
 
-export function keyUp(e: string, key: any, player: any, keycap: any) {
+export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
   switch (e) {
     case keycap.d:
       key.r = false;
 
       if (key.rmove === true) {
-        dash(key, player);
+        if (!key.rdash) {
+          player.framecurrent = 0;
+          setTimeout(() => {
+            key.rdash = false;
+          }, hit.dashFrame * 66);
+          key.rdash = true;
+        }
       } else {
         key.rmove = true;
         setTimeout(function () {
@@ -136,7 +142,13 @@ export function keyUp(e: string, key: any, player: any, keycap: any) {
       key.l = false;
 
       if (key.lmove === true) {
-        dash(key, player);
+        if (!key.ldash) {
+          player.framecurrent = 0;
+          setTimeout(() => {
+            key.ldash = false;
+          }, hit.dashFrame * 66);
+          key.ldash = true;
+        }
       } else {
         key.lmove = true;
         setTimeout(function () {
@@ -147,13 +159,3 @@ export function keyUp(e: string, key: any, player: any, keycap: any) {
   }
   return;
 } // 키를 땠을 때
-
-function dash(key: any, player: any) {
-  if (!key.dash) {
-    player.framecurrent = 0;
-    setTimeout(() => {
-      key.dash = false;
-    }, 13 * 110);
-    key.dash = true;
-  }
-}
