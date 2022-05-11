@@ -123,12 +123,12 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
     case keycap.d:
       key.r = false;
 
-      if (key.rmove === true) {
+      if (key.rmove === true && !key.attacking) {
         if (!key.rdash) {
           player.framecurrent = 0;
           setTimeout(() => {
             key.rdash = false;
-          }, hit.dashFrame * 66);
+          }, hit.dashFrame * 88);
           key.rdash = true;
         }
       } else {
@@ -141,12 +141,12 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
     case keycap.a:
       key.l = false;
 
-      if (key.lmove === true) {
+      if (key.lmove === true && !key.attacking) {
         if (!key.ldash) {
           player.framecurrent = 0;
           setTimeout(() => {
             key.ldash = false;
-          }, hit.dashFrame * 66);
+          }, hit.dashFrame * 88);
           key.ldash = true;
         }
       } else {

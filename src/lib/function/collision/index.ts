@@ -18,7 +18,8 @@ function collision(
         p.position.y + height[0] <= e.position.y + e.height &&
         a &&
         p.framecurrent === f &&
-        !d
+        !d &&
+        !pk.defend
       ); // 공격 시 히트 판정
     } else {
       return (
@@ -28,7 +29,8 @@ function collision(
         p.position.y + height[0] <= e.position.y + e.height &&
         a &&
         p.framecurrent === f &&
-        !d
+        !d &&
+        !pk.defend
       ); // 공격 시 히트 판정
     }
   } else {
@@ -41,7 +43,8 @@ function collision(
       p.position.y + height[0] <= e.position.y + e.height &&
       a &&
       p.framecurrent === f &&
-      !d
+      !d &&
+      !pk.defend
     );
   }
 }

@@ -394,7 +394,7 @@ const player4Data = {
   jumpdownFrame: 3,
   defendFrame: 13,
   deathFrame: 18,
-  dashFrame: 6,
+  dashFrame: 5,
   cooltime: 1,
 };
 
@@ -446,7 +446,7 @@ const player5Data = {
   jumpdownFrame: 3,
   defendFrame: 8,
   deathFrame: 19,
-  dashFrame: 6,
+  dashFrame: 4,
   cooltime: 1,
 };
 
