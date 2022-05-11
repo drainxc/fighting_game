@@ -46,6 +46,18 @@ import player4Defend from "../../asset/img/ground-monk/defend/defend.png";
 import player4BeShot from "../../asset/img/ground-monk/take_hit/take_hit.png";
 import player4Death from "../../asset/img/ground-monk/death/death.png";
 import player4AirAtk from "../../asset/img/ground-monk/air_atk/air_atk.png";
+import player5Idle from "../../asset/img/wind hashashin/idle/idle.png";
+import player5Run from "../../asset/img/wind hashashin/run/run.png";
+import player5Up from "../../asset/img/wind hashashin/j_up/j_up.png";
+import player5Down from "../../asset/img/wind hashashin/j_down/j_down.png";
+import player5Atk1 from "../../asset/img/wind hashashin/1_atk/1_atk.png";
+import player5Atk2 from "../../asset/img/wind hashashin/2_atk/2_atk.png";
+import player5Atk3 from "../../asset/img/wind hashashin/3_atk/3_atk.png";
+import player5Atk4 from "../../asset/img/wind hashashin/sp_atk/sp_atk.png";
+import player5Defend from "../../asset/img/wind hashashin/defend/defend.png";
+import player5BeShot from "../../asset/img/wind hashashin/take_hit/take_hit.png";
+import player5Death from "../../asset/img/wind hashashin/death/death.png";
+import player5AirAtk from "../../asset/img/wind hashashin/air_atk/air_atk.png";
 
 import profile1 from "../../asset/img/fire_knight/fire_knight.png";
 import profile2 from "../../asset/img/water_priestess/water_priestess.png";
@@ -377,6 +389,57 @@ const player4Data = {
   cooltime: 1,
 };
 
+const player5Data = {
+  atk1hittime: 1,
+  atk1hitFrame: [2],
+  atk1Frame: 8,
+  width1: -160,
+  height1: [80, 60],
+  damaged1: 1,
+  allDirection1: false,
+
+  atk2hittime: 2,
+  atk2hitFrame: [2, 5],
+  atk2Frame: 13,
+  width2: -160,
+  height2: [80, 60],
+  damaged2: 1,
+  allDirection2: false,
+
+  atk3hittime: 6,
+  atk3hitFrame: [8, 9, 10],
+  atk3Frame: 15,
+  width3: -400,
+  height3: [100, 100],
+  damaged3: 1,
+  allDirection3: false,
+
+  atk4hittime: 4,
+  atk4hitFrame: [5, 17],
+  atk4Frame: 30,
+  width4: -400,
+  height4: [50, 150],
+  damaged4: 5,
+  allDirection4: false,
+
+  airatkFrame: 7,
+  airatkhittime: 1,
+  airatkhitFrame: [3],
+  width5: -280,
+  height5: [0, 100],
+  damaged5: 1,
+  allDirection5: true,
+
+  moveFrame: 8,
+  idleFrame: 8,
+  damagedFrame: 6,
+  jumpupFrame: 3,
+  jumpdownFrame: 3,
+  defendFrame: 8,
+  deathFrame: 19,
+  cooltime: 1,
+};
+
 export const gameData: any[] = [
   [
     player1Idle,
@@ -438,6 +501,21 @@ export const gameData: any[] = [
     player4AirAtk,
     player4Data,
   ],
+  [
+    player5Idle,
+    player5Atk1,
+    player5Atk2,
+    player5Atk3,
+    player5Atk4,
+    player5Run,
+    player5BeShot,
+    player5Death,
+    player5Up,
+    player5Down,
+    player5Defend,
+    player5AirAtk,
+    player5Data,
+  ],
 ];
 
 const key = {
@@ -445,7 +523,8 @@ const key = {
   lf: false,
   r: false,
   l: false,
-  move: false,
+  rmove: false,
+  lmove: false,
   float: false,
   attack1: false,
   attack2: false,
@@ -456,6 +535,7 @@ const key = {
   death: false,
   attacking: false,
   defend: false,
+  dash: false,
 };
 
 export const ekey = JSON.parse(JSON.stringify(key));
