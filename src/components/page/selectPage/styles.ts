@@ -60,7 +60,7 @@ export const BtnDiv = styled.div`
   place-items: center;
   grid-template-columns: repeat(5, 1fr);
   grid-row-gap: 30px;
-  grid-column-gap: 50px;
+  grid-column-gap: 75px;
 
   button {
     width: 150px;

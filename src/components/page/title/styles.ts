@@ -2,11 +2,9 @@ import styled from "styled-components";
 
 export const Word = styled.div`
   color: #fff;
-  font-family: "Passero One", cursive;
-  font-size: 50px;
-  margin-top: 30px;
-  letter-spacing: 2px;
-  cursor: pointer;
+  font-family: "VT323", monospace;
+  font-size: 70px;
+  margin-top: 20px;
   a:hover {
     color: #cccccc;
   }
@@ -33,7 +31,7 @@ export const MainTitle = styled.div`
   color: #fff;
   font-family: "UnifrakturMaguntia", cursive;
   font-size: 100px;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const MainDiv = styled.div<{ width: number; height: number }>`
@@ -45,5 +43,5 @@ export const MainDiv = styled.div<{ width: number; height: number }>`
 
 export const Menu = styled.div`
   text-align: center;
-  margin-top: 30px;
+  margin-top: 60px;
 `;

@@ -14,9 +14,9 @@ export default function Title() {
   return (
     <S.MainDiv width={width} height={height}>
       <S.MainTitle>
-        <img src={ui1} alt="" style={{width:"750px"}} />
+        <img src={ui1} alt="" style={{ width: "750px" }} />
         <div>Fighting Game</div>
-        <img src={ui2} alt="" style={{width:"450px"}}/>
+        <img src={ui2} alt="" style={{ width: "450px" }} />
       </S.MainTitle>
       <S.Menu>
         {word.map((item, i) => (
