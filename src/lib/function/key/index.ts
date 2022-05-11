@@ -33,13 +33,12 @@ export function keyDown(
         key.lf = false;
         key.rf = true;
         key.r = true;
-        key.move = true;
+
         break;
       case keycap.a:
         key.rf = false;
         key.lf = true;
         key.l = true;
-        key.move = true;
         break;
       case keycap.attack1:
         if (!key.attacking && !key.defend && !key.float) {
@@ -123,12 +122,38 @@ export function keyUp(e: string, key: any, player: any, keycap: any) {
   switch (e) {
     case keycap.d:
       key.r = false;
-      key.move = false;
+
+      if (key.rmove === true) {
+        dash(key, player);
+      } else {
+        key.rmove = true;
+        setTimeout(function () {
+          key.rmove = false;
+        }, 200);
+      }
       break;
     case keycap.a:
       key.l = false;
-      key.move = false;
+
+      if (key.lmove === true) {
+        dash(key, player);
+      } else {
+        key.lmove = true;
+        setTimeout(function () {
+          key.lmove = false;
+        }, 300);
+      }
       break;
   }
   return;
 } // 키를 땠을 때
+
+function dash(key: any, player: any) {
+  if (!key.dash) {
+    player.framecurrent = 0;
+    setTimeout(() => {
+      key.dash = false;
+    }, 13 * 110);
+    key.dash = true;
+  }
+}

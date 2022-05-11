@@ -65,8 +65,10 @@ export function attack(
         // 피가 0이 아니라면
         e.framecurrent = 0;
         ek.beShot = true;
-        e.speed.y = 0.1;
-        e.speed.x = 0.1;
+        if (pk.rf) e.speed.x = -5;
+        else e.speed.x = 5;
+
+        e.speed.y = -5;
         ek.attack1 = false;
         ek.attack2 = false;
         ek.attack3 = false;

@@ -25,6 +25,11 @@ export function animation(k: any, player: any, img: any, frame: any): void {
       player.delay = 0;
       player.framecurrent = deathFrame - 1;
     }, deathFrame * 100);
+  } else if (k.dash) {
+    player.frame = defendFrame;
+    if (k.lf) player.speed.x = -10;
+    else if (k.rf) player.speed.x = 10;
+    player.image.src = img[10];
   } else if (k.defend) {
     player.frame = defendFrame;
     player.speed.x = 0;
@@ -60,7 +65,7 @@ export function animation(k: any, player: any, img: any, frame: any): void {
   } else if (!k.jump && k.float) {
     player.frame = jumpdownFrame;
     player.image.src = img[9];
-  } else if (k.move) {
+  } else if (k.l || k.r) {
     // 움직였을 때
     player.frame = moveFrame;
     player.image.src = img[5];
