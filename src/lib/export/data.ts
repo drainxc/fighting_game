@@ -68,6 +68,7 @@ import profile1 from "../../asset/img/fire_knight/fire_knight.png";
 import profile2 from "../../asset/img/water_priestess/water_priestess.png";
 import profile3 from "../../asset/img/metal_bladekeeper/metal_bladekeeper.png";
 import profile4 from "../../asset/img/ground-monk/ground_monk.png";
+import profile5 from "../../asset/img/wind hashashin/wind_hashashin.png";
 
 import bg1 from "../../asset/img/bg/bg1.gif";
 import bg2 from "../../asset/img/bg/bg10.png";
@@ -80,7 +81,13 @@ import bg8 from "../../asset/img/bg/bg8.png";
 import bg9 from "../../asset/img/bg/bg9.png";
 import randomBg from "../../asset/img/bg/randomMap.jpg";
 
-export const profile: string[] = [profile1, profile2, profile3, profile4];
+export const profile: string[] = [
+  profile1,
+  profile2,
+  profile3,
+  profile4,
+  profile5,
+];
 
 export const atk = (n1: number, n2: number) => {
   return [

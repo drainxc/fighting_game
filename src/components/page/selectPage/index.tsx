@@ -8,6 +8,7 @@ export default function Select() {
     "water_priestess",
     "metal_bladekeeper",
     "ground_monk",
+    "wind_hashshin",
   ];
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [player, setPlayer] = useState<number[]>([0]);

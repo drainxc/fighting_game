@@ -153,7 +153,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
         key.lmove = true;
         setTimeout(function () {
           key.lmove = false;
-        }, 300);
+        }, 500);
       }
       break;
   }
