@@ -11,7 +11,7 @@ export class Sprite {
 
   draw() {
     this.ctx.drawImage(this.image, this.position.x, this.position.y);
-  }
+  } // 배경 그리기
 
   update() {
     this.draw();

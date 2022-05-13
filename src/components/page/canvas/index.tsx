@@ -83,7 +83,7 @@ export default function Canvas() {
       enemy.update();
 
       push(player, 1);
-      push(enemy, -1);
+      push(enemy, -1); // 맵 이탈 방지
 
       pressSense(player, D.pkey.r, D.pkey.l);
       pressSense(enemy, D.ekey.r, D.ekey.l); // 속도 바꾸기

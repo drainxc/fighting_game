@@ -61,9 +61,11 @@ export class Fighter {
 
     if (!this.position.x || !this.position.y) return;
     if (D.pkey.lf) {
-      this.ctx.scale(-1, 1);
+      // 왼쪽을 바라보고 있을 때
+      this.ctx.scale(-1, 1); // 캐릭터 반전
       drawImg(data, -this.position.x, 75);
     } else if (D.pkey.rf) {
+      // 왼쪽을 바라보고 있을 때
       drawImg(data, this.position.x, 0);
     } else {
       drawImg(data, this.position.x, 0);
@@ -101,7 +103,7 @@ export class Fighter {
         this.framecurrent = 0;
       }
     }
-    this.count++;
+    this.count++; // 애니메이션
 
     if (!this.position.y || !this.speed.y) return;
 
@@ -113,12 +115,12 @@ export class Fighter {
       this.position.y = this.canvas.height - (75 + 200);
     } else {
       this.speed.y += gravity;
-    }
+    } // 추락
 
     if (!this.position.x || !this.speed.x) return;
-    this.position.x += this.speed.x;
+    this.position.x += this.speed.x; // 이동
 
     this.range.position.x = this.position.x;
-    this.range.position.y = this.position.y;
+    this.range.position.y = this.position.y; // 히트박스 위치 조정
   }
 }

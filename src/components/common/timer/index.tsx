@@ -8,7 +8,7 @@ export default function Timer() {
       if (timer > 0) {
         setTimer(timer - 1);
       }
-    }, 1000);
+    }, 1000); // 1초씩 감소
     return () => clearInterval(stopWatch);
   }, [timer]); // 타이머
   return (

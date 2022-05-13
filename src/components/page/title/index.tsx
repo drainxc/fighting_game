@@ -9,7 +9,7 @@ export default function Title() {
   const link = ["/select", "", "", ""];
 
   const width = window.innerWidth;
-  const height = window.innerHeight;
+  const height = window.innerHeight; // 브라우저 창 크기 구하기
 
   return (
     <S.MainDiv width={width} height={height}>

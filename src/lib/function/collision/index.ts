@@ -68,14 +68,15 @@ export function attack(
         // 피가 0이 아니라면
         e.framecurrent = 0;
         ek.beShot = true;
+
         if (pk.rf) e.speed.x = -5;
         else e.speed.x = 5;
+        e.speed.y = -5; // 넉백
 
-        e.speed.y = -5;
         ek.attack1 = false;
         ek.attack2 = false;
         ek.attack3 = false;
-        ek.attack4 = false;
+        ek.attack4 = false; // 상대방 공격 캔슬
         if (ref.current.style.width.replace(regex, "") - atk[1] * atk[3] >= 0)
           ref.current.style.width = `calc(${ref.current.style.width} - ${atk[1]}%)`; // 피 닳기
         else ref.current.style.width = "0%";

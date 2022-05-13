@@ -9,7 +9,7 @@ export default function Select() {
     "metal_bladekeeper",
     "ground_monk",
     "wind_hashshin",
-  ];
+  ]; // 캐릭터
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [player, setPlayer] = useState<number[]>([0]);
 
@@ -23,7 +23,7 @@ export default function Select() {
     setPlayer((play) => [...play, n]);
     if (player.length >= 3) {
       player.shift();
-    }
+    } // 캐릭터 선택
   };
 
   const next = () => {
@@ -33,7 +33,6 @@ export default function Select() {
       setCurrentSlide(currentSlide + 1);
     }
   };
-
   const pre = () => {
     if (currentSlide === 0) {
       setCurrentSlide(D.background.length - 1);
@@ -41,6 +40,7 @@ export default function Select() {
       setCurrentSlide(currentSlide - 1);
     }
   };
+  // 맵 선택
 
   return (
     <>

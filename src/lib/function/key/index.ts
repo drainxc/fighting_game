@@ -7,7 +7,7 @@ export function keyDown(
 ) {
   if (!key.death && !key.beShot) {
     switch (e) {
-      case keycap.w:
+      case keycap.w: // 위
         if (!key.float) {
           player.speed.y = -25;
           key.jump = true;
@@ -20,7 +20,7 @@ export function keyDown(
           }, 400);
         }
         break;
-      case keycap.s:
+      case keycap.s: // 아래
         if (!key.defend) {
           key.defend = true;
           player.framecurrent = 0;
@@ -29,17 +29,17 @@ export function keyDown(
           }, hit.defendFrame * 110);
         }
         break;
-      case keycap.d:
+      case keycap.d: // 오른쪽
         key.lf = false;
         key.rf = true;
         key.r = true;
         break;
-      case keycap.a:
+      case keycap.a: // 왼쪽
         key.rf = false;
         key.lf = true;
         key.l = true;
         break;
-      case keycap.attack1:
+      case keycap.attack1: // 공격 1
         if (!key.attacking && !key.defend && !key.float) {
           key.attacking = true;
           player.framecurrent = 0;
@@ -67,7 +67,7 @@ export function keyDown(
           }
         }
         break;
-      case keycap.attack2:
+      case keycap.attack2: // 공격 2
         if (!key.attacking && !key.defend) {
           key.attacking = true;
           player.framecurrent = 0;
@@ -82,7 +82,7 @@ export function keyDown(
           }
         }
         break;
-      case keycap.attack3:
+      case keycap.attack3: // 공격 3
         if (!key.attacking && !key.defend) {
           key.attacking = true;
           player.framecurrent = 0;
@@ -97,7 +97,7 @@ export function keyDown(
           }
         }
         break;
-      case keycap.attack4:
+      case keycap.attack4: // 공격 4
         if (!key.attacking && !key.defend) {
           key.attacking = true;
           player.framecurrent = 0;
@@ -119,7 +119,7 @@ export function keyDown(
 
 export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
   switch (e) {
-    case keycap.d:
+    case keycap.d: // 오른쪽
       key.r = false;
 
       if (key.rmove === true && !key.attacking) {
@@ -137,7 +137,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
         }, 200);
       }
       break;
-    case keycap.a:
+    case keycap.a: // 왼쪽
       key.l = false;
 
       if (key.lmove === true && !key.attacking) {
