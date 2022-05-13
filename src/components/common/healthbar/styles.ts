@@ -22,12 +22,6 @@ export const PlayerBar = styled.div`
   width: 100%;
 `;
 
-export const EnemyBar = styled.div`
-  position: relative;
-  height: 50px;
-  width: 100%;
-`;
-
 export const Barbg = styled.div`
   background-color: yellow;
   height: 50px;

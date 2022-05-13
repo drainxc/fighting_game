@@ -5,14 +5,14 @@ export const Word = styled.div`
   font-family: "VT323", monospace;
   font-size: 70px;
   margin-top: 20px;
-  a:hover {
+  p:hover {
     color: #cccccc;
   }
-  a:link {
+  p:link {
     text-decoration: none;
     color: #fff;
   }
-  a:visited {
+  p:visited {
     color: #fff;
   }
 `;

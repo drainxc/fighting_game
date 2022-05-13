@@ -33,7 +33,6 @@ export function keyDown(
         key.lf = false;
         key.rf = true;
         key.r = true;
-
         break;
       case keycap.a:
         key.rf = false;

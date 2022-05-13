@@ -15,7 +15,7 @@ export default function HealthBar({ pref, eref }: any) {
           />
         </S.PlayerBar>
         <Timer />
-        <S.EnemyBar>
+        <S.PlayerBar>
           <S.Barbg />
           <span
             ref={eref}
@@ -24,7 +24,7 @@ export default function HealthBar({ pref, eref }: any) {
               right: 0,
             }}
           />
-        </S.EnemyBar>
+        </S.PlayerBar>
       </S.HealthBar>
     </>
   );

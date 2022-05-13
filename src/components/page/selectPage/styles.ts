@@ -45,14 +45,11 @@ export const Slide = styled.div`
 export const Map = styled.div`
   display: inline-flex;
   align-items: center;
+  margin-top: 5%;
   img {
     border: 10px solid white;
     border-radius: 6px;
   }
-`;
-
-export const Top = styled.div`
-  margin-top: 5%;
 `;
 
 export const BtnDiv = styled.div`
@@ -78,8 +75,6 @@ export const BtnDiv = styled.div`
     }
   }
 `;
-
-export const Page = styled.div``;
 
 export const Bottom = styled.div`
   position: absolute;

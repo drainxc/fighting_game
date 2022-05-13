@@ -47,19 +47,18 @@ export default function Select() {
       <S.BgColor />
       <S.Background image={D.background[currentSlide]} />
       <S.MainDiv>
-        <S.Top>
-          <S.Map>
-            <S.Slide onClick={() => pre()}>‹</S.Slide>
-            {D.background.map((img: string, i: number) => (
-              <>{currentSlide === i ? <S.BgImg src={img} alt="" /> : <></>}</>
-            ))}
-            <S.Slide onClick={() => next()}>›</S.Slide>
-          </S.Map>
-        </S.Top>
+        <S.Map>
+          <S.Slide onClick={() => pre()}>‹</S.Slide>
+          {D.background.map((img: string, i: number) => (
+            <>{currentSlide === i ? <S.BgImg src={img} alt="" /> : <></>}</>
+          ))}
+          <S.Slide onClick={() => next()}>›</S.Slide>
+        </S.Map>
         <S.Bottom>
-          <S.Page>
+          <div>
             <div>back</div>
-          </S.Page>
+          </div>
+
           <S.BtnDiv>
             {character.map((name: string, i: number) => (
               <>
@@ -78,7 +77,7 @@ export default function Select() {
               </>
             ))}
           </S.BtnDiv>
-          <S.Page>
+          <div>
             {player.length === 3 ? (
               <Link to={"/game" + player[1] + player[2] + currentSlide}>
                 <div>start</div>
@@ -86,7 +85,7 @@ export default function Select() {
             ) : (
               <div>start</div>
             )}
-          </S.Page>
+          </div>
         </S.Bottom>
       </S.MainDiv>
     </>
