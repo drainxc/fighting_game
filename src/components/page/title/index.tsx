@@ -22,7 +22,7 @@ export default function Title() {
         {word.map((item, i) => (
           <S.Word>
             <Link to={link[i]}>
-              <p>{item}</p>
+              <a>{item}</a>
             </Link>
           </S.Word>
         ))}
