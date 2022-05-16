@@ -26,7 +26,7 @@ export function keyDown(
           player.framecurrent = 0;
           setTimeout(() => {
             key.defend = false;
-          }, hit.defendFrame * 110);
+          }, hit.defendFrame * 100);
         }
         break;
       case keycap.d: // 오른쪽
@@ -50,7 +50,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk1Frame * 110);
+            }, hit.atk1Frame * 100);
           }
         } else if (!key.attacking && !key.defend && key.float) {
           key.attacking = true;
@@ -63,7 +63,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.airatkFrame * 110);
+            }, hit.airatkFrame * 100);
           }
         }
         break;
@@ -78,7 +78,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk2Frame * 110);
+            }, hit.atk2Frame * 100);
           }
         }
         break;
@@ -93,7 +93,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk3Frame * 110);
+            }, hit.atk3Frame * 100);
           }
         }
         break;
@@ -108,7 +108,7 @@ export function keyDown(
               setTimeout(() => {
                 key.attacking = false;
               }, hit.cooltime * 100);
-            }, hit.atk4Frame * 110);
+            }, hit.atk4Frame * 100);
           }
         }
         break;
@@ -127,7 +127,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
           player.framecurrent = 0;
           setTimeout(() => {
             key.rdash = false;
-          }, hit.dashFrame * 88);
+          }, hit.dashFrame * 100);
           key.rdash = true;
         }
       } else {
@@ -145,7 +145,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
           player.framecurrent = 0;
           setTimeout(() => {
             key.ldash = false;
-          }, hit.dashFrame * 88);
+          }, hit.dashFrame * 100);
           key.ldash = true;
         }
       } else {
