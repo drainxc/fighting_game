@@ -57,7 +57,7 @@ export function attack(
   ref: any,
   pk: any
 ): void {
-  const regex = /[^0-9]/g;
+  const regex = /[^0-9^.]/g;
 
   for (let i = 0; i < atk[3]; i++) {
     if (
