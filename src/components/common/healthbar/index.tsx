@@ -10,18 +10,19 @@ export default function HealthBar({ pref, eref }: any) {
           <span
             ref={pref}
             style={{
-              width: "100%",
+              width: "calc(94%)",
+              left: "49px",
             }}
           />
         </S.PlayerBar>
         <Timer />
         <S.PlayerBar>
-          <S.Barbg />
+          <S.Barbg style={{ transform: "scaleX(-1)" }} />
           <span
             ref={eref}
             style={{
-              width: "100%",
-              right: 0,
+              width: "calc(94%)",
+              right: "49px",
             }}
           />
         </S.PlayerBar>
