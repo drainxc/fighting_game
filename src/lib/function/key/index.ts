@@ -8,7 +8,7 @@ export function keyDown(
   if (!key.death && !key.beShot) {
     switch (e) {
       case keycap.w: // 위
-        if (!key.float) {
+        if (!key.float && !key.attacking && !key.defend) {
           player.speed.y = -25;
           key.jump = true;
           key.float = true;
@@ -30,14 +30,18 @@ export function keyDown(
         }
         break;
       case keycap.d: // 오른쪽
-        key.lf = false;
-        key.rf = true;
-        key.r = true;
+        if (!key.attacking) {
+          key.lf = false;
+          key.rf = true;
+          key.r = true;
+        }
         break;
       case keycap.a: // 왼쪽
-        key.rf = false;
-        key.lf = true;
-        key.l = true;
+        if (!key.attacking) {
+          key.rf = false;
+          key.lf = true;
+          key.l = true;
+        }
         break;
       case keycap.attack1: // 공격 1
         if (!key.attacking && !key.defend && !key.float) {
@@ -121,7 +125,6 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
   switch (e) {
     case keycap.d: // 오른쪽
       key.r = false;
-
       if (key.rmove === true && !key.attacking) {
         if (!key.rdash) {
           player.framecurrent = 0;
@@ -134,7 +137,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
         key.rmove = true;
         setTimeout(function () {
           key.rmove = false;
-        }, 200);
+        }, 500);
       }
       break;
     case keycap.a: // 왼쪽
