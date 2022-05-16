@@ -42,6 +42,17 @@ export const Slide = styled.div`
   cursor: pointer;
 `;
 
+export const Player = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+  }
+`;
+
 export const Map = styled.div`
   display: inline-flex;
   align-items: center;
@@ -67,12 +78,16 @@ export const BtnDiv = styled.div`
     align-items: center;
     background-color: whitesmoke;
     cursor: pointer;
-    img {
-      background-color: whitesmoke;
-      width: 135px;
-      height: 135px;
-      object-fit: cover;
-    }
+    position: relative;
+  }
+`;
+
+export const Profile = styled.div`
+  img {
+    background-color: whitesmoke;
+    width: 135px;
+    height: 135px;
+    object-fit: cover;
   }
 `;
 

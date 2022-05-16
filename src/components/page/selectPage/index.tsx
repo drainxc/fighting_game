@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
 import * as D from "../../../lib/export/data";
+import oneP from "../../../asset/img/ui/1player.png";
+import twoP from "../../../asset/img/ui/2player.png";
 export default function Select() {
   const character = [
     "fire_knight",
@@ -21,9 +23,7 @@ export default function Select() {
     //   n -= 1;
     // }
     setPlayer((play) => [...play, n]);
-    if (player.length >= 3) {
-      player.shift();
-    } // 캐릭터 선택
+    console.log(player);
   };
 
   const next = () => {
@@ -42,6 +42,25 @@ export default function Select() {
   };
   // 맵 선택
 
+  const Profile = (name: string, i: number) => {
+    return (
+      <>
+        <S.Profile>
+          <img src={D.profile[i]} alt={name} />
+        </S.Profile>
+        <S.Player>
+          {i === player[1] ? (
+            <>
+              <img src={oneP} alt="" />
+            </>
+          ) : (
+            <>{i === player[2] ? <img src={twoP} alt="" /> : <></>}</>
+          )}
+        </S.Player>
+      </>
+    );
+  };
+
   return (
     <>
       <S.BgColor />
@@ -55,9 +74,9 @@ export default function Select() {
           <S.Slide onClick={() => next()}>›</S.Slide>
         </S.Map>
         <S.Bottom>
-          <div>
+          <Link to={"/"}>
             <div>back</div>
-          </div>
+          </Link>
 
           <S.BtnDiv>
             {character.map((name: string, i: number) => (
@@ -67,18 +86,18 @@ export default function Select() {
                     onClick={(e) => selectCharacter(e, i)}
                     style={{ marginBottom: "150px" }}
                   >
-                    <img src={D.profile[i]} alt={name} />
+                    {Profile(name, i)}
                   </button>
                 ) : (
                   <button onClick={(e) => selectCharacter(e, i)}>
-                    <img src={D.profile[i]} alt={name} />
+                    {Profile(name, i)}
                   </button>
                 )}
               </>
             ))}
           </S.BtnDiv>
           <div>
-            {player.length === 3 ? (
+            {player.length >= 3 ? (
               <Link to={"/game" + player[1] + player[2] + currentSlide}>
                 <div>start</div>
               </Link>
