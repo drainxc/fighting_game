@@ -47,8 +47,9 @@ export const Player = styled.div`
   top: 0;
   left: 0;
   img {
-    width: 50px;
-    height: 50px;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
     border-radius: 100px;
   }
 `;

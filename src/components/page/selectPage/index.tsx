@@ -49,12 +49,19 @@ export default function Select() {
           <img src={D.profile[i]} alt={name} />
         </S.Profile>
         <S.Player>
-          {i === player[1] ? (
+          {i === player[1] && player[1] === player[2] ? (
             <>
               <img src={oneP} alt="" />
+              <img src={twoP} alt="" />
             </>
           ) : (
-            <>{i === player[2] ? <img src={twoP} alt="" /> : <></>}</>
+            <>
+              {i === player[1] ? (
+                <img src={oneP} alt="" />
+              ) : (
+                <>{i === player[2] ? <img src={twoP} alt="" /> : <></>}</>
+              )}
+            </>
           )}
         </S.Player>
       </>
