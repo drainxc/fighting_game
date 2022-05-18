@@ -81,12 +81,32 @@ import bg8 from "../../asset/img/bg/bg8.png";
 import bg9 from "../../asset/img/bg/bg9.png";
 import randomBg from "../../asset/img/bg/randomMap.jpg";
 
+import runGif from "../../asset/img/fire_knight/02_run/run.gif";
+import jumpGif from "../../asset/img/fire_knight/03_jump/jump.gif";
+import defendGif from "../../asset/img/fire_knight/09_defend/defend.gif";
+import rollGif from "../../asset/img/fire_knight/04_roll/roll.gif";
+import atk3Gif from "../../asset/img/fire_knight/07_3_atk/3_atk.gif";
+import atk4Gif from "../../asset/img/fire_knight/08_sp_atk/sp_atk.gif";
+import airatkGif from "../../asset/img/fire_knight/air_atk/air_atk.gif";
+import deathGif from "../../asset/img/fire_knight/11_death/death.gif";
+
 export const profile: string[] = [
   profile1,
   profile2,
   profile3,
   profile4,
   profile5,
+];
+
+export const gif: string[] = [
+  runGif,
+  jumpGif,
+  defendGif,
+  rollGif,
+  atk3Gif,
+  atk4Gif,
+  airatkGif,
+  deathGif,
 ];
 
 export const atk = (n1: number, n2: number) => {
