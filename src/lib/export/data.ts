@@ -203,7 +203,7 @@ const player1Data = {
   atk1Frame: 11,
   width1: -290,
   height1: [-150, 350],
-  damaged1: 1.5,
+  damaged1: 0.4,
   allDirection1: false,
 
   atk2hittime: 2,
@@ -211,7 +211,7 @@ const player1Data = {
   atk2Frame: 12,
   width2: -300,
   height2: [0, 200],
-  damaged2: 0.6,
+  damaged2: 0.3,
   allDirection2: true,
 
   atk3hittime: 1,
@@ -219,7 +219,7 @@ const player1Data = {
   atk3Frame: 9,
   width3: -400,
   height3: [-100, 300],
-  damaged3: 2,
+  damaged3: 3,
   allDirection3: false,
 
   atk4hittime: 1,
@@ -255,7 +255,7 @@ const player2Data = {
   atk1Frame: 7,
   width1: -250,
   height1: [100, 150],
-  damaged1: 1,
+  damaged1: 0.3,
   allDirection1: false,
 
   atk2hittime: 1,
@@ -263,7 +263,7 @@ const player2Data = {
   atk2Frame: 20,
   width2: -320,
   height2: [100, 50],
-  damaged2: 3,
+  damaged2: 2.5,
   allDirection2: false,
 
   atk3hittime: 3,
@@ -271,7 +271,7 @@ const player2Data = {
   atk3Frame: 14,
   width3: -380,
   height3: [0, 200],
-  damaged3: 1.2,
+  damaged3: 2,
   allDirection3: false,
 
   atk4hittime: 10,
@@ -287,7 +287,7 @@ const player2Data = {
   airatkhitFrame: [3, 4],
   width5: -350,
   height5: [0, 100],
-  damaged5: 2,
+  damaged5: 0.7,
   allDirection5: false,
 
   moveFrame: 8,
@@ -307,7 +307,7 @@ const player3Data = {
   atk1Frame: 6,
   width1: -220,
   height1: [50, 100],
-  damaged1: 0.4,
+  damaged1: 0.3,
   allDirection1: false,
 
   atk2hittime: 1,
@@ -315,7 +315,7 @@ const player3Data = {
   atk2Frame: 6,
   width2: -220,
   height2: [50, 100],
-  damaged2: 0.4,
+  damaged2: 0.3,
   allDirection2: false,
 
   atk3hittime: 6,
@@ -331,7 +331,7 @@ const player3Data = {
   atk4Frame: 11,
   width4: -400,
   height4: [0, 200],
-  damaged4: 1.1,
+  damaged4: 1.2,
   allDirection4: true,
 
   airatkFrame: 8,
@@ -375,7 +375,7 @@ const player4Data = {
   atk3Frame: 14,
   width3: -400,
   height3: [100, 100],
-  damaged3: 1,
+  damaged3: 1.2,
   allDirection3: false,
 
   atk4hittime: 4,
@@ -427,7 +427,7 @@ const player5Data = {
   atk3Frame: 15,
   width3: -420,
   height3: [60, 140],
-  damaged3: 0.7 ,
+  damaged3: 0.7,
   allDirection3: false,
 
   atk4hittime: 3,
@@ -435,12 +435,12 @@ const player5Data = {
   atk4Frame: 30,
   width4: -100,
   height4: [-30, 240],
-  damaged4: 4,
-  allDirection4: false,
+  damaged4: 1.5,
+  allDirection4: true,
 
-  airatkFrame: 3,
   airatkhittime: 3,
   airatkhitFrame: [2, 3, 4],
+  airatkFrame: 7,
   width5: -260,
   height5: [-40, 240],
   damaged5: 1,
