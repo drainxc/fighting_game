@@ -15,8 +15,10 @@ import { getRandomIntInclusive } from "../../../lib/function/random";
 export default function Canvas() {
   const { id } = useParams();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const enemyHealthRef = useRef<HTMLDivElement>(null);
-  const playerHealthRef = useRef<HTMLDivElement>(null);
+  const enemyHealthRef = useRef<HTMLSpanElement>(null);
+  const playerHealthRef = useRef<HTMLSpanElement>(null);
+  const enemyEnergeRef = useRef<HTMLSpanElement>(null);
+  const playerEnergeRef = useRef<HTMLSpanElement>(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   let gamer: number[] = [];
 
@@ -94,14 +96,23 @@ export default function Canvas() {
       let atk = D.atk(gamer[0], gamer[1]);
 
       for (let i = 0; i < atk.length / 2; i++) {
-        attack(atk[i], D.ekey, player, enemy, enemyHealthRef, D.pkey);
+        attack(
+          atk[i],
+          D.ekey,
+          player,
+          enemy,
+          enemyHealthRef,
+          D.pkey,
+          playerEnergeRef
+        );
         attack(
           atk[i + atk.length / 2],
           D.pkey,
           enemy,
           player,
           playerHealthRef,
-          D.ekey
+          D.ekey,
+          enemyEnergeRef
         ); // 히트 판정
       }
     }
@@ -109,8 +120,22 @@ export default function Canvas() {
     animate();
 
     window.addEventListener("keydown", (e) => {
-      keyDown(e.key, D.pkey, player, D.pkeycap, D.gameData[gamer[0]][12]);
-      keyDown(e.key, D.ekey, enemy, D.ekeycap, D.gameData[gamer[1]][12]);
+      keyDown(
+        e.key,
+        D.pkey,
+        player,
+        D.pkeycap,
+        D.gameData[gamer[0]][12],
+        playerEnergeRef
+      );
+      keyDown(
+        e.key,
+        D.ekey,
+        enemy,
+        D.ekeycap,
+        D.gameData[gamer[1]][12],
+        enemyEnergeRef
+      );
     }); // 키 눌렀을 때
 
     window.addEventListener("keyup", (e) => {
@@ -122,7 +147,12 @@ export default function Canvas() {
   return (
     <>
       <S.MainDiv>
-        <HealthBar pref={playerHealthRef} eref={enemyHealthRef} />
+        <HealthBar
+          pHealthRef={playerHealthRef}
+          eHealthRef={enemyHealthRef}
+          pEnergeRef={playerEnergeRef}
+          eEnergeRef={enemyEnergeRef}
+        />
         <canvas ref={canvasRef}></canvas>
       </S.MainDiv>
     </>

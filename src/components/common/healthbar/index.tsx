@@ -1,31 +1,50 @@
 import * as S from "./styles";
 import Timer from "../timer/index";
 
-export default function HealthBar({ pref, eref }: any) {
+export default function HealthBar({
+  pHealthRef,
+  eHealthRef,
+  pEnergeRef,
+  eEnergeRef,
+}: any) {
   return (
     <>
       <S.HealthBar>
-        <S.PlayerBar>
+        <S.Bar>
           <S.Barbg />
-          <span
-            ref={pref}
+          <S.Health
+            ref={pHealthRef}
             style={{
-              width: "calc(94%)",
-              left: "49px",
+              width: "calc(87.7%)",
+              right: "0",
             }}
           />
-        </S.PlayerBar>
+          <S.Energe
+            ref={pEnergeRef}
+            style={{
+              width: "calc(0%)",
+              right: "0",
+            }}
+          />
+        </S.Bar>
         <Timer />
-        <S.PlayerBar>
+        <S.Bar>
           <S.Barbg style={{ transform: "scaleX(-1)" }} />
-          <span
-            ref={eref}
+          <S.Health
+            ref={eHealthRef}
             style={{
-              width: "calc(94%)",
-              right: "49px",
+              width: "calc(87.7%)",
+              left: "0",
             }}
           />
-        </S.PlayerBar>
+          <S.Energe
+            ref={eEnergeRef}
+            style={{
+              width: "calc(0%)",
+              left: "0",
+            }}
+          />
+        </S.Bar>
       </S.HealthBar>
     </>
   );
