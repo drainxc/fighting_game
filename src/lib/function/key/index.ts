@@ -3,8 +3,11 @@ export function keyDown(
   key: any,
   player: any,
   keycap: any,
-  hit: any
+  hit: any,
+  ref: any
 ) {
+  const regex = /[^0-9^.]/g;
+
   if (!key.death && !key.beShot) {
     switch (e) {
       case keycap.w: // 위
@@ -87,7 +90,12 @@ export function keyDown(
         }
         break;
       case keycap.attack3: // 공격 3
-        if (!key.attacking && !key.defend) {
+        if (
+          !key.attacking &&
+          !key.defend &&
+          ref.current.style.width.replace(regex, "") >= 33
+        ) {
+          ref.current.style.width = `calc(${ref.current.style.width} - 33%)`;
           key.attacking = true;
           player.framecurrent = 0;
           if (!key.attack3) {
@@ -102,7 +110,12 @@ export function keyDown(
         }
         break;
       case keycap.attack4: // 공격 4
-        if (!key.attacking && !key.defend) {
+        if (
+          !key.attacking &&
+          !key.defend &&
+          ref.current.style.width.replace(regex, "") >= 50
+        ) {
+          ref.current.style.width = `calc(${ref.current.style.width} - 50%)`;
           key.attacking = true;
           player.framecurrent = 0;
           if (!key.attack4) {
@@ -137,7 +150,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
         key.rmove = true;
         setTimeout(function () {
           key.rmove = false;
-        }, 500);
+        }, 400);
       }
       break;
     case keycap.a: // 왼쪽
@@ -155,7 +168,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
         key.lmove = true;
         setTimeout(function () {
           key.lmove = false;
-        }, 500);
+        }, 400);
       }
       break;
   }
