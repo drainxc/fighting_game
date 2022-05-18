@@ -21,9 +21,18 @@ export default function Title() {
       <S.Menu>
         {word.map((item, i) => (
           <S.Word>
-            <Link to={link[i]}>
-              <a>{item}</a>
-            </Link>
+            {item !== "github" ? (
+              <Link to={link[i]}>
+                <a>{item}</a>
+              </Link>
+            ) : (
+              <a
+                href="https://github.com/eastcopper/fighting_game"
+                target="_blank"
+              >
+                {item}
+              </a>
+            )}
           </S.Word>
         ))}
       </S.Menu>
