@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Word = styled.div`
   color: #fff;
-  font-family: "VT323", monospace;
-  font-size: 70px;
-  margin-top: 20px;
+  font-family: "Neo둥근모", "neodgm";
+  font-size: 55px;
+  margin-top: 25px;
   a:hover {
     color: #cccccc;
   }
@@ -15,15 +15,6 @@ export const Word = styled.div`
   a:visited {
     color: #fff;
   }
-`;
-
-export const BgColor = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  position: absolute;
-  top: 0;
-  z-index: -1;
 `;
 
 export const MainTitle = styled.div`
