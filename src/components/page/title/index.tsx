@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
@@ -6,7 +8,7 @@ import ui2 from "../../../asset/img/ui/ui2.png";
 
 export default function Title() {
   const word = ["start", "help", "setting", "github"];
-  const link = ["/select", "", "", ""];
+  const link = ["/select", "/help", "/setting", ""];
 
   const width = window.innerWidth;
   const height = window.innerHeight; // 브라우저 창 크기 구하기
@@ -36,7 +38,6 @@ export default function Title() {
           </S.Word>
         ))}
       </S.Menu>
-      <S.BgColor />
     </S.MainDiv>
   );
 }

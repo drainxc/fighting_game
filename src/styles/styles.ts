@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
       -ms-user-select: none;
       user-select: none;
       overflow-y: hidden;
+      background-color: #000;
     }
 `;
 
