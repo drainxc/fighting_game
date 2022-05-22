@@ -24,23 +24,27 @@ export function keyDown(
         }
         break;
       case keycap.s: // 아래
-        if (!key.defend) {
+        if (!key.defend && !key.defending) {
           key.defend = true;
+          key.defending = true;
           player.framecurrent = 0;
           setTimeout(() => {
             key.defend = false;
+            setTimeout(() => {
+              key.defending = false;
+            }, 500);
           }, hit.defendFrame * 100);
         }
         break;
       case keycap.d: // 오른쪽
-        if (!key.attacking) {
+        if (!key.attacking && !key.defend) {
           key.lf = false;
           key.rf = true;
           key.r = true;
         }
         break;
       case keycap.a: // 왼쪽
-        if (!key.attacking) {
+        if (!key.attacking && !key.defend) {
           key.rf = false;
           key.lf = true;
           key.l = true;
@@ -54,9 +58,7 @@ export function keyDown(
             key.attack1 = true;
             setTimeout(() => {
               key.attack1 = false;
-              setTimeout(() => {
-                key.attacking = false;
-              }, hit.cooltime * 100);
+              key.attacking = false;
             }, hit.atk1Frame * 100);
           }
         } else if (!key.attacking && !key.defend && key.float) {
@@ -67,9 +69,7 @@ export function keyDown(
             setTimeout(() => {
               key.airatk = false;
               player.speed.y = 5;
-              setTimeout(() => {
-                key.attacking = false;
-              }, hit.cooltime * 100);
+              key.attacking = false;
             }, hit.airatkFrame * 100);
           }
         }
@@ -82,9 +82,7 @@ export function keyDown(
             key.attack2 = true;
             setTimeout(() => {
               key.attack2 = false;
-              setTimeout(() => {
-                key.attacking = false;
-              }, hit.cooltime * 100);
+              key.attacking = false;
             }, hit.atk2Frame * 100);
           }
         }
@@ -102,9 +100,7 @@ export function keyDown(
             key.attack3 = true;
             setTimeout(() => {
               key.attack3 = false;
-              setTimeout(() => {
-                key.attacking = false;
-              }, hit.cooltime * 100);
+              key.attacking = false;
             }, hit.atk3Frame * 100);
           }
         }
@@ -122,9 +118,7 @@ export function keyDown(
             key.attack4 = true;
             setTimeout(() => {
               key.attack4 = false;
-              setTimeout(() => {
-                key.attacking = false;
-              }, hit.cooltime * 100);
+              key.attacking = false;
             }, hit.atk4Frame * 100);
           }
         }
@@ -138,7 +132,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
   switch (e) {
     case keycap.d: // 오른쪽
       key.r = false;
-      if (key.rmove === true && !key.attacking) {
+      if (key.rmove === true && !key.attacking && !key.defend) {
         if (!key.rdash) {
           player.framecurrent = 0;
           setTimeout(() => {
@@ -156,7 +150,7 @@ export function keyUp(e: string, key: any, player: any, keycap: any, hit: any) {
     case keycap.a: // 왼쪽
       key.l = false;
 
-      if (key.lmove === true && !key.attacking) {
+      if (key.lmove === true && !key.attacking && !key.defend) {
         if (!key.ldash) {
           player.framecurrent = 0;
           setTimeout(() => {

@@ -577,6 +577,7 @@ const key = {
   death: false,
   attacking: false,
   defend: false,
+  defending: false,
   rdash: false,
   ldash: false,
 };
@@ -587,8 +588,8 @@ export const pkey = JSON.parse(JSON.stringify(key));
 export const pkeycap = {
   w: "w",
   a: "a",
-  d: "d",
   s: "s",
+  d: "d",
   attack1: "u",
   attack2: "i",
   attack3: "j",
@@ -597,8 +598,8 @@ export const pkeycap = {
 export const ekeycap = {
   w: "ArrowUp",
   a: "ArrowRight",
-  d: "ArrowLeft",
   s: "ArrowDown",
+  d: "ArrowLeft",
   attack1: "7",
   attack2: "8",
   attack3: "4",
