@@ -19,6 +19,9 @@ export default function Canvas() {
   const playerHealthRef = useRef<HTMLSpanElement>(null);
   const enemyEnergeRef = useRef<HTMLSpanElement>(null);
   const playerEnergeRef = useRef<HTMLSpanElement>(null);
+
+  const pkey = JSON.parse(localStorage.getItem("pkey")!) || D.pkeycap;
+  const ekey = JSON.parse(localStorage.getItem("ekey")!) || D.ekeycap;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   let gamer: number[] = [];
 
@@ -124,7 +127,7 @@ export default function Canvas() {
         e.key,
         D.pkey,
         player,
-        D.pkeycap,
+        pkey,
         D.gameData[gamer[0]][12],
         playerEnergeRef
       );
@@ -132,7 +135,7 @@ export default function Canvas() {
         e.key,
         D.ekey,
         enemy,
-        D.ekeycap,
+        ekey,
         D.gameData[gamer[1]][12],
         enemyEnergeRef
       );
@@ -142,7 +145,7 @@ export default function Canvas() {
       keyUp(e.key, D.pkey, player, D.pkeycap, D.gameData[gamer[0]][12]);
       keyUp(e.key, D.ekey, enemy, D.ekeycap, D.gameData[gamer[1]][12]);
     }); // 키 땠을 때
-  }, [gamer]);
+  }, [ekey, gamer, pkey]);
 
   return (
     <>
