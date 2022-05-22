@@ -81,9 +81,18 @@ export default function Select() {
           <S.Slide onClick={() => next()}>›</S.Slide>
         </S.Map>
         <S.Bottom>
-          <Link to={"/"}>
-            <div>back</div>
-          </Link>
+          <S.Btn>
+            <Link to={"/"}>
+              <button
+                style={{
+                  clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 100%, 70% 0)",
+                  paddingRight: "55px",
+                }}
+              >
+                back
+              </button>
+            </Link>
+          </S.Btn>
 
           <S.BtnDiv>
             {character.map((name: string, i: number) => (
@@ -103,15 +112,31 @@ export default function Select() {
               </>
             ))}
           </S.BtnDiv>
-          <div>
+          <S.Btn>
             {player.length >= 3 ? (
-              <Link to={"/game" + player[1] + player[2] + currentSlide}>
-                <div>start</div>
-              </Link>
+              <button
+                style={{
+                  clipPath:
+                    "polygon(30% 0, 0 100%, 100% 100%, 100% 100%, 100% 0)",
+                  paddingLeft: "60px",
+                }}
+              >
+                <Link to={"/game" + player[1] + player[2] + currentSlide}>
+                  <a>start</a>
+                </Link>
+              </button>
             ) : (
-              <div>start</div>
+              <button
+                style={{
+                  clipPath:
+                    "polygon(30% 0, 0 100%, 100% 100%, 100% 100%, 100% 0)",
+                  paddingLeft: "60px",
+                }}
+              >
+                start
+              </button>
             )}
-          </div>
+          </S.Btn>
         </S.Bottom>
       </S.MainDiv>
     </>

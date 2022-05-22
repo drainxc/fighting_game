@@ -19,6 +19,23 @@ export const Background = styled.div<{
   opacity: 0.5;
 `;
 
+export const Btn = styled.div`
+  button {
+    font-family: "Neo둥근모", "neodgm";
+    width: 250px;
+    height: 100px;
+    font-size: 50px;
+    outline: none;
+  }
+  a:link {
+    text-decoration: none;
+    color: #000;
+  }
+  a:visited {
+    color: #000;
+  }
+`;
+
 export const BgColor = styled.div`
   position: absolute;
   top: 0;
@@ -70,6 +87,7 @@ export const BtnDiv = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-row-gap: 30px;
   grid-column-gap: 75px;
+  margin-bottom: 50px;
 
   button {
     width: 150px;
@@ -94,7 +112,7 @@ export const Profile = styled.div`
 
 export const Bottom = styled.div`
   position: absolute;
-  bottom: 5%;
+  bottom: 0;
   width: 100%;
   display: inline-flex;
   align-items: flex-end;
