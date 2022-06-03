@@ -93,7 +93,7 @@ export function keyDown(
           !key.defend &&
           ref.current.style.width.replace(regex, "") >= 33
         ) {
-          ref.current.style.width = `calc(${ref.current.style.width} - 33%)`;
+          ref.current.style.width = `calc(${ref.current.style.width} - 29.9%)`;
           key.attacking = true;
           player.framecurrent = 0;
           if (!key.attack3) {
@@ -111,7 +111,7 @@ export function keyDown(
           !key.defend &&
           ref.current.style.width.replace(regex, "") >= 50
         ) {
-          ref.current.style.width = `calc(${ref.current.style.width} - 50%)`;
+          ref.current.style.width = `calc(${ref.current.style.width} - 44.8%)`;
           key.attacking = true;
           player.framecurrent = 0;
           if (!key.attack4) {
