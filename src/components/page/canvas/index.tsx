@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { attack } from "../../../lib/function/collision";
 import { pressSense } from "../../../lib/function/pressSense";
 import * as S from "./styles";
@@ -22,7 +22,9 @@ export default function Canvas() {
 
   const pkey = JSON.parse(localStorage.getItem("pkey")!) || D.pkeycap;
   const ekey = JSON.parse(localStorage.getItem("ekey")!) || D.ekeycap;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  let cnt = 0;
+
   let gamer: number[] = [];
 
   if (id !== undefined) {
@@ -118,6 +120,21 @@ export default function Canvas() {
           enemyEnergeRef
         ); // 히트 판정
       }
+
+      if (enemyHealthRef.current?.style.width === "0%" && cnt === 0) {
+        cnt += 1;
+        winAlert("Player1");
+      } else if (playerHealthRef.current?.style.width === "0%" && cnt === 0) {
+        cnt += 1;
+        winAlert("Player2");
+      }
+    }
+
+    function winAlert(str: string) {
+      setTimeout(() => {
+        alert(`${str} Win!`);
+        window.location.href = `/select`;
+      }, 2000);
     }
 
     animate();
