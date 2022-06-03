@@ -78,7 +78,6 @@ export function attack(
         ek.attack3 = false;
         ek.attack4 = false; // 상대방 공격 캔슬
 
-        console.log(pEnergeRef.current.style.width.replace(regex, ""));
         if (
           eHealthRef.current.style.width.replace(regex, "") - atk[1] * atk[3] >=
           0
@@ -91,7 +90,10 @@ export function attack(
         } else {
           pEnergeRef.current.style.width = "87.7%";
         }
-      } else ek.death = true; // 죽은 판정 실행
+        ek.health = eHealthRef.current.style.width;
+      } else {
+        ek.death = true;
+      } // 죽은 판정 실행
     }
   }
   return;

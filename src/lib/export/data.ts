@@ -580,6 +580,7 @@ const key = {
   defending: false,
   rdash: false,
   ldash: false,
+  health: "87.7%",
 };
 
 export const ekey = JSON.parse(JSON.stringify(key));
